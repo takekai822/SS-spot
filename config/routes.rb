@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :public do
+    get 'searches/search'
+  end
+  namespace :public do
     get 'users/show'
     get 'users/edit'
     get 'users/favorites'
