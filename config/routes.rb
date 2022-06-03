@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   }
   
   #ユーザー側
-  namespace :public do
+  scope module: :public do
     root to: 'homes#top'
     
     resources :users, only: [:show, :edit, :update] do
