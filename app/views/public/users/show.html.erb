@@ -22,6 +22,11 @@
         <% @posts.each do |post| %>
           <%= post.title %>
         <% end %>
+        <div class="row">
+          <div class="mx-auto">
+            <%= paginate @posts %>
+          </div>
+        </div>
       <% else %>
         <p class="text-center">投稿はありません</p>
       <% end %>
