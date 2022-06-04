@@ -15,11 +15,11 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(1)
     #タグの絞り込みを行う
     if params[:tag_name]
       #タグがクリックされたらクリックされたタグの名前をtagge_with(タグの名前)メソッドで検索し絞り込みを行う
-      @posts = Post.tagged_with("#{params[:tag_name]}")
+      @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(1)
     end
   end
 
