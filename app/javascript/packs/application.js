@@ -16,3 +16,12 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+//複数画像が投稿されている時の画像のスライド表示
+$(document).on('turbolinks:load', function() {
+  $('.slick').slick({
+    dots: true,
+    arrows: false,
+  })
+});
+

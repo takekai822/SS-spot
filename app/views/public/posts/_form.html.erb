@@ -1,12 +1,9 @@
-<%= form_with model: post, url: posts_path do |f| %>
-  <%= render "layouts/error_messages", model: post %>
-  <%= f.label :title, "タイトル" %>
-  <%= f.text_field :title, class: "form-control" %>
-  <%= f.label :body, "説明文" %>
-  <%= f.text_area :body, class: "form-control" %>
-  <%= f.label :post_images, "画像" %>
-  <%= f.file_field :post_images, multiple: true, class: "form-control-file" %>
-  <%= f.label :tag_list, "タグ" %>
-  <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control", placeholder: ",で区切ると複数投稿できます" %>
-  <%= f.submit "投稿" %>
-<% end %>
+<%= render "layouts/error_messages", model: post %>
+<%= f.label :title, "タイトル" %>
+<%= f.text_field :title, class: "form-control" %>
+<%= f.label :body, "説明文" %>
+<%= f.text_area :body, class: "form-control" %>
+<%= f.label :post_images, "画像" %>
+<%= f.file_field :post_images, multiple: true, class: "form-control-file" %>
+<%= f.label :tag_list, "タグ" %>
+<%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control", placeholder: ",で区切ると複数投稿できます" %>
