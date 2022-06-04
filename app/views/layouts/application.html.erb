@@ -15,6 +15,11 @@
       <%= render "layouts/header" %>
     </header>
     <main>
+      <% if notice %>
+        <div class="text-center">
+          <%= notice %>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
     <footer>
