@@ -1,2 +1,33 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <h3>投稿</h3>
+      <div class="row">
+        <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+        <%= @post.user.user_name %>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <!--画像が複数投稿されている時はスライドで画像を表示させる-->
+          <div class="slick" style="max-width:200px;">
+            <% @post.post_images.each do |image| %>
+              <%= image_tag image.variant(resize_to_fill: [200, 200]) %>
+            <% end %>
+          </div>
+          <%= @post.title %>
+          <%= @post.body %>
+          <% @post.tag_list.each do |tag| %>
+            <span class="badge badge-primary">
+              <!--tagを押すとtagがついた投稿を一覧で表示される-->
+              <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+            </span>
+          <% end %>
+          <% if @post.user == current_user %>
+            <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
+            <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
