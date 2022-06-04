@@ -22,6 +22,7 @@
 ## 設計書
 - ER図：https://drive.google.com/file/d/1ZNDuZAGONtkri9VWYW2-L304aQ0u6m8s/view?usp=sharing  
 - テーブル定義書：https://docs.google.com/spreadsheets/d/1FK5i5eMdGTAKV3P_smhi0H5dxpHA7rLKeQUPCZg119w/edit?usp=sharing
+- アプリケーション詳細設計：https://docs.google.com/spreadsheets/d/1O1JD6IQUbuX1sjeSwirLKYl8SKDmlvtVvknG04iNQ18/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
