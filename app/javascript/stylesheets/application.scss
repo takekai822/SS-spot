@@ -1,6 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-
+//画像の下のドットの大きさ変更
+.slick-dots li button:before{
+	font-size:50px!important;
+}
+//エラーメッセージの表示の変更
 .field_with_errors {
   display: contents;
   input {
