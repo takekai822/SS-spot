@@ -5,9 +5,6 @@ class Post < ApplicationRecord
 
   has_many_attached :post_images
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
-
   validates :title, presence: true
   validates :body, presence: true
   validates :post_images, presence: true
