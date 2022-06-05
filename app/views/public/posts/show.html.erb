@@ -1,37 +1,42 @@
 <div class="container">
   <div class="row">
-    <div class="col-10">
+    <div class="col-12">
       <h3>投稿</h3>
-      <div class="row">
+      <div class="row bg-light">
+        <!--投稿者のプロフィール画像-->
         <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+        <!--投稿者の名前-->
         <%= @post.user.user_name %>
       </div>
       <div class="row">
-        <div class="col-10 mx-auto">
-          <!--画像が複数投稿されている時はスライドで画像を表示させる-->
-          <div class="slick" style="max-width:200px;">
+        <div class="col-12 mx-auto">
+          <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
+          <div class="slick mx-auto" style="max-width:800px;">
             <% @post.post_images.each do |image| %>
-              <%= image_tag image.variant(resize_to_fill: [200, 200]) %>
+              <%= image_tag image.variant(resize_to_fill: [800, 500]) %>
             <% end %>
           </div>
-          <%= @post.title %>
-          <%= @post.body %>
-          <% @post.tag_list.each do |tag| %>
-            <span class="badge badge-primary">
-              <!--tagを押すとtagがついた投稿を一覧で表示される-->
-              <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
-            </span>
-          <% end %>
-          
-          <h5>地図</h5>
+          <!--タイトル-->
+          <div>
+            <%= @post.title %>
+          </div>
+          <!--説明文-->
+          <div>
+            <%= @post.body %>
+          </div>
+          <!--タグ-->
+          <div>
+            <% @post.tag_list.each do |tag| %>
+              <span class="badge badge-primary">
+                <!--tagを押すとtagがついた投稿を一覧で表示される-->
+                <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+              </span>
+            <% end %>
+          </div>
+
           <!--地図の表示-->
-          <div id='map'></div>
-          <style>
-          #map {
-            height: 500px;
-            width: 100%;
-          }
-          </style>
+          <div id='map' style="height:500px; width:100%;"></div>
+
           <!-- js部分 -->
           <script>
           let map
@@ -51,11 +56,17 @@
           }
           </script>
           <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap" async defer></script>
-
-          <% if @post.user == current_user %>
-            <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
-            <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
-          <% end %>
+          <!--いいねボタン-->
+          <div id="favorite-<%= @post.id %>">
+            <%= render "public/favorites/favorite_btn_show", post: @post %>
+          </div>
+          <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
+          <div>
+            <% if @post.user == current_user %>
+              <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
+              <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

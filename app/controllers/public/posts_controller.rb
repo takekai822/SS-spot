@@ -49,7 +49,8 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :address, :latitude, :longitude, :tag_list, post_images: [])
   end
-
+  
+  #投稿者本人しか投稿を編集できないようにするためのアクション
   def ensure_correct_user
     @post = Post.find(params[:id])
     unless @post.user == current_user
