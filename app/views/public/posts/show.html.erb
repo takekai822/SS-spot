@@ -58,7 +58,7 @@
           <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap" async defer></script>
           <!--いいねボタン-->
           <div id="favorite-<%= @post.id %>">
-            <%= render "public/favorites/favorite_btn_show", post: @post %>
+            <%= render "public/favorites/favorite_btn", post: @post %>
           </div>
           <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
           <div>
