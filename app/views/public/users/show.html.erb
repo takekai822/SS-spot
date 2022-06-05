@@ -2,9 +2,11 @@
   <div class="row py-4">
     <div class="col-8 mx-auto">
       <div class="text-center">
+        <!--プロフィール画像の表示-->
         <div>
           <%= image_tag @user.get_profile_image,size: "100x100", class: "rounded-circle" %>
         </div>
+        <!--ユーザーネーム-->
         <div class="mt-3">
           <%= @user.user_name %>
         </div>
@@ -13,15 +15,22 @@
   </div>
   <div class="row py-4">
     <div class="col-8 mx-auto">
-      <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-secondary btn-block" %>
+      <p><%=link_to"いいねリスト",favorites_user_path(@user) %></p>
+      <!--プロフィール編集ボタン(本人がユーザー詳細ページを開いている時のみ表示)-->
+      <% if @user == current_user %>
+        <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-secondary btn-block" %>
+      <% end %>
     </div>
   </div>
   <div class="row py-4">
     <div class="col-12 mx-auto">
+      <!--@userが投稿をしているかを確認-->
       <% if @user.posts.exists? %>
+        <!--存在している場合、@userの投稿一覧表示-->
         <% @posts.each do |post| %>
           <%= post.title %>
         <% end %>
+        <!--ページネーション
         <div class="row">
           <div class="mx-auto">
             <%= paginate @posts %>
