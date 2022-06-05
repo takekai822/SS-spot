@@ -4,10 +4,14 @@
 .slick-dots li button:before{
 	font-size:50px!important;
 }
+//投稿画像が一枚の時はドットを非表示
+.slick-dots > li:first-child:last-child {
+    display: none;
+}
 //エラーメッセージの表示の変更
 .field_with_errors {
   display: contents;
-  input {
+  input, textarea {
     @extend .is-invalid;
   }
 }
