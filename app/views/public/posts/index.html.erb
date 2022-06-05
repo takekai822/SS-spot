@@ -6,28 +6,7 @@
       <% else %>
         <h2>投稿一覧</h2>
       <% end %>
-      <table class="table">
-        <tbody>
-          <% @posts.each do |post| %>
-            <tr>
-              <td>
-                <%= link_to post.title, post_path(post) %>
-              </td>
-              <td>
-                <%= post.body.truncate(5) %>
-              </td>
-              <td>
-                <% post.tag_list.each do |tag| %>
-                  <span class="badge badge-primary">
-                    <!--tagを押すとtagがついた投稿を一覧で表示される-->
-                    <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
-                  </span>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render "public/posts/index", posts: @posts %>
     </div>
   </div>
   <div class="row">

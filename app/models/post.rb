@@ -13,6 +13,11 @@ class Post < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
   validate :validate_number_of_files
+  
+  #投稿にユーザーがいいねをしているかを確認するための
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
   private
   #投稿画像の枚数制限のためのメソッド
