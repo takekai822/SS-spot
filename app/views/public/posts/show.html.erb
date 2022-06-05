@@ -9,15 +9,11 @@
       <div class="row">
         <div class="col-10 mx-auto">
           <!--画像が複数投稿されている時はスライドで画像を表示させる-->
-          <% if @post.post_images == 1 %>
-            <%= @post.post_images %>
-          <% else %>
-            <div class="slick" style="max-width:200px;">
-              <% @post.post_images.each do |image| %>
-                <%= image_tag image.variant(resize_to_fill: [200, 200]) %>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="slick" style="max-width:200px;">
+            <% @post.post_images.each do |image| %>
+              <%= image_tag image.variant(resize_to_fill: [200, 200]) %>
+            <% end %>
+          </div>
           <%= @post.title %>
           <%= @post.body %>
           <% @post.tag_list.each do |tag| %>
@@ -26,7 +22,7 @@
               <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
             </span>
           <% end %>
-
+          
           <h5>地図</h5>
           <!--地図の表示-->
           <div id='map'></div>
