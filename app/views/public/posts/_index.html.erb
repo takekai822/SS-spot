@@ -1,0 +1,38 @@
+<table class="table">
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td>
+          <!--タイトル-->
+          <%= link_to post.title, post_path(post) %>
+        </td>
+        <td>
+          <!--説明文-->
+          <%= post.body.truncate(5) %>
+        </td>
+        <td>
+          <!--タグ-->
+          <% post.tag_list.each do |tag| %>
+            <span class="badge badge-primary">
+              <!--tagを押すとtagがついた投稿を一覧で表示される-->
+              <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+            </span>
+          <% end %>
+        </td>
+        <!--いいね(このページではいいねは押せない-->
+        <td>
+          <!--現在のユーザーが投稿にいいねをしているかを確認-->
+          <% if post.favorited_by?(current_user) %>
+            <div class="text-danger favorite-btn">
+              <i class="fas fa-heart"></i><%= post.favorites.count %>
+            </div>
+          <% else %>
+            <div class="text-dark favorite-btn">
+              <i class="far fa-heart"></i><%= post.favorites.count %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
