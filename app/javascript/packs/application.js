@@ -8,20 +8,14 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery";
+import raty from 'raty-js'
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application" 
+import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-//複数画像が投稿されている時の画像のスライド表示
-$(document).on('turbolinks:load', function() {
-  $('.slick').slick({
-    dots: true,
-    arrows: false,
-  })
-});
-
+window.$ = window.jQuery = require('jquery');
