@@ -70,10 +70,8 @@
             <%= render "public/favorites/favorite_btn", post: @post %>
           </div>
           <!--コメント一覧-->
-          <div class="comment-count">
-            <%= @post.post_comments.count %> コメント
-          </div>
           <div class="post-comments">
+            <%= @post.post_comments.count %> コメント
             <%= render "public/post_comments/index", post: @post %>
           </div>
           <!--コメントフォーム-->
