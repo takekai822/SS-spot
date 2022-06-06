@@ -39,26 +39,44 @@
 
           <!-- js部分 -->
           <script>
-          let map
-          let marker
-          function initMap(){
-            geocoder = new google.maps.Geocoder()
-
-            map = new google.maps.Map(document.getElementById('map'), {
-              center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
-              zoom: 15,
+            //複数画像が投稿されている時の画像のスライド表示
+            $(document).on('turbolinks:load', function() {
+              $('.slick').slick({
+                dots: true,
+                arrows: false,
+              })
             });
 
-             marker = new google.maps.Marker({
-              position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
-              map: map
-            });
-          }
+            //地図表示
+            let map
+            let marker
+            function initMap(){
+              geocoder = new google.maps.Geocoder()
+
+              map = new google.maps.Map(document.getElementById('map'), {
+                center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+                zoom: 15,
+              });
+
+               marker = new google.maps.Marker({
+                position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+                map: map
+              });
+            }
           </script>
           <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap" async defer></script>
           <!--いいねボタン-->
           <div id="favorite-<%= @post.id %>">
             <%= render "public/favorites/favorite_btn", post: @post %>
+          </div>
+          <!--コメント一覧-->
+          <div class="post-comments">
+            <%= @post.post_comments.count %> コメント
+            <%= render "public/post_comments/index", post: @post %>
+          </div>
+          <!--コメントフォーム-->
+          <div class="post-comment-form">
+            <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
           </div>
           <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
           <div>
