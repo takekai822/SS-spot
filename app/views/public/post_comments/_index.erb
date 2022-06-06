@@ -1,0 +1,31 @@
+<div>
+  <% post.post_comments.each do |post_comment| %>
+    <!--コメント表示-->
+    <div>
+      <%= post_comment.comment %>
+    </div>
+    <!--星評価の表示-->
+    <div id="rate-<%= post_comment.id %>" class="form-group"></div>
+    <!-- js部分 -->
+    <script>
+      $(document).on('turbolinks:load', function() {
+        $('#rate-<%= post_comment.id %>').empty();
+        $('#rate-<%= post_comment.id %>').raty({
+          size: 20,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: <%= post_comment.rate %>,
+        });
+      });
+    </script>
+    <!--コメントした本人のみ削除ボタンの表示-->
+    <% if post_comment.user == current_user %>
+      <div>
+        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
