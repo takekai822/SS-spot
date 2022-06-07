@@ -1,2 +1,55 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              ユーザー名(フリガナ)
+            </th>
+            <th>
+              ユーザーネーム
+            </th>
+            <th>
+              投稿数
+            </th>
+            <th>
+              ユーザーステータス
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <%= image_tag user.get_profile_image, size: "50x50" %>
+              </td>
+              <td>
+                <%= user.name %>(<%= user.name_kana %>)
+              </td>
+              <td>
+                <%= user.user_name %>
+              </td>
+              <td>
+                <%= user.posts.count %>
+              </td>
+              <td>
+                <% if user.is_deleted == true %>
+                  <p>退会</p>
+                <% else %>
+                  <p>有効</p>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to admin_user_path(user) do %>
+                  <p>詳細</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
