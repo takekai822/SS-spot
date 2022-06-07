@@ -15,10 +15,11 @@
   </div>
   <div class="row py-4">
     <div class="col-8 mx-auto">
-      <p><%=link_to"いいねリスト",favorites_user_path(@user) %></p>
       <!--プロフィール編集ボタン(本人がユーザー詳細ページを開いている時のみ表示)-->
       <% if @user == current_user %>
         <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-outline-secondary btn-block" %>
+      <% else %>
+        <p><%=link_to "#{@user.user_name}さんのいいねリスト",favorites_user_path(@user) %></p>
       <% end %>
     </div>
   </div>
