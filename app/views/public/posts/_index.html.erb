@@ -21,12 +21,20 @@
         </td>
         <!--いいね(このページではいいねは押せない-->
         <td>
-          <!--現在のユーザーが投稿にいいねをしているかを確認-->
-          <% if post.favorited_by?(current_user) %>
-            <div class="text-danger favorite-btn">
-              <i class="fas fa-heart"></i><%= post.favorites.count %>
-            </div>
+          <!--ログインしているか確認-->
+          <% if user_signed_in? %>
+            <!--現在のユーザーが投稿にいいねをしているか確認-->
+            <% if post.favorited_by?(current_user) %>
+              <div class="text-danger favorite-btn">
+                <i class="fas fa-heart"></i><%= post.favorites.count %>
+              </div>
+            <% else %>
+              <div class="text-dark favorite-btn">
+                <i class="far fa-heart"></i><%= post.favorites.count %>
+              </div>
+            <% end %>
           <% else %>
+            <!--ログインしていなかった場合のいいね表示-->
             <div class="text-dark favorite-btn">
               <i class="far fa-heart"></i><%= post.favorites.count %>
             </div>
