@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <header>
+    <header class="border-bottom mb-5">
       <%= render "layouts/header" %>
     </header>
     <main>
@@ -24,9 +24,13 @@
         </div>
       <% end %>
       <%= yield %>
+      <!--ログインしている場合ページ下部に遷移ボタンの配置-->
+      <% if user_signed_in? %>
+        <%= render "layouts/select_btn" %>
+      <% end %>
     </main>
-    <footer>
-      <p>jimopot</p>
+    <footer class="my-5 py-4 border-top text-center">
+      <strong>jimopot</strong>
     </footer>
   </body>
 </html>

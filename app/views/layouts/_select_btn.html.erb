@@ -1,0 +1,13 @@
+<div class="container">
+  <div class=" row fixed-bottom d-flex bg-light" style="height:50px;">
+    <div class="col-4 border-right text-center">
+      <%= link_to "投稿一覧", posts_path %>
+    </div>
+    <div class="col-4 border-right text-center">
+      <%= link_to "新規投稿", new_post_path %>
+    </div>
+    <div class="col-4 text-center">
+      <%= link_to "いいねリスト", favorites_user_path(current_user) %>
+    </div>
+  </div>
+</div>
