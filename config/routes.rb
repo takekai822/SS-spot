@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   #管理者側
   namespace :admin do
-    resources :posts, only: [:index, :show] do
+    resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]
     end
 
