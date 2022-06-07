@@ -7,10 +7,11 @@
 
         <%= f.label :map, "地図" %>
         <!--地図の表示-->
-        <div class="d-flex">
-          <input id="address" type="textbox" value="<%= @post.address %>", class="form-control">
+        <div class="d-flex mb-4">
+          <input id="address" type="text" value="<%= @post.address %>", class="form-control">
           <input type="button" value="検索" onclick="codeAddress()">
         </div>
+
         <div id='map'></div>
         <style>
         #map {
@@ -29,6 +30,14 @@
             map = new google.maps.Map(document.getElementById('map'), {
               center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
               zoom: 15,
+            });
+
+            //検索フォーム
+            const input = document.getElementById("address");
+            const searchBox = new google.maps.places.SearchBox(input);
+
+            map.addListener("bounds_changed", () => {
+              searchBox.setBounds(map.getBounds());
             });
           }
           //検索後のマップ作成
@@ -71,10 +80,10 @@
           }
 
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap" async defer></script>
-        <%= f.submit "更新", class: "btn btn-primary" %>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>
+        <%= f.submit "更新", class: "btn btn-primary" %><%= link_to "戻る", post_path(@post), class: "btn btn-outline-secondary" %>
       <% end %>
-      <%= link_to "戻る", post_path(@post), class: "btn btn-outline-secondary" %>
+
     </div>
   </div>
 </div>

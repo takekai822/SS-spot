@@ -7,10 +7,11 @@
 
         <%= f.label :map, "地図" %>
         <!--地図の表示-->
-        <div class="d-flex">
-          <input id="address" type="textbox" placeholder="東京スカイツリー", class="form-control">
+        <div class="d-flex mb-4">
+          <input id="address" class="form-control" type="text" placeholder="Search Box"/>
           <input type="button" value="検索" onclick="codeAddress()">
         </div>
+
         <div id='map'></div>
         <style>
         #map {
@@ -29,6 +30,14 @@
           map = new google.maps.Map(document.getElementById('map'), {
             center:  {lat:35.710006892117, lng:139.81081025188},  //東京スカイツリー
             zoom: 15,
+          });
+
+          //検索フォーム
+          const input = document.getElementById("address");
+          const searchBox = new google.maps.places.SearchBox(input);
+
+          map.addListener("bounds_changed", () => {
+            searchBox.setBounds(map.getBounds());
           });
         }
 
@@ -72,7 +81,7 @@
         }
 
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>
 
         <%= f.submit "投稿", class: "btn btn-primary" %>
       <% end %>
