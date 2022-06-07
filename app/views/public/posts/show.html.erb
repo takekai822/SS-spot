@@ -74,10 +74,13 @@
             <%= @post.post_comments.count %> コメント
             <%= render "public/post_comments/index", post: @post %>
           </div>
-          <!--コメントフォーム-->
-          <div class="post-comment-form">
-            <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
-          </div>
+          <!--ログインしているか確認-->
+          <% if user_signed_in? %>
+            <!--コメントフォーム(ログインしていない場合は非表示)-->
+            <div class="post-comment-form">
+              <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+            </div>
+          <% end %>
           <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
           <div>
             <% if @post.user == current_user %>
