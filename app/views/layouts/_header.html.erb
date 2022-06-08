@@ -2,7 +2,7 @@
   <div class="container">
     <!--ロゴ-->
     <a class="navbar-brand p-3" href="/">JIMOPOT</a>
-    <!--検索フォームの配置(管理者画面では)-->
+    <!--検索フォームの配置(管理者画面では非表示)-->
     <% unless admin_signed_in? %>
       <div class="search-form">
         <%= form_with url: search_path, method: :get do |f| %>

@@ -7,12 +7,12 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
-  validates :post_images, presence: true
-  validates :address, presence: true
+  validate :validate_post_images
+  validate :validate_number_of_files
   validates :tag_list, presence: true
+  validates :address, presence: true
   validates :latitude, presence: true
   validates :longitude, presence: true
-  validate :validate_number_of_files
 
   #投稿にユーザーがいいねをしているかを確認するための
   def favorited_by?(user)
@@ -28,10 +28,16 @@ class Post < ApplicationRecord
   end
 
   private
-  #投稿画像の枚数制限のためのメソッド
+  #投稿画像の枚数制限のエラーメッセージ
   def validate_number_of_files
     return if post_images.length <= 5
-    errors.add(:post_images, "に添付できる画像は5枚までです。")
+    errors.add(:post_images, "には最大5枚まで添付できます")
+  end
+  #画像の選択がされていない時のエラーメッセージ
+  def validate_post_images
+    if post_images.length == 0
+      errors.add(:post_images, "を添付してください")
+    end
   end
 
   #タグ情報を保存する

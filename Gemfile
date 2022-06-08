@@ -59,3 +59,5 @@ gem 'acts-as-taggable-on', '~> 9.0'
 gem 'devise'
 gem 'dotenv-rails'
 gem "geocoder"
+gem 'rails-i18n', '~> 6.0'
+gem 'devise-i18n'
