@@ -69,9 +69,12 @@
           <div id="favorite-<%= @post.id %>">
             <%= render "public/favorites/favorite_btn", post: @post %>
           </div>
+          <!--コメント数-->
+          <div class="comment-count">
+            <%= @post.post_comments.count %> コメント
+          </div>
           <!--コメント一覧-->
           <div class="post-comments">
-            <%= @post.post_comments.count %> コメント
             <%= render "public/post_comments/index", post: @post %>
           </div>
           <!--ログインしているか確認-->

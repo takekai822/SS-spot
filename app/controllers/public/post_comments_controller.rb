@@ -12,7 +12,7 @@ class Public::PostCommentsController < ApplicationController
   end
 
   def destroy
-    PostComment.find(params[:id]).destroy
+    @post_comment = PostComment.find(params[:id]).destroy
     @post = Post.find(params[:post_id])
     render "public/post_comments/post_comment"
   end
