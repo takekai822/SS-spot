@@ -13,10 +13,18 @@ class Post < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
   validate :validate_number_of_files
-  
+
   #投稿にユーザーがいいねをしているかを確認するための
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
+  end
+
+  def self.looks(word)
+    if word != ""
+      @post = Post.where(["title LIKE? OR body LIKE?", "%#{word}%", "%#{word}%"])
+    else
+      @post = Post.all
+    end
   end
 
   private
