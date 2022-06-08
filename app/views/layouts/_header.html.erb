@@ -1,16 +1,34 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-light">
   <div class="container">
+    <!--ロゴ-->
     <a class="navbar-brand p-3" href="/">JIMOPOT</a>
+    <!--検索フォームの配置(管理者画面では)-->
+    <% unless admin_signed_in? %>
+      <div class="search-form">
+        <%= form_with url: search_path, method: :get do |f| %>
+          <div class="border rounded-pill p-1">
+            <%= f.text_field :word, placeholder: "投稿を検索", style: "border: 0; outline: 0;" %>
+            <%= f.button :type => "submit", style: "border-style: none; background: none;" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <!--ハンバーガーメニュー-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <!--ナビゲーションメニュー-->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
+          <!--ログインしている場合の表示-->
           <li class="nav-item">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
           </li>
         <% elsif admin_signed_in? %>
+          <!--管理者がログインしている場合の表示-->
           <li class="nav-item">
             <%= link_to "ユーザー一覧", admin_users_path %>
           </li>
@@ -21,6 +39,7 @@
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
           </li>
         <% else %>
+          <!--ログインしていない場合の表示-->
           <li class="nav-item">
             <%= link_to "新規登録", new_user_registration_path %>
           </li>
