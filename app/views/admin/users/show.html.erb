@@ -21,9 +21,9 @@
       <!--@userが投稿をしているかを確認-->
       <% if @user.posts.exists? %>
         <!--存在している場合、@userの投稿一覧表示-->
-        <% @posts.each do |post| %>
-          <%= post.title %>
-        <% end %>
+        <div class="row">
+          <%= render "admin/posts/index", posts: @posts %>
+        </div>
         <!--ページネーション-->
         <div class="row">
           <div class="mx-auto">
