@@ -1,0 +1,28 @@
+<table class="table">
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td>
+          <!--タイトル-->
+          <%= link_to post.title, admin_post_path(post) %>
+        </td>
+        <td>
+          <!--説明文-->
+          <%= post.body.truncate(5) %>
+        </td>
+        <td>
+          <!--タグ-->
+          <% post.tag_list.each do |tag| %>
+            <span class="badge badge-primary">
+              #<%= tag %>
+            </span>
+          <% end %>
+        </td>
+        <!--コメント数-->
+        <td>
+          コメント数：<%= post.post_comments.count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

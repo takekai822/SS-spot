@@ -26,6 +26,9 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
+  
+  #タグの区切りを"#"に変更
+  ActsAsTaggableOn.delimiter = '#'
 
   private
   #投稿画像の枚数制限のエラーメッセージ
