@@ -15,11 +15,20 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.page(params[:page]).per(10)
-    #タグの絞り込みを行う
-    if params[:tag_name]
+    if params[:latest]
+      #新着順で並び替え
+      @posts = Post.latest.page(params[:page]).per(10)
+    elsif params[:old]
+      #古い順で並び替え
+      @posts = Post.old.page(params[:page]).per(10)
+    elsif params[:tag_name]
+      #タグの絞り込み
       #タグがクリックされたらクリックされたタグの名前をtagge_with(タグの名前)メソッドで検索し絞り込みを行う
       @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+    else
+      #いいねの多い順で並び替え
+      posts = Post.includes(:favorited_users).sort {|a, b| b.favorited_users.size <=> a.favorited_users.size}
+      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(10)
     end
   end
 
