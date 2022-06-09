@@ -11,15 +11,7 @@
           <%= post.body.truncate(5) %>
         </td>
         <td>
-          <!--タグ-->
-          <% post.tag_list.each do |tag| %>
-            <span class="badge badge-primary">
-              #<%= tag %>
-            </span>
-          <% end %>
-        </td>
-        <!--コメント数-->
-        <td>
+          <!--コメント数-->
           コメント数：<%= post.post_comments.count %>
         </td>
       </tr>

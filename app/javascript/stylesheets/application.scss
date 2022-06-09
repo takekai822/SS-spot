@@ -1,13 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
 //画像の下のドットの大きさ変更
 .slick-dots li button:before{
 	font-size: 50px!important;
 }
+
 //投稿画像が一枚の時はドットを非表示
 .slick-dots > li:first-child:last-child {
     display: none;
 }
+
 //エラーメッセージの表示の変更
 .field_with_errors {
   display: contents;
@@ -16,11 +19,13 @@
   }
 }
 
+//遷移ボタンのcssここから
 .select_btn{
   height: 50px;
+  background-color: white;
 }
 
-.select_btn .col-3 a{
+.select_btn a{
   text-decoration: none;
 }
 
@@ -55,11 +60,13 @@
   opacity: 1;
   transform: translateY(5px);
 }
+//ここまで
 
 footer{
   padding-bottom: 100px;
 }
 
+//レスポンシブ対応
 @media screen and (max-width: 480px){
   .indicator strong{
     display: none;

@@ -8,19 +8,10 @@
         </td>
         <td>
           <!--説明文-->
-          <%= post.body.truncate(5) %>
+          <%= post.body.truncate(30) %>
         </td>
         <td>
-          <!--タグ-->
-          <% post.tag_list.each do |tag| %>
-            <span class="badge badge-primary">
-              <!--tagを押すとtagがついた投稿を一覧で表示される-->
-              #<%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
-            </span>
-          <% end %>
-        </td>
-        <!--いいね(このページではいいねは押せない-->
-        <td>
+          <!--いいね(このページではいいねは押せない)-->
           <!--ログインしているか確認-->
           <% if user_signed_in? %>
             <!--現在のユーザーが投稿にいいねをしているか確認-->
@@ -42,8 +33,8 @@
             </div>
           <% end %>
         </td>
-        <!--コメント数-->
         <td>
+          <!--コメント数-->
           コメント数：<%= post.post_comments.count %>
         </td>
       </tr>
