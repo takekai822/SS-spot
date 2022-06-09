@@ -6,6 +6,11 @@
       <% else %>
         <h2>投稿一覧</h2>
       <% end %>
+      <p>
+        <%= link_to "新着順", posts_path(latest: "true") %> |
+        <%= link_to "古い順", posts_path(old: "true") %> |
+        <%= link_to "いいねの多い順", posts_path %>
+      </p>
       <%= render "public/posts/index", posts: @posts %>
     </div>
   </div>
