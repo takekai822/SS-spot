@@ -17,21 +17,11 @@
 }
 
 .select_btn{
-  height: 80px;
+  height: 50px;
 }
 
 .select_btn .col-3 a{
-  text-decoration:none;
-}
-
-.icon{
-  font-size: 30px;
-  transition: 0.5s;
-}
-
-.icon:hover{
-  transform: translateY(-15px);
-  font-size: 50px;
+  text-decoration: none;
 }
 
 .indicator{
@@ -41,25 +31,51 @@
   color: black;
 }
 
-.indicator strong:hover{
-  opacity:1;
+.icon{
+  font-size: 30px;
+  transition: 0.8s;
+}
+
+.indicator:hover .icon{
+  transform: translateY(-50px);
+  font-size: 50px;
+}
+
+.indicator strong{
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: 0.8s;
+}
+
+.indicator:hover strong{
+  opacity: 1;
+  transform: translateY(5px);
 }
 
 footer{
-  padding-bottom:100px;
+  padding-bottom: 100px;
 }
 
-.background{
-  background-color:white;
-}
-
-
-@media screen and (max-width:480px){
-  strong{
-    display:none;
+@media screen and (max-width: 480px){
+  .indicator strong{
+    display: none;
   }
-  
+
   .select_btn{
-    height:50px;
+    height: 50px;
+  }
+
+  .icon{
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 285px){
+  .search-form button{
+    display: none;
   }
 }
