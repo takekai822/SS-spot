@@ -12,6 +12,13 @@ ja:
         name_kana: フリガナ
         user_name: ユーザーネーム
         email: メールアドレス
+        profile_image: プロフィール画像
+        password: パスワード
+        encrypted_password: パスワード
+        password_confirmation: パスワード(確認用)
+      admin:
+        email: メールアドレス
+        password: パスワード
         encrypted_password: パスワード
       post:
         title: タイトル

@@ -1,34 +1,28 @@
-<div class="row fixed-bottom d-flex mx-5 select_btn">
-  <div class="col-3">
-    <%= link_to posts_path do %>
-      <div class="indicator">
+<div class="fixed-bottom select-button">
+  <div class="indicator">
+    <div class="col-3 buttons">
+      <%= link_to posts_path do %>
         <i class="fa-solid fa-house icon" ></i>
         <strong>投稿一覧</strong>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-3">
-    <%= link_to new_post_path do %>
-      <div class="indicator">
+      <% end %>
+    </div>
+    <div class="col-3 buttons">
+      <%= link_to new_post_path do %>
         <i class="fa-solid fa-circle-plus icon"></i>
         <strong>新規投稿</strong>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-3">
-    <%= link_to favorites_user_path(current_user) do %>
-      <div class="indicator">
+      <% end %>
+    </div>
+    <div class="col-3 buttons">
+      <%= link_to favorites_user_path(current_user) do %>
         <i class="fa-solid fa-heart icon"></i>
         <strong>いいねリスト</strong>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-3">
-    <%= link_to user_path(current_user) do %>
-      <div class="indicator">
+      <% end %>
+    </div>
+    <div class="col-3 buttons">
+      <%= link_to user_path(current_user) do %>
         <i class="fa-solid fa-user icon"></i>
         <strong>マイページ</strong>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

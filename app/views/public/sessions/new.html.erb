@@ -1,29 +1,6 @@
-<h2>Log in</h2>
-
-<%= form_with model: @user, url: user_session_path do |f| %>
-  <% if alert %>
-    <p class="alert alert-warning"><%= alert %></p>
-  <% end %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="w-75 mx-auto">
+    <h2 class="my-4">ログイン</h2>
+    <%= render "public/sessions/form", model: @user, url: user_session_path %>
   </div>
-
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
