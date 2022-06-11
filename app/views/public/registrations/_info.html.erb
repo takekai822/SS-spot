@@ -1,24 +1,24 @@
-  <div class="form-group row">
-    <%= f.label :name, "名前" %>
-    <%= f.text_field :name, autofocus: true, class: "form-control name" %>
+  <div class="form-group mx-auto">
+    <%= f.label :name, class: "col-12 pl-md-0 mx-md-auto" %>
+    <%= f.text_field :name, autofocus: true, class: "col-12  mx-auto form-control name" %>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :name_kana, "フリガナ" %>
-    <%= f.text_field :name_kana, class: "form-control name_kana" %>
+  <div class="form-group mx-auto">
+    <%= f.label :name_kana, class: "col-12  pl-md-0 mx-md-auto" %>
+    <%= f.text_field :name_kana, class: "col-12 mx-auto form-control name_kana" %>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :profile_image, "プロフィール画像" %>
-    <%= f.file_field :profile_image, accept: "image/*", class: "form-control-file proflie_image" %>
+  <div class="form-group mx-auto">
+    <%= f.label :profile_image, class: "col-12  pl-md-0 mx-md-auto" %>
+    <%= f.file_field :profile_image, accept: "image/*", class: " col-12 mx-auto pl-0 form-control-file proflie_image" %>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :user_name, "ユーザーネーム" %>
-    <%= f.text_field :user_name, class: "form-control user_name" %>
+  <div class="form-group mx-auto">
+    <%= f.label :user_name, class: "col-12  pl-md-0 mx-md-auto" %>
+    <%= f.text_field :user_name, class: "col-12  mx-auto form-control user_name" %>
   </div>
 
-  <div class="form-group row">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, class: "form-control email" %>
+  <div class="form-group mx-auto">
+    <%= f.label :email, class: "col-12  pl-md-0 mx-md-auto" %>
+    <%= f.email_field :email, class: "col-12  mx-auto form-control email" %>
   </div>

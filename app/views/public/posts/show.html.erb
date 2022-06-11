@@ -13,7 +13,7 @@
           <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
           <div class="slick mx-auto" style="max-width:800px;">
             <% @post.post_images.each do |image| %>
-              <%= image_tag image.variant(resize_to_fill: [800, 500]) %>
+              <%= image_tag image.variant(resize_to_fill: [800, 650]) %>
             <% end %>
           </div>
           <!--タイトル-->
@@ -34,41 +34,14 @@
             <% end %>
           </div>
 
-          <!--地図の表示-->
-          <div id='map' style="height:500px; width:100%;"></div>
-
-          <!-- js部分 -->
-          <script>
-            //複数画像が投稿されている時の画像のスライド表示
-            $(document).on('turbolinks:load', function() {
-              $('.slick').slick({
-                dots: true,
-                arrows: false,
-              })
-            });
-
-            //地図表示
-            let map
-            let marker
-            function initMap(){
-              geocoder = new google.maps.Geocoder()
-
-              map = new google.maps.Map(document.getElementById('map'), {
-                center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
-                zoom: 15,
-              });
-
-               marker = new google.maps.Marker({
-                position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
-                map: map
-              });
-            }
-          </script>
-          <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>
           <!--いいねボタン-->
           <div id="favorite-<%= @post.id %>">
             <%= render "public/favorites/favorite_btn", post: @post %>
           </div>
+
+          <!--地図の表示-->
+          <div id='map'></div>
+
           <!--コメント数-->
           <div class="comment-count">
             <%= @post.post_comments.count %> コメント
@@ -96,3 +69,31 @@
     </div>
   </div>
 </div>
+<!-- js部分 -->
+<script>
+  //複数画像が投稿されている時の画像のスライド表示
+  $(document).on('turbolinks:load', function() {
+    $('.slick').slick({
+      dots: true,
+      arrows: false,
+    })
+  });
+
+  //地図表示
+  let map
+  let marker
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      zoom: 15,
+    });
+
+     marker = new google.maps.Marker({
+      position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      map: map
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>

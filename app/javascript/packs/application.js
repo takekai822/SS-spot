@@ -19,3 +19,19 @@ Turbolinks.start()
 ActiveStorage.start()
 
 window.$ = window.jQuery = require('jquery');
+global.$ = global.jQuery = require('jquery');
+
+//ハンバーガーメニュー
+/* global $*/
+$(document).on('turbolinks:load', function() {
+	$('.menu-button').click(function () {
+		$(this).toggleClass('active');
+		$('.open-menu-bg').fadeToggle();
+		$('nav').toggleClass('open');
+	})
+	$('.open-menu-bg').click(function () {
+		$(this).fadeOut();
+		$('.menu-button').removeClass('active');
+		$('nav').removeClass('open');
+	});
+})

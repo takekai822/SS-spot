@@ -1,11 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-//画像の下のドットの大きさ変更
-.slick-dots li button:before{
-	font-size: 50px!important;
-}
-
 //投稿画像が一枚の時はドットを非表示
 .slick-dots > li:first-child:last-child {
     display: none;
@@ -19,70 +14,231 @@
   }
 }
 
-//遷移ボタンのcssここから
-.select_btn{
+//地図のスタイル
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+//遷移ボタンのスタイルここから
+.select-button {
+  width: 100%;
   height: 50px;
   background-color: white;
 }
 
-.select_btn a{
-  text-decoration: none;
+.indicator {
+  height: 50px;
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+
 }
 
-.indicator{
-  display: flex;
-  flex-flow: column;
-  text-align: center;
+.select-button a {
+  text-decoration: none;
   color: black;
 }
 
-.icon{
+.buttons {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.icon {
   font-size: 30px;
   transition: 0.8s;
 }
 
-.indicator:hover .icon{
+.buttons:hover .icon {
   transform: translateY(-50px);
   font-size: 50px;
 }
 
-.indicator strong{
+.buttons strong {
   opacity: 0;
   position: absolute;
-  top: 0;
-  bottom: 0;
   right: 0;
   left: 0;
   transition: 0.8s;
 }
 
-.indicator:hover strong{
+.buttons:hover strong {
   opacity: 1;
   transform: translateY(5px);
 }
 //ここまで
 
-footer{
+footer {
   padding-bottom: 100px;
 }
 
-//レスポンシブ対応
-@media screen and (max-width: 480px){
-  .indicator strong{
+//ハンバーガーメニューのスタイルここから
+.hamburger-menu {
+  //メニューボタンのスタイル
+  .menu-button {
+    display: block;
+    padding: 0;
+    width: 40px;
+    height: 25px;
+    position: fixed;
+    background: none;
+    border: none;
+    text-align: center;
+    color: black;
+    top: 25px;
+    right: 20px;
+    z-index: 1001;
+    outline: none;
+  }
+
+  .menu-button .menu-bar {
+    display: block;
+    width: 40px;
+    height: 2px;
+    transition: 0.2s;
+    transform-origin: 0% 0%;
+    position: absolute;
+    left: 0;
+    background-color: black;
+  }
+
+  .menu-button .menu-bar1 {
+    top: 0;
+  }
+
+  .menu-button .menu-bar2 {
+    top: 50%;
+  }
+
+  .menu-button .menu-bar3 {
+    top: 100%;
+  }
+
+  .menu-text {
+    width: 100%;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  .close-menu {
     display: none;
   }
 
-  .select_btn{
-    height: 50px;
+  .menu-button.active .menu-bar {
+    width: 35px;
+    left: 8px;
   }
 
-  .icon{
+  .menu-button.active .menu-bar1 {
+    transform: rotate(45deg) translateY(-50%);
+    top: 0px
+  }
+
+  .menu-button.active .menu-bar2 {
+    opacity: 0;
+  }
+
+  .menu-button.active .menu-bar3 {
+    transform: rotate(-45deg) translateY(-50%);
+    top: calc(100% - 0px)
+  }
+
+  .menu-button.active .open-menu {
+    display: none;
+  }
+
+  .menu-button.active .close-menu {
+    display: block;
+  }
+
+  //ナビゲーションメニューのスタイル
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .nav-menu {
+    padding: 100px 20px;
+  }
+
+  li{
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .open-menu-bg {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		z-index: 999;
+		background-color: rgba(51, 51, 51, 0.5);
+		display: none;
+		top: 0;
+		left: 0;
+	}
+
+	.nav-wrapper {
+		width: 200px;
+		height: 100%;
+		transition: 0.2s;
+		transform: translate(200px);
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 1000;
+		background-color: #FFF;
+		&.open {
+			transform: translate(0);
+		}
+	}
+}
+//ここまで
+
+
+//レスポンシブ対応
+@media screen and (max-width: 480px){
+  .buttons strong {
+    display: none;
+  }
+
+  .indicator {
+    width: 100%;
+  }
+
+  .icon {
     font-size: 20px;
+  }
+
+  .search-form button{
+    display: none;
+  }
+
+  .hamburger-menu {
+    .menu-button {
+      top: 100px;
+    }
+
+    .nav-menu {
+      padding: 175px 20px;
+    }
   }
 }
 
-@media screen and (max-width: 285px){
-  .search-form button{
-    display: none;
+//検索フォームとハンバーガーメニューが被らないように調整
+@media screen and (max-width: 401px){
+  .hamburger-menu {
+    .menu-button {
+      top: 25px;
+    }
+    .nav-menu {
+      padding: 100px 20px;
+    }
   }
 }

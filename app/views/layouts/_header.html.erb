@@ -6,7 +6,7 @@
     <% unless admin_signed_in? %>
       <div class="search-form">
         <%= form_with url: search_path, method: :get do |f| %>
-          <div class="border rounded-pill p-1">
+          <div class="border rounded-pill p-1 mr-3 mr-sm-0">
             <%= f.text_field :word, placeholder: "投稿を検索", style: "border: 0; outline: 0;" %>
             <%= f.button :type => "submit", style: "border-style: none; background: none;" do %>
               <i class="fas fa-search"></i>
@@ -16,38 +16,50 @@
       </div>
     <% end %>
     <!--ハンバーガーメニュー-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <!--ナビゲーションメニュー-->
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-          <!--ログインしている場合の表示-->
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          </li>
-        <% elsif admin_signed_in? %>
-          <!--管理者がログインしている場合の表示-->
-          <li class="nav-item">
-            <%= link_to "ユーザー一覧", admin_users_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "投稿一覧", admin_posts_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <!--ログインしていない場合の表示-->
-          <li class="nav-item">
-            <%= link_to "新規登録", new_user_registration_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログイン", new_user_session_path %>
-          </li>
-        <% end %>
-      </ul>
+    <div class="hamburger-menu">
+      <!--ハンバーガーメニューを開いた時の背景-->
+      <div class="open-menu-bg"></div>
+      <!--メニューボタン-->
+      <button type="button" class="menu-button">
+        <span class="menu-bar menu-bar1"></span>
+        <span class="menu-bar menu-bar2"></span>
+        <span class="menu-bar menu-bar3"></span>
+        <span class="open-menu menu-text">MENU</span>
+        <span class="close-menu menu-text">CLOSE</span>
+      </button>
+      <!--ナビゲーションメニュー-->
+      <nav class="nav-wrapper">
+        <ul class="nav-menu navbar-nav">
+          <% if user_signed_in? %>
+            <!--ログインしている場合の表示-->
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <!--管理者がログインしている場合の表示-->
+            <li class="nav-item">
+              <%= link_to "ユーザー一覧", admin_users_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "投稿一覧", admin_posts_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <!--ログインしていない場合の表示-->
+            <li class="nav-item">
+              <%= link_to "投稿一覧", posts_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
     </div>
   </div>
 </nav>
