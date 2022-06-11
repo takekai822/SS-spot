@@ -1,8 +1,8 @@
 <div class="container">
+  <%= render "layouts/error_messages", model: @user %>
   <div class="mx-auto col-10 col-md-7">
     <h2 class="my-4">新規登録</h2>
     <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user'  do |f| %>
-      <%= render "layouts/error_messages", model: @user %>
       <%= render "public/registrations/info", f: f %>
       <div class="form-group mx-auto">
         <%= f.label :password, "パスワード(6文字以上)", class: "col-12  pl-md-0 mx-md-auto" %>
