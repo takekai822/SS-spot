@@ -14,10 +14,14 @@
   </head>
 
   <body>
-    <header class="border-bottom mb-5">
+    <!--高さを出すための要素部分-->
+    <div class="height"></div>
+    
+    <header class="header fixed-top">
       <%= render "layouts/header" %>
     </header>
-    <main>
+    
+    <main class="pt-5 main">
       <% if notice %>
         <div class="text-center">
           <%= notice %>
@@ -29,8 +33,10 @@
         <%= render "layouts/select_btn" %>
       <% end %>
     </main>
-    <footer class="py-4 mt-5 border-top text-center" style="margin-bottom:200px;">
+    
+    <footer class="border-top text-center">
       <strong>jimopot</strong>
     </footer>
+    
   </body>
 </html>

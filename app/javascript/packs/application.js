@@ -35,3 +35,11 @@ $(document).on('turbolinks:load', function() {
 		$('nav').removeClass('open');
 	});
 })
+
+$(document).on('scroll', function () {
+　if (50 < jQuery(this).scrollTop()) {
+　　$('.header').addClass('header-scroll');
+　} else {
+　　$('.header').removeClass('header-scroll');
+　}
+});

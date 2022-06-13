@@ -1,2 +1,49 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="main py-5">
+  <!--topページのロゴ-->
+  <div class="top">
+    <%= image_tag "/assets/SS-spot.main.png" %>
+  </div>
+
+  <!--topページの検索フォーム-->
+  <div class="top">
+    <%= form_with url: search_path, method: :get do |f| %>
+      <div class="border rounded p-2 m-2">
+        <%= f.text_field :word, placeholder: "地名・キーワード", style: "border: 0; outline: 0;" %>
+      </div>
+      <%= f.submit "検索", class: "btn btn-primary col-6" %>
+    <% end %>
+  </div>
+
+  <!--topページ新着投稿6つまで表示-->
+  <div class="p-4">
+    <h2 class="text-center">新着投稿</h2>
+    <div class="posts bg-light p-4 mx-auto mb-5">
+      <div class="row mx-auto">
+        <% @posts.each do |post| %>
+          <div class="col-md-4 col-6 mb-5">
+            <%= link_to post_path(post) do %>
+              <%= image_tag post.post_images[0], style: "width:100%; height:100%;" %>
+              <%= post.user.user_name %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!--about部分-->
+  <div class="about border-top border-bottom">
+    <strong class="tape">About...</strong>
+    <p class="mt-4">
+      SS-spotへようこそ。ご覧いただきありがとうございます！<br>
+      このサイトは<br>
+      自分の地元の観光スポットいろんな人に知ってもらいたいと思っている方、<br>
+      これからお出かけをする際にどこにいくか迷っている方にオススメです！<br>
+      また初めての海外旅行で不安の方にも便利です。<br>
+      キーワードで検索したり、地名で検索することで関連投稿をいつでも誰でも閲覧できます。<br>
+      SS-spot(穴場の観光スポット)を知って、みんなに自慢していきましょう！<br>
+      このサイトを利用して皆さんのお出かけが<br>
+      より良い思い出になっていただけたら幸いです。
+    </p>
+  </div>
+</div>

@@ -1,29 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h3>投稿</h3>
-      <div class="row bg-light">
-        <!--投稿者のプロフィール画像-->
-        <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-        <!--投稿者の名前-->
-        <%= @post.user.user_name %>
+    <div class="col-11 mx-auto">
+      <div class="row">
+        <div class="col-12">
+          <div class="bg-light p-3 mb-1">
+            <%= link_to user_path(@post.user) do %>
+              <!--投稿者のプロフィール画像-->
+              <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+              <!--投稿者の名前-->
+              <%= @post.user.user_name %>
+            <% end %>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-12 mx-auto">
+          <!--タイトル-->
+          <h3 class="my-4">
+            <%= @post.title %>
+          </h3>
           <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
-          <div class="slick mx-auto" style="max-width:800px;">
+          <div class="slick mx-auto" style="max-width:100%;">
             <% @post.post_images.each do |image| %>
-              <%= image_tag image.variant(resize_to_fill: [800, 650]) %>
+              <%= image_tag image %>
             <% end %>
           </div>
-          <!--タイトル-->
-          <div>
-            <%= @post.title %>
-          </div>
+
           <!--説明文-->
-          <div>
+          <h5>
             <%= @post.body %>
-          </div>
+          </h5>
           <!--タグ-->
           <div>
             <% @post.tag_list.each do |tag| %>
