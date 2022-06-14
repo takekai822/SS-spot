@@ -20,9 +20,9 @@
             <%= @post.title %>
           </h3>
           <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
-          <div class="slick mx-auto" style="max-width:100%;">
+          <div class="slick mx-auto post" style="max-width:100%;">
             <% @post.post_images.each do |image| %>
-              <%= image_tag image %>
+              <%= image_tag image, style: "height:500px; object-fit:cover;" %>
             <% end %>
           </div>
 
@@ -103,3 +103,18 @@
   }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>
+
+<!--cssファイルへの記述だと反映されないため直接cssの指定-->
+<style>
+  @media screen and (max-width: 800px){
+    .post img{
+      height:300px!important;
+    }
+  }
+
+   @media screen and (max-width: 550px){
+    .post img{
+      height:180px!important;
+    }
+  }
+</style>
