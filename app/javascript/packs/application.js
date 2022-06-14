@@ -37,9 +37,9 @@ $(document).on('turbolinks:load', function() {
 })
 
 $(document).on('scroll', function () {
-　if (50 < jQuery(this).scrollTop()) {
-　　$('.header').addClass('header-scroll');
-　} else {
-　　$('.header').removeClass('header-scroll');
-　}
+	if (50 < jQuery(this).scrollTop()) {
+		$('.header').addClass('header-scroll');
+	} else {
+		$('.header').removeClass('header-scroll');
+	}
 });

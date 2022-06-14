@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container py-5 bg-light rounded">
   <div class="row">
-    <div class="col-10">
-      <table>
+    <div class="col-10 mx-auto">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th></th>
@@ -21,6 +21,7 @@
         </thead>
         <tbody>
           <% @users.each do |user| %>
+            <%= link_to user_path(user) do %>
             <tr>
               <td>
                 <%= image_tag user.get_profile_image, size: "50x50" %>
@@ -41,12 +42,9 @@
                   <p>有効</p>
                 <% end %>
               </td>
-              <td>
-                <%= link_to admin_user_path(user) do %>
-                  <p>詳細</p>
-                <% end %>
-              </td>
+
             </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
