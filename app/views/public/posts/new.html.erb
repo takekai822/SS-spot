@@ -1,26 +1,26 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
       <%= form_with model: @post do |f| %>
-        <div class="d-flex justify-content-between">
-          <h2>新規投稿</h2>
-          <div class="d-flex align-items-center">
-            <%= f.submit "投稿", class: "btn btn-primary" %>
+        <div class="row mb-4">
+          <div class="title col-xs-12 p-2 rounded">
+            <h3 class="m-2">新規投稿</h3>
           </div>
         </div>
 
-
         <%= render "form", post: @post, f: f %>
 
-        <%= f.label :map, "地図" %>
-        <!--地図検索フォーム-->
-        <div class="d-flex mb-4">
-          <input id="address" class="form-control" type="text" placeholder="Search Box"/>
-          <input type="button" value="検索" onclick="codeAddress()">
+        <div class="form-group">
+          <%= f.label :map, "地図" %>
+          <!--地図検索フォーム-->
+          <div class="d-flex mb-4">
+            <input id="address" class="form-control" type="text" placeholder="Search Box"/>
+            <input type="button" value="検索" onclick="codeAddress()">
+          </div>
         </div>
         <!--地図の表示-->
         <div id='map'></div>
-
+        <%= f.submit "投稿", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

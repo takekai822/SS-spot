@@ -1,12 +1,19 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
-      <h2>投稿一覧</h2>
-      <%= render "admin/posts/index", posts: @posts %>
+      <div class="row">
+        <div class="title col-xs-12 p-2 rounded">
+          <h2 class="m-2">投稿一覧</h2>
+        </div>
+      </div>
+
+      <div class="my-4">
+        <%= render "admin/posts/index", posts: @posts %>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="mx-auto">
+    <div class=" col-10 mx-auto">
       <%= paginate @posts %>
     </div>
   </div>

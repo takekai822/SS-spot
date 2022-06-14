@@ -1,4 +1,4 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row py-4">
     <div class="col-8 mx-auto">
       <div class="text-center">
@@ -28,9 +28,7 @@
       <!--@userが投稿をしているかを確認-->
       <% if @posts.exists? %>
         <!--存在している場合、@userの投稿一覧表示-->
-        <div class="row">
-          <%= render "public/posts/index", posts: @posts %>
-        </div>
+        <%= render "public/posts/index", posts: @posts %>
         <!--ページネーション-->
         <div class="row">
           <div class="mx-auto">
