@@ -1,11 +1,21 @@
-<div>
-  <% post.post_comments.each do |post_comment| %>
+<% post.post_comments.each do |post_comment| %>
+  <div class="mb-lg-3">
     <!--コメント表示-->
-    <div>
+    <div class="text-break">
       <%= post_comment.comment %>
     </div>
-    <!--星評価の表示-->
-    <div id="rate-<%= post_comment.id %>" class="form-group"></div>
+    <div class="d-lg-flex justify-content-between">
+      <!--星評価の表示-->
+      <div id="rate-<%= post_comment.id %>" class="form-group"></div>
+      
+      <!--コメントした本人のみ削除ボタンの表示-->
+      <% if post_comment.user == current_user %>
+        <div>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %>
+        </div>
+      <% end %>
+    </div>
+  
     <!-- js部分 -->
     <script>
       $(document).ready(function() {
@@ -21,11 +31,5 @@
         });
       });
     </script>
-    <!--コメントした本人のみ削除ボタンの表示-->
-    <% if post_comment.user == current_user %>
-      <div>
-        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>

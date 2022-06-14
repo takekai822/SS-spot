@@ -1,4 +1,4 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
       <div class="row">
@@ -16,22 +16,23 @@
       <div class="row">
         <div class="col-10 mx-auto">
           <!--タイトル-->
-          <h3 class="my-4">
+          <h3 class="my-4 text-break">
             <%= @post.title %>
           </h3>
+
           <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
-          <div class="slick mx-auto post" style="max-width:100%;">
+          <div class="slick mx-auto" style="max-width:800px;">
             <% @post.post_images.each do |image| %>
-              <%= image_tag image, style: "height:500px; object-fit:cover;" %>
+              <%= image_tag image.variant(resize_to_fill: [800, 500]) %>
             <% end %>
           </div>
 
           <!--説明文-->
-          <h5>
+          <h5 class="text-break">
             <%= @post.body %>
           </h5>
           <!--タグ-->
-          <div>
+          <div class="content my-3">
             <% @post.tag_list.each do |tag| %>
               <span class="badge badge-primary">
                 <!--tagを押すとtagがついた投稿を一覧で表示される-->
@@ -41,28 +42,38 @@
           </div>
 
           <!--いいねボタン-->
-          <div id="favorite-<%= @post.id %>">
+          <div class="content my-3" id="favorite-<%= @post.id %>">
             <%= render "public/favorites/favorite_btn", post: @post %>
           </div>
 
           <!--地図の表示-->
           <div id='map'></div>
 
-          <!--コメント数-->
-          <div class="comment-count">
-            <%= @post.post_comments.count %> コメント
-          </div>
-          <!--コメント一覧-->
-          <div class="post-comments">
-            <%= render "public/post_comments/index", post: @post %>
-          </div>
-          <!--ログインしているか確認-->
-          <% if user_signed_in? %>
-            <!--コメントフォーム(ログインしていない場合は非表示)-->
-            <div class="post-comment-form">
-              <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+          <!--コメント-->
+          <div class="border p-1 px-lg-5 my-3 my-lg-5">
+            <!--コメント数-->
+            <div class="content comment-count mt-1 mt-lg-5 mb-3">
+              <%= @post.post_comments.count %> コメント
             </div>
-          <% end %>
+            <!--コメント一覧-->
+            <div class="content post-comments border p-3">
+              <% if @post.post_comments.present? %>
+                <%= render "public/post_comments/index", post: @post %>
+              <% else %>
+                <p>
+                  コメントはありません。
+                </p>
+              <% end %>
+            </div>
+            <!--ログインしているか確認-->
+            <% if user_signed_in? %>
+              <!--コメントフォーム(ログインしていない場合は非表示)-->
+              <div class="post-comment-form my-4">
+                <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+              </div>
+            <% end %>
+          </div>
+
           <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
           <div>
             <% if @post.user == current_user %>
@@ -103,18 +114,3 @@
   }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>
-
-<!--cssファイルへの記述だと反映されないため直接cssの指定-->
-<style>
-  @media screen and (max-width: 800px){
-    .post img{
-      height:300px!important;
-    }
-  }
-
-   @media screen and (max-width: 550px){
-    .post img{
-      height:180px!important;
-    }
-  }
-</style>

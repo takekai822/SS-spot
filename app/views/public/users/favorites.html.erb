@@ -1,14 +1,21 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
-    <div class="col-12">
-      <h2>いいねした投稿一覧</h2>
-      <!--いいねした投稿があるかを確認-->
-      <% if @favorite_posts.present? %>
-        <!--存在していた場合いいねした投稿のみを一覧表示-->
-        <%= render "public/posts/index", posts: @favorite_posts %>
-      <% else %>
-        <p>いいねした投稿はありません</p>
-      <% end %>
+    <div class="col-10 mx-auto">
+      <div class="row">
+        <div class="title col-xs-12 p-2 rounded">
+         <h3 class="m-2">いいねした投稿一覧</h3>
+        </div>
+      </div>
+
+      <div>
+        <!--いいねした投稿があるかを確認-->
+        <% if @favorite_posts.present? %>
+          <!--存在していた場合いいねした投稿のみを一覧表示-->
+          <%= render "public/posts/index", posts: @favorite_posts %>
+        <% else %>
+          <p>いいねした投稿はありません</p>
+        <% end %>
+      </div>
     </div>
   </div>
   <!--いいねした投稿が存在していた場合のみページネーション表示-->
