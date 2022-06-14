@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container py-5 bg-light rounded">
   <div class="row">
-    <div class="col-11 mx-auto">
+    <div class="col-10 mx-auto">
       <div class="row">
         <div class="col-12">
-          <div class="bg-light p-3 mb-1">
+          <div class="p-3 mb-1">
             <%= link_to user_path(@post.user) do %>
               <!--投稿者のプロフィール画像-->
               <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 mx-auto">
+        <div class="col-10 mx-auto">
           <!--タイトル-->
           <h3 class="my-4">
             <%= @post.title %>

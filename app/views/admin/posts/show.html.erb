@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container py-5 bg-light rounded">
   <div class="row">
-    <div class="col-12">
+    <div class="col-10 mx-auto">
       <h3>投稿</h3>
       <div class="row bg-light">
         <!--投稿者のプロフィール画像-->
@@ -9,7 +9,7 @@
         <%= @post.user.user_name %>
       </div>
       <div class="row">
-        <div class="col-12 mx-auto">
+        <div class="col-10 mx-auto">
           <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
           <div class="slick mx-auto" style="max-width:800px;">
             <% @post.post_images.each do |image| %>

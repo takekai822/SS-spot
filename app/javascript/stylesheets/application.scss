@@ -19,7 +19,7 @@
 }
 
 .nav-item {
-  border-radius: 10px 100px / 120px;
+  border-radius: 30px 100px / 120px;
 }
 
 .nav-item a {
@@ -34,48 +34,6 @@
 
 .search-form #word {
   background: none;
-}
-
-footer {
-  background-color: #87ceeb;
-  padding-top: 100px;
-  padding-bottom: 150px;
-}
-
-.about{
-	background-color: white;	//背景色
-	border: 1px solid #ccc; //線の太さ・種類・色
-	box-shadow:1px 1px 6px 0px #ccc;
-	-moz-box-shadow:1px 1px 6px 0px #ccc;
-	-webkit-box-shadow:1px 1px 6px 0px #ccc;
-	-o-box-shadow:1px 1px 6px 0px #ccc;
-	margin: 50px 50px 0px 50px; //外側の余白 上下・左右
-	padding: 50px 50px 30px 50px; //内側の余白 上・右・下・左
-	position: relative;
-	z-index: 0;
-}
-
-.tape {
-  position: absolute;
-  top: -30px;
-  background-color: #00bfff;
-	border-left: 2px dotted rgba(255,255,255,0.9);
-	border-right: 2px dotted rgba(255,255,255,0.9);
-	box-shadow: 0 0 5px rgba(255,255,255,0.5);
-	padding: 5px 50px;
-  color: #65513f;
-  transform: rotate(-3deg);
-  font-size: 30px;
-}
-
-.posts {
-  width: 800px;
-  height: 100%;
-  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
-  border: 6px solid #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .top {
@@ -99,6 +57,50 @@ footer {
   background: none;
 }
 
+.about{
+	background-color: white;	//背景色
+	border: 1px solid #ccc;
+	box-shadow:1px 1px 6px 0px #ccc;
+	-moz-box-shadow:1px 1px 6px 0px #ccc;
+	-webkit-box-shadow:1px 1px 6px 0px #ccc;
+	-o-box-shadow:1px 1px 6px 0px #ccc;
+	margin: 50px;
+	padding: 50px 50px 30px 50px;
+	position: relative;
+	z-index: 0;
+}
+
+.tape {
+  position: absolute;
+  top: -30px;
+  background-color: #00bfff;
+	border-left: 2px dotted rgba(255,255,255,0.9);
+	border-right: 2px dotted rgba(255,255,255,0.9);
+	box-shadow: 0 0 5px rgba(255,255,255,0.5);
+	padding: 5px 50px;
+  color: #65513f;
+  transform: rotate(-3deg);
+  font-size: 30px;
+}
+
+.about p {
+  letter-spacing: 3px;
+  line-height: 1.8;
+}
+
+.posts {
+  width: 800px;
+  height: 100%;
+  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+  border: 6px solid #333;
+  margin: 100px auto 200px;
+}
+
+footer {
+  background-color: #87ceeb;
+  padding-top: 100px;
+  padding-bottom: 150px;
+}
 
 //投稿画像が一枚の時はドットを非表示
 .slick-dots > li:first-child:last-child {
@@ -346,12 +348,45 @@ footer {
   }
 
   .top img {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: auto;
   }
 
   .top #word {
     height: 100%;
     font-size: 100%;
+  }
+
+  .posts {
+    width: 80%;
+    padding: 0!important;
+    border-radius: 0;
+    border: none;
+  }
+
+  .new {
+    position: relative;
+    text-align: center;
+    top: -60px;
+    font-size: 30px;
+  }
+
+  .about {
+    border: none;
+    margin: 50px 10px;
+    padding: 30px 10px 10px 10px;
+    font-size: 15px;
+  }
+
+  .about p {
+    letter-spacing: 1.0;
+    line-height: auto;
+  }
+
+  .tape {
+    position: static;
+    border: none;
+    background-color: inherit;
+    padding: 0;
   }
 }
