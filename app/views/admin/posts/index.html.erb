@@ -1,0 +1,13 @@
+<div class="container py-5 bg-light rounded">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <h2>投稿一覧</h2>
+      <%= render "admin/posts/index", posts: @posts %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>

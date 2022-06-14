@@ -1,0 +1,16 @@
+<div class="container py-5 bg-light rounded">
+  <div class="row">
+    <div class="col-10 col-md-7 mx-auto">
+      <h2 class="my-4">プロフィール編集</h2>
+      <%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
+        <%= render 'layouts/error_messages', model: @user %>
+        <%= render "public/registrations/info", f: f %>
+        <div class="form-group text-center py-md-4">
+          <%= f.submit "更新", class: "col-5 btn btn-primary m-1 m-md-4" %>
+          <%= link_to "退会", quit_path, class: "btn btn-outline-danger m-1 m-md-4" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

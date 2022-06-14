@@ -1,0 +1,2 @@
+<!--いいねボタンの読み込み-->
+$("#favorite-<%= @post.id %>").html("<%= j(render "public/favorites/favorite_btn", post: @post) %>");

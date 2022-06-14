@@ -1,0 +1,20 @@
+<!--ログインしているか確認-->
+<% if user_signed_in? %>
+  <!--現在のユーザーが投稿にいいねをしているか確認-->
+  <% if post.favorited_by?(current_user) %>
+    <!--いいねしていた場合の表示-->
+    <%= link_to post_favorites_path(post), method: :delete, remote: true, class: "text-danger favorite-btn", style: "text-decoration: none;"  do %>
+      <i class="fas fa-heart"></i><%= post.favorites.count %>いいね
+    <% end %>
+  <% else %>
+    <!--いいねしていなかった場合の表示-->
+    <%= link_to post_favorites_path(post), method: :post, remote: true, class: "favorite-btn text-dark", style: "text-decoration: none;" do %>
+      <i class="far fa-heart"></i><%= post.favorites.count %>いいね
+    <% end %>
+  <% end %>
+<% else %>
+  <!--ログインしていなかった場合のいいね表示-->
+  <div class="text-dark favorite-btn">
+    <i class="far fa-heart"></i><%= post.favorites.count %>いいね
+  </div>
+<% end %>

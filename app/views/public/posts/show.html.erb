@@ -1,0 +1,105 @@
+<div class="container py-5 bg-light rounded">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <div class="row">
+        <div class="col-12">
+          <div class="p-3 mb-1">
+            <%= link_to user_path(@post.user) do %>
+              <!--投稿者のプロフィール画像-->
+              <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+              <!--投稿者の名前-->
+              <%= @post.user.user_name %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10 mx-auto">
+          <!--タイトル-->
+          <h3 class="my-4">
+            <%= @post.title %>
+          </h3>
+          <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
+          <div class="slick mx-auto" style="max-width:100%;">
+            <% @post.post_images.each do |image| %>
+              <%= image_tag image %>
+            <% end %>
+          </div>
+
+          <!--説明文-->
+          <h5>
+            <%= @post.body %>
+          </h5>
+          <!--タグ-->
+          <div>
+            <% @post.tag_list.each do |tag| %>
+              <span class="badge badge-primary">
+                <!--tagを押すとtagがついた投稿を一覧で表示される-->
+                #<%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+              </span>
+            <% end %>
+          </div>
+
+          <!--いいねボタン-->
+          <div id="favorite-<%= @post.id %>">
+            <%= render "public/favorites/favorite_btn", post: @post %>
+          </div>
+
+          <!--地図の表示-->
+          <div id='map'></div>
+
+          <!--コメント数-->
+          <div class="comment-count">
+            <%= @post.post_comments.count %> コメント
+          </div>
+          <!--コメント一覧-->
+          <div class="post-comments">
+            <%= render "public/post_comments/index", post: @post %>
+          </div>
+          <!--ログインしているか確認-->
+          <% if user_signed_in? %>
+            <!--コメントフォーム(ログインしていない場合は非表示)-->
+            <div class="post-comment-form">
+              <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+            </div>
+          <% end %>
+          <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
+          <div>
+            <% if @post.user == current_user %>
+              <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
+              <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- js部分 -->
+<script>
+  //複数画像が投稿されている時の画像のスライド表示
+  $(document).on('turbolinks:load', function() {
+    $('.slick').slick({
+      dots: true,
+      arrows: false,
+    })
+  });
+
+  //地図表示
+  let map
+  let marker
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      zoom: 15,
+    });
+
+     marker = new google.maps.Marker({
+      position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      map: map
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>

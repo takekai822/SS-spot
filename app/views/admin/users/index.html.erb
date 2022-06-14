@@ -1,0 +1,53 @@
+<div class="container py-5 bg-light rounded">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>
+              ユーザー名(フリガナ)
+            </th>
+            <th>
+              ユーザーネーム
+            </th>
+            <th>
+              投稿数
+            </th>
+            <th>
+              ユーザーステータス
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <%= link_to user_path(user) do %>
+            <tr>
+              <td>
+                <%= image_tag user.get_profile_image, size: "50x50" %>
+              </td>
+              <td>
+                <%= user.name %>(<%= user.name_kana %>)
+              </td>
+              <td>
+                <%= user.user_name %>
+              </td>
+              <td>
+                <%= user.posts.count %>
+              </td>
+              <td>
+                <% if user.is_deleted == true %>
+                  <p>退会</p>
+                <% else %>
+                  <p>有効</p>
+                <% end %>
+              </td>
+
+            </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

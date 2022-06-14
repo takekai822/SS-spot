@@ -1,0 +1,20 @@
+<table class="table">
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td>
+          <!--タイトル-->
+          <%= link_to post.title, admin_post_path(post) %>
+        </td>
+        <td>
+          <!--説明文-->
+          <%= post.body.truncate(30) %>
+        </td>
+        <td>
+          <!--コメント数-->
+          コメント数：<%= post.post_comments.count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

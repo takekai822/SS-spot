@@ -1,0 +1,8 @@
+<div class="container py-5 bg-light rounded">
+  <div class="row">
+    <div class="col-12">
+      <h3>"<%= params[:word] %>"に関する投稿</h3>
+      <%= render "public/posts/index", posts: @posts %>
+    </div>
+  </div>
+</div>

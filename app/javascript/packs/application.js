@@ -7,7 +7,39 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import "jquery";
+import raty from 'raty-js'
+import "popper.js";
+import "bootstrap";
+import "../stylesheets/application"
+import '@fortawesome/fontawesome-free/js/all'
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+window.$ = window.jQuery = require('jquery');
+global.$ = global.jQuery = require('jquery');
+
+//ハンバーガーメニュー
+/* global $*/
+$(document).on('turbolinks:load', function() {
+	$('.menu-button').click(function () {
+		$(this).toggleClass('active');
+		$('.open-menu-bg').fadeToggle();
+		$('nav').toggleClass('open');
+	})
+	$('.open-menu-bg').click(function () {
+		$(this).fadeOut();
+		$('.menu-button').removeClass('active');
+		$('nav').removeClass('open');
+	});
+})
+
+$(document).on('scroll', function () {
+	if (50 < jQuery(this).scrollTop()) {
+		$('.header').addClass('header-scroll');
+	} else {
+		$('.header').removeClass('header-scroll');
+	}
+});

@@ -1,0 +1,22 @@
+<div class="container py-5 bg-light rounded">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <% if params[:tag_name] %>
+        <h2>#<%= "#{params[:tag_name]}" %>一覧</h2>
+      <% else %>
+        <h2>投稿一覧</h2>
+      <% end %>
+      <p>
+        <%= link_to "新着順", posts_path(latest: "true") %> |
+        <%= link_to "古い順", posts_path(old: "true") %> |
+        <%= link_to "いいねの多い順", posts_path %>
+      </p>
+      <%= render "public/posts/index", posts: @posts %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>

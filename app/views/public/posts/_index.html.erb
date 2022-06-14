@@ -1,0 +1,43 @@
+<table class="table">
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td>
+          <!--タイトル-->
+          <%= link_to post.title, post_path(post) %>
+        </td>
+        <td>
+          <!--説明文-->
+          <%= post.body.truncate(30) %>
+        </td>
+        <td>
+          <!--いいね(このページではいいねは押せない)-->
+          <!--ログインしているか確認-->
+          <% if user_signed_in? %>
+            <!--現在のユーザーが投稿にいいねをしているか確認-->
+            <% if post.favorited_by?(current_user) %>
+              <!--いいねしていた場合の表示-->
+              <div class="text-danger favorite-btn">
+                <i class="fas fa-heart"></i><%= post.favorites.count %>
+              </div>
+            <% else %>
+              <!--いいねしていなかった場合の表示-->
+              <div class="text-dark favorite-btn">
+                <i class="far fa-heart"></i><%= post.favorites.count %>
+              </div>
+            <% end %>
+          <% else %>
+            <!--ログインしていなかった場合のいいね表示-->
+            <div class="text-dark favorite-btn">
+              <i class="far fa-heart"></i><%= post.favorites.count %>
+            </div>
+          <% end %>
+        </td>
+        <td>
+          <!--コメント数-->
+          コメント数：<%= post.post_comments.count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
