@@ -1,14 +1,18 @@
 <div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
+      <!--タイトル-->
       <div class="row">
         <div class="p-2 rounded mx-auto">
           <h3 class="m-2">退会画面</h3>
         </div>
       </div>
 
+      <!--退会確認-->
       <p>本当に退会しますか？</p>
       <p>退会すると投稿の閲覧はできますが、一部の機能(投稿、投稿へのいいね、コメント、いいね投稿一覧表示)が利用できなくなります。</p>
+
+      <!--確認ボタン-->
       <div class="row pt-5">
         <div class="col-sm-5 col-12 mx-auto text-center">
           <%= link_to "マイページへ戻る", user_path(current_user), class: "button-blue btn" %>

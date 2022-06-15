@@ -5,12 +5,13 @@
         <div class="profile p-3 mb-1">
           <%= link_to user_path(@post.user) do %>
             <div class="d-flex align-items-center">
+              <!--投稿者のプロフィール画像-->
               <div>
-                <!--投稿者のプロフィール画像-->
                 <%= image_tag @post.user.get_profile_image, size: "75x75", class: "rounded-circle" %>
               </div>
+
+              <!--投稿者のユーザーネーム-->
               <div class="pl-2">
-                <!--投稿者のユーザーネーム-->
                 <%= @post.user.user_name %>
               </div>
             </div>
@@ -20,7 +21,7 @@
 
       <div class="row">
         <div class="col-10 mx-auto">
-          <!--タイトル-->
+          <!--投稿タイトル-->
           <h3 class="my-4 text-break">
             <%= @post.title %>
           </h3>

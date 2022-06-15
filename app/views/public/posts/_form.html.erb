@@ -1,25 +1,31 @@
+<!--エラーメッセージ-->
 <%= render "layouts/error_messages", model: post %>
 
+<!--投稿タイトル-->
 <div class="form-group">
   <%= f.label :title, "タイトル" %>
   <%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力" %>
 </div>
 
+<!--説明文-->
 <div class="form-group">
   <%= f.label :body, "説明文" %>
   <%= f.text_area :body, class: "form-control", placeholder: "説明文を入力" %>
 </div>
 
+<!--投稿画像-->
 <div class="form-group">
   <%= f.label :post_images, "画像" %>
   <%= f.file_field :post_images, accept: "image/*", multiple: true, class: "form-control-file" %>
 </div>
 
+<!--タグ-->
 <div class="form-group">
   <%= f.label :tag_list, "タグ" %>
   <%= f.text_field :tag_list, value: post.tag_list.join('#'), class: "form-control", placeholder: "#で区切ると複数追加できます" %>
 </div>
 
+<!--場所-->
 <div class="form-group">
   <%= f.label :address, "場所" %>
   <%= f.text_field :address, class: "form-control", placeholder: "場所を入力" %>
