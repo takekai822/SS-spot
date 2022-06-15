@@ -51,46 +51,46 @@
           <div id='map'></div>
 
           <!--コメント-->
-          <div class="border p-2 px-lg-5 my-3 my-lg-5">
+          <div class="p-1 my-3 my-lg-5">
             <!--コメント数-->
-            <div class="comment-count my-3">
+            <div class="comment-count mt-1 mt-lg-5 mb-3">
               <%= @post.post_comments.count %> コメント
             </div>
 
             <!--コメント一覧-->
-            <div class="post-comments p-3">
+            <div class="post-comments border p-3">
               <% @post.post_comments.each do |post_comment| %>
-               <div>
-                <!--コメント文-->
-                <p class="text-break">
-                  <%= post_comment.comment %>
-                </p>
+                <div>
+                  <!--コメント文-->
+                  <p class="text-break">
+                    <%= post_comment.comment %>
+                  </p>
 
-                <div class="d-lg-flex mb-3 justify-content-between">
-                  <!--星評価の表示-->
-                  <div id="rate-<%= post_comment.id %>" class="form-group"></div>
+                  <div class="d-sm-flex mb-3 justify-content-between border-bottom p-1">
+                    <!--星評価の表示-->
+                    <div id="rate-<%= post_comment.id %>" class="form-group"></div>
 
-                  <!--不適切なコメントの削除ボタン-->
-                  <div>
-                    <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", "data-confirm" => "不適切なコメントとして削除しますか？" %>
+                    <!--不適切なコメントの削除ボタン-->
+                    <div>
+                      <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", "data-confirm" => "不適切なコメントとして削除しますか？" %>
+                    </div>
                   </div>
-                </div>
 
-                <!-- js部分 -->
-                <script>
-                  $(document).on('turbolinks:load', function() {
-                    $('#rate-<%= post_comment.id %>').empty();
-                    $('#rate-<%= post_comment.id %>').raty({
-                      size: 20,
-                      starOff:  '<%= asset_path('star-off.png') %>',
-                      starOn : '<%= asset_path('star-on.png') %>',
-                      starHalf: '<%= asset_path('star-half.png') %>',
-                      half: true,
-                      readOnly: true,
-                      score: <%= post_comment.rate %>,
+                  <!-- js部分 -->
+                  <script>
+                    $(document).on('turbolinks:load', function() {
+                      $('#rate-<%= post_comment.id %>').empty();
+                      $('#rate-<%= post_comment.id %>').raty({
+                        size: 20,
+                        starOff:  '<%= asset_path('star-off.png') %>',
+                        starOn : '<%= asset_path('star-on.png') %>',
+                        starHalf: '<%= asset_path('star-half.png') %>',
+                        half: true,
+                        readOnly: true,
+                        score: <%= post_comment.rate %>,
+                      });
                     });
-                  });
-                </script>
+                  </script>
                </div>
               <% end %>
             </div>

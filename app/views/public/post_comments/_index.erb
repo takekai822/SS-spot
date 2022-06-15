@@ -1,18 +1,18 @@
 <% post.post_comments.each do |post_comment| %>
-  <div class="mb-lg-3">
+  <div>
     <!--コメント表示-->
-    <div class="text-break">
+    <p class="text-break">
       <%= post_comment.comment %>
-    </div>
+    </p>
 
-    <div class="d-lg-flex justify-content-between">
+    <div class="d-sm-flex mb-3 justify-content-between border-bottom p-1">
       <!--星評価の表示-->
       <div id="rate-<%= post_comment.id %>" class="form-group"></div>
 
       <!--コメントした本人のみ削除ボタンの表示-->
       <% if post_comment.user == current_user %>
         <div>
-          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", remote: true %>
         </div>
       <% end %>
     </div>

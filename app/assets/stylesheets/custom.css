@@ -34,10 +34,8 @@ body a:hover {
   border-radius: 30px 100px / 120px;
 }
 
-.nav-item a {
-  margin: 0;
+.wide-nav .nav-item a:hover {
   color: white;
-  text-decoration: none;
 }
 
 .height {
