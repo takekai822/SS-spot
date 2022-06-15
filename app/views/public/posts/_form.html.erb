@@ -22,11 +22,12 @@
 
 <div class="form-group">
   <%= f.label :address, "場所" %>
-  <%= f.text_field :address, class: "form-control", placeholder: "東京都" %>
+  <%= f.text_field :address, class: "form-control", placeholder: "場所を入力" %>
 </div>
 
-<!--緯度-->
-<%= f.hidden_field :latitude, :value =>"緯度", id: :lat %>
-<!--経度-->
-<%= f.hidden_field :longitude, :value =>"経度", id: :lng %>
-
+<div class="form-group">
+  <!--緯度-->
+  <%= f.hidden_field :latitude, :value =>"緯度", id: :lat %>
+  <!--経度-->
+  <%= f.hidden_field :longitude, :value =>"経度", id: :lng %>
+</div>

@@ -2,15 +2,19 @@
   <div class="row">
     <div class="col-10 mx-auto">
       <div class="row">
-        <div class="col-12">
-          <div class="p-3 mb-1">
-            <%= link_to user_path(@post.user) do %>
-              <!--投稿者のプロフィール画像-->
-              <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-              <!--投稿者の名前-->
-              <%= @post.user.user_name %>
-            <% end %>
-          </div>
+        <div class="profile p-3 mb-1">
+          <%= link_to user_path(@post.user) do %>
+            <div class="d-flex align-items-center">
+              <div>
+                <!--投稿者のプロフィール画像-->
+                <%= image_tag @post.user.get_profile_image, size: "75x75", class: "rounded-circle" %>
+              </div>
+              <div class="pl-2">
+                <!--投稿者のユーザーネーム-->
+                <%= @post.user.user_name %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
 
@@ -29,14 +33,14 @@
           </div>
 
           <!--説明文-->
-          <h5 class="pt-3text-break">
+          <h5 class="pt-3 text-break">
             <%= @post.body %>
           </h5>
 
           <!--タグ-->
-          <div class="content my-3">
+          <div class="content py-3">
             <% @post.tag_list.each do |tag| %>
-              <span class="badge badge-primary">
+              <span class="button-blue badge">
                 <!--tagを押すとtagがついた投稿を一覧で表示される-->
                 #<%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
               </span>
@@ -44,7 +48,7 @@
           </div>
 
           <!--いいねボタン-->
-          <div class="content my-3" id="favorite-<%= @post.id %>">
+          <div class="content my-3 pb-4" id="favorite-<%= @post.id %>">
             <%= render "public/favorites/favorite_btn", post: @post %>
           </div>
 
@@ -79,10 +83,12 @@
           </div>
 
           <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
-          <div>
+          <div class="row pt-5">
             <% if @post.user == current_user %>
-              <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
-              <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
+              <div class="col-12">
+                <%= link_to "編集", edit_post_path(@post), class: "button-blue btn mx-2" %>
+                <%= link_to "削除", post_path(@post), method: :delete, class: "button-red btn mx-2", "data-confirm" => "本当に削除しますか？" %>
+              </div>
             <% end %>
           </div>
         </div>

@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-10 mx-auto">
       <div class="row mb-4">
-        <div class="title col-xs-12 p-2 rounded">
-          <h3 class="m-2">新規投稿</h3>
+        <div class="title p-2 rounded">
+          <h3 class="mx-2 my-0">新規投稿</h3>
         </div>
       </div>
 
@@ -16,16 +16,20 @@
           <%= f.label :map, "地図" %>
 
           <!--地図検索フォーム-->
-          <div class="d-flex mb-4">
-            <input id="address" class="form-control" type="text" placeholder="Search Box"/>
+          <div class="d-flex">
+            <input id="address" class="form-control" type="text" placeholder="地名検索">
             <input type="button" value="検索" onclick="codeAddress()">
           </div>
         </div>
 
-        <!--地図の表示-->
-        <div id='map'></div>
+        <div class="form-group">
+          <!--地図の表示-->
+          <div id='map'></div>
+        </div>
 
-        <%= f.submit "投稿", class: "btn btn-primary" %>
+        <div class="form-group text-center pt-5">
+            <%= f.submit "投稿", class: "button-blue btn col-sm-3 col-5" %>
+        </div>
       <% end %>
     </div>
   </div>
@@ -101,6 +105,4 @@
       }
     });
   }
-
 </script>
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>-->
