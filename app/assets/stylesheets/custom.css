@@ -4,6 +4,7 @@ body, body a {
 
 body a:hover {
   color: black;
+  text-decoration: none;
 }
 
 /*基本の背景色*/
@@ -183,10 +184,6 @@ body a:hover {
 
 .index:hover{
   background-color: #f0ffff;
-}
-
-a:hover {
-  text-decoration: none;
 }
 
 footer {
