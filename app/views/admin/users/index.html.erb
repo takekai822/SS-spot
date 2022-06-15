@@ -21,10 +21,11 @@
         </thead>
         <tbody>
           <% @users.each do |user| %>
-            <%= link_to user_path(user) do %>
             <tr>
               <td>
+                <%= link_to admin_user_path(user) do %>
                 <%= image_tag user.get_profile_image, size: "50x50" %>
+                <% end %>
               </td>
               <td>
                 <%= user.name %>(<%= user.name_kana %>)
@@ -44,7 +45,7 @@
               </td>
 
             </tr>
-            <% end %>
+
           <% end %>
         </tbody>
       </table>

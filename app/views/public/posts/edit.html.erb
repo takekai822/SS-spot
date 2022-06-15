@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-10 mx-auto">
       <div class="row mb-4">
-        <div class="title col-xs-12 p-2 rounded">
-          <h3 class="m-2">投稿編集</h3>
+        <div class="title p-2 rounded">
+          <h3 class="mx-2 my-0">投稿編集</h3>
         </div>
       </div>
 
@@ -25,8 +25,13 @@
         <!--地図の表示-->
         <div id='map'></div>
 
-        <div>
-          <%= f.submit "更新", class: "btn btn-primary" %><%= link_to "戻る", post_path(@post), class: "btn btn-outline-secondary" %>
+        <div class="row pt-5">
+          <div class="col-8 mx-auto text-center">
+            <%= f.submit "更新", class: "button-blue btn col-sm-3 col-5" %>
+          </div>
+          <div class="text-right">
+            <%= link_to "戻る", post_path(@post), class: "button-gray btn" %>
+          </div>
         </div>
       <% end %>
     </div>

@@ -61,7 +61,7 @@
 
                   <!--不適切なコメントの削除ボタン-->
                   <div>
-                    <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "不適切なコメントとして削除しますか？" %>
+                    <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", "data-confirm" => "不適切なコメントとして削除しますか？" %>
                   </div>
                 </div>
                 <!-- js部分 -->
@@ -86,7 +86,7 @@
 
           <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
           <div>
-            <%= link_to "不適切な投稿の削除", admin_post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "不適切な投稿として削除しますか？" %>
+            <%= link_to "不適切な投稿の削除", admin_post_path(@post), method: :delete, class: "button-red btn", "data-confirm" => "不適切な投稿として削除しますか？" %>
           </div>
         </div>
       </div>

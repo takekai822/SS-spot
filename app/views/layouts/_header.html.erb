@@ -20,34 +20,34 @@
       </div>
     <% end %>
   <% end %>
-  
+
   <!--画面幅が広い時はヘッダーにそのまま配置-->
   <div class="wide-nav d-flex">
     <% if user_signed_in? %>
       <!--ログインしている場合の表示-->
-      <li class="nav-item btn btn-primary btn-sm">
+      <li class="button-blue nav-item btn btn-sm">
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       </li>
     <% elsif admin_signed_in? %>
       <!--管理者がログインしている場合の表示-->
-      <li class="nav-item btn btn-primary btn-sm mr-3">
+      <li class="button-blue nav-item btn btn-sm mr-3">
         <%= link_to "ユーザー一覧", admin_users_path %>
       </li>
-      <li class="nav-item btn btn-primary btn-sm mr-3">
+      <li class="button-blue nav-item btn btn-sm mr-3">
         <%= link_to "投稿一覧", admin_posts_path %>
       </li>
-      <li class="nav-item btn btn-primary btn-sm">
+      <li class="button-blue nav-item btn btn-sm">
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
     <% else %>
       <!--ログインしていない場合の表示-->
-      <li class="nav-item btn btn-primary btn-sm mr-3">
+      <li class="button-blue nav-item btn btn-sm mr-3">
         <%= link_to "投稿一覧", posts_path %>
       </li>
-      <li class="nav-item btn btn-primary btn-sm mr-3">
+      <li class="button-blue nav-item btn btn-sm mr-3">
         <%= link_to "新規登録", new_user_registration_path %>
       </li>
-      <li class="nav-item btn btn-primary btn-sm">
+      <li class="button-blue nav-item btn btn-sm">
         <%= link_to "ログイン", new_user_session_path %>
       </li>
     <% end %>

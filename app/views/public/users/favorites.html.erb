@@ -2,12 +2,12 @@
   <div class="row">
     <div class="col-10 mx-auto">
       <div class="row">
-        <div class="title col-xs-12 p-2 rounded">
-         <h3 class="m-2">いいねした投稿一覧</h3>
+        <div class="title p-2 rounded">
+         <h3 class="mx-2 my-0">いいねした投稿一覧</h3>
         </div>
       </div>
 
-      <div>
+      <div class="pt-5">
         <!--いいねした投稿があるかを確認-->
         <% if @favorite_posts.present? %>
           <!--存在していた場合いいねした投稿のみを一覧表示-->
@@ -16,14 +16,15 @@
           <p>いいねした投稿はありません</p>
         <% end %>
       </div>
+
+      <!--いいねした投稿が存在していた場合のみページネーション表示-->
+      <% if @favorites_posts.present? %>
+        <div class="row mt-5">
+          <div class="mx-auto">
+            <%= paginate @favorites_posts %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  <!--いいねした投稿が存在していた場合のみページネーション表示-->
-  <% if @favorites_posts.present? %>
-    <div class="row">
-      <div class="mx-auto">
-        <%= paginate @favorites_posts %>
-      </div>
-    </div>
-  <% end %>
 </div>
