@@ -1,34 +1,53 @@
 <div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
-      <div class="row">
+      <div class="row mb-4">
         <div class="title col-xs-12 p-2 rounded">
-          <h2 class="m-2">投稿編集</h2>
+          <h3 class="m-2">投稿編集</h3>
         </div>
       </div>
+
+      <!--投稿フォーム-->
       <%= form_with model: @post do |f| %>
         <%= render "form", post: @post, f: f %>
 
-        <%= f.label :map, "地図" %>
-        <!--地図の表示-->
-        <div class="d-flex mb-4">
-          <input id="address" type="text" value="<%= @post.address %>", class="form-control">
-          <input type="button" value="検索" onclick="codeAddress()">
+        <!--地図投稿フォーム-->
+        <div class="form-group">
+          <%= f.label :map, "地図" %>
+
+          <!--地図検索フォーム-->
+          <div class="d-flex mb-4">
+            <input id="address" class="form-control" type="text" value="<%= @post.address %>">
+            <input type="button" value="検索" onclick="codeAddress()">
+          </div>
         </div>
 
+        <!--地図の表示-->
         <div id='map'></div>
 
-        <%= f.submit "更新", class: "btn btn-primary" %><%= link_to "戻る", post_path(@post), class: "btn btn-outline-secondary" %>
+        <div>
+          <%= f.submit "更新", class: "btn btn-primary" %><%= link_to "戻る", post_path(@post), class: "btn btn-outline-secondary" %>
+        </div>
       <% end %>
-
     </div>
   </div>
 </div>
+
 <!-- js部分 -->
 <script>
+  //mapが正しく表示されるための記述
+  if (window.google){
+    initMap();
+  } else {
+    $.ajax('https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places', {
+      crossDomain: true,
+      dataType: 'script'
+    });
+  }
+
   //初期マップの設定
-  let map
-  let marker
+  var map
+  var marker
   function initMap(){
     geocoder = new google.maps.Geocoder()
 
@@ -38,18 +57,19 @@
     });
 
     //検索フォーム
-    const input = document.getElementById("address");
-    const searchBox = new google.maps.places.SearchBox(input);
+    var input = document.getElementById("address");
+    var searchBox = new google.maps.places.SearchBox(input);
 
     map.addListener("bounds_changed", () => {
       searchBox.setBounds(map.getBounds());
     });
   }
+
   //検索後のマップ作成
-  let geocoder
-  let aft
+  var geocoder
+  var aft
   function codeAddress(){
-    let inputAddress = document.getElementById('address').value;
+    var inputAddress = document.getElementById('address').value;
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
           //マーカーが複数できないようにする
@@ -84,5 +104,3 @@
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>
-

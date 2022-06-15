@@ -13,6 +13,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-10 mx-auto">
           <!--タイトル-->
@@ -28,9 +29,10 @@
           </div>
 
           <!--説明文-->
-          <h5 class="text-break">
+          <h5 class="pt-3text-break">
             <%= @post.body %>
           </h5>
+
           <!--タグ-->
           <div class="content my-3">
             <% @post.tag_list.each do |tag| %>
@@ -55,6 +57,7 @@
             <div class="content comment-count mt-1 mt-lg-5 mb-3">
               <%= @post.post_comments.count %> コメント
             </div>
+
             <!--コメント一覧-->
             <div class="content post-comments border p-3">
               <% if @post.post_comments.present? %>
@@ -65,6 +68,7 @@
                 </p>
               <% end %>
             </div>
+
             <!--ログインしているか確認-->
             <% if user_signed_in? %>
               <!--コメントフォーム(ログインしていない場合は非表示)-->
@@ -86,8 +90,19 @@
     </div>
   </div>
 </div>
+
 <!-- js部分 -->
 <script>
+  //mapが正しく表示されるための記述
+  if (window.google){
+    initMap();
+  } else {
+    $.ajax('https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places', {
+      crossDomain: true,
+      dataType: 'script'
+    });
+  }
+
   //複数画像が投稿されている時の画像のスライド表示
   $(document).on('turbolinks:load', function() {
     $('.slick').slick({
@@ -97,8 +112,8 @@
   });
 
   //地図表示
-  let map
-  let marker
+  var map
+  var marker
   function initMap(){
     geocoder = new google.maps.Geocoder()
 
@@ -113,4 +128,3 @@
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>

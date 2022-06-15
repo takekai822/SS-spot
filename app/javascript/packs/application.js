@@ -37,7 +37,7 @@ $(document).on('turbolinks:load', function() {
 })
 
 $(document).on('scroll', function () {
-	if (50 < jQuery(this).scrollTop()) {
+	if (50 < $(this).scrollTop()) {
 		$('.header').addClass('header-scroll');
 	} else {
 		$('.header').removeClass('header-scroll');
