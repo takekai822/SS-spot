@@ -13,9 +13,10 @@
       </div>
     </div>
   </div>
+
+  <!--プロフィール編集ボタン(本人がユーザー詳細ページを開いている時のみ表示)-->
   <div class="row py-4">
     <div class="col-8 mx-auto">
-      <!--プロフィール編集ボタン(本人がユーザー詳細ページを開いている時のみ表示)-->
       <% if @user == current_user %>
         <%= link_to "プロフィール編集", edit_user_path(@user), class: "button-gray btn btn-block" %>
       <% else %>
@@ -23,12 +24,15 @@
       <% end %>
     </div>
   </div>
+
+  <!--ユーザーの投稿一覧-->
   <div class="row pt-5">
     <div class="col-10 mx-auto">
       <!--@userが投稿をしているかを確認-->
       <% if @posts.exists? %>
         <!--存在している場合、@userの投稿一覧表示-->
         <%= render "public/posts/index", posts: @posts %>
+        
         <!--ページネーション-->
         <div class="row mt-5">
           <div class="mx-auto">

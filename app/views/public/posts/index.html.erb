@@ -1,6 +1,7 @@
 <div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
+      <!--タイトル-->
       <div class="row">
         <div class="title p-2 rounded">
           <% if params[:tag_name] %>
@@ -18,6 +19,7 @@
         <%= link_to "いいねの多い順", posts_path, class: "button-blue btn btn-sm nav-item" %>
       </p>
 
+      <!--投稿一覧-->
       <div>
         <%= render "public/posts/index", posts: @posts %>
       </div>

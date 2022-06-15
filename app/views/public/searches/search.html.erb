@@ -1,6 +1,7 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
+      <!--タイトル-->
       <div class="row">
         <div class="title p-2 rounded">
           <!--検索フォームに入力があるかを確認-->
@@ -12,6 +13,7 @@
         </div>
       </div>
 
+      <!--検索結果一覧-->
       <div class="pt-5">
         <!--入力されたワードが存在しているかを確認-->
         <% if @posts.blank? %>

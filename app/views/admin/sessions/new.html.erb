@@ -1,10 +1,13 @@
 <div class="background container py-5 rounded">
   <div class="w-75 mx-auto">
+    <!--タイトル-->
     <div class="row">
       <div class="title p-2 rounded">
         <h3 class="mx-2 my-0">管理者ログイン</h3>
       </div>
     </div>
+
+    <!--管理者ログインフォーム-->
     <%= render "public/sessions/form", model: @admin, url: admin_session_path %>
   </div>
 </div>

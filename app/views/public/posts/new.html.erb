@@ -1,6 +1,7 @@
 <div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
+      <!--タイトル-->
       <div class="row mb-4">
         <div class="title p-2 rounded">
           <h3 class="mx-2 my-0">新規投稿</h3>
@@ -22,11 +23,12 @@
           </div>
         </div>
 
+        <!--地図の表示-->
         <div class="form-group">
-          <!--地図の表示-->
           <div id='map'></div>
         </div>
 
+        <!--投稿ボタン-->
         <div class="form-group text-center pt-5">
             <%= f.submit "投稿", class: "button-blue btn col-sm-3 col-5" %>
         </div>

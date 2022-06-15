@@ -1,17 +1,27 @@
 <div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
-      <div class="row bg-light">
-        <!--投稿者のプロフィール画像-->
-        <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
+      <div class="row">
+        <div class="profile p-3 mb-1">
+          <%= link_to admin_user_path(@post.user) do %>
+            <div class="d-flex align-items-center">
+              <!--投稿者のプロフィール画像-->
+              <div>
+                <%= image_tag @post.user.get_profile_image, size: "75x75", class: "rounded-circle" %>
+              </div>
 
-        <!--投稿者の名前-->
-        <%= @post.user.user_name %>
+              <!--投稿者のユーザーネーム-->
+              <div class="pl-2">
+                <%= @post.user.user_name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
 
       <div class="row">
         <div class="col-10 mx-auto">
-          <!--タイトル-->
+          <!--投稿タイトル-->
           <h3 class="my-4 text-break">
             <%= @post.title %>
           </h3>
@@ -29,11 +39,11 @@
           </h5>
 
           <!--タグ-->
-          <div class="my-3">
+          <div class="py-3">
             <% @post.tag_list.each do |tag| %>
-              <span class="badge badge-primary">
+              <p>
                 #<%= tag %>
-              </span>
+              </p>
             <% end %>
           </div>
 
@@ -51,6 +61,7 @@
             <div class="post-comments p-3">
               <% @post.post_comments.each do |post_comment| %>
                <div>
+                <!--コメント文-->
                 <p class="text-break">
                   <%= post_comment.comment %>
                 </p>
@@ -64,6 +75,7 @@
                     <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", "data-confirm" => "不適切なコメントとして削除しますか？" %>
                   </div>
                 </div>
+
                 <!-- js部分 -->
                 <script>
                   $(document).on('turbolinks:load', function() {
@@ -84,7 +96,7 @@
             </div>
           </div>
 
-          <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
+          <!--不適切な投稿の削除ボタン-->
           <div>
             <%= link_to "不適切な投稿の削除", admin_post_path(@post), method: :delete, class: "button-red btn", "data-confirm" => "不適切な投稿として削除しますか？" %>
           </div>

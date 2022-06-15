@@ -1,16 +1,23 @@
 <div class="login-form mt-3">
   <%= form_with model: model, url: url do |f| %>
+    <!--エラーメッセージ-->
     <% if alert %>
       <p class="alert alert-warning text-center"><%= alert %></p>
     <% end %>
+
+    <!--メールアドレス-->
     <div class="form-group row mx-auto my-5">
       <%= f.label :email, class: "col-12 col-md-3 pl-md-0 mx-md-auto" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-12 col-md-8 mx-auto form-control email" %>
     </div>
+
+    <!--パスワード-->
     <div class="form-group row mx-auto mb-5">
       <%= f.label :password, class: "col-12 col-md-3 pl-md-0 mx-md-auto" %>
       <%= f.password_field :password, autocomplete: "current-password", class: "col-12 col-md-8 mx-auto form-control password" %>
     </div>
+
+    <!--ログインボタン-->
     <div class="form-group text-center pb-5">
       <%= f.submit "ログイン", class: "button-blue col-5 btn" %>
     </div>

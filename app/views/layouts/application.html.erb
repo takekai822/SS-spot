@@ -15,26 +15,31 @@
   </head>
 
   <body>
-    <!--高さを出すための要素部分-->
+    <!--高さを出すための要素-->
     <div class="height"></div>
 
+    <!--ヘッダー-->
     <header class="header fixed-top">
       <%= render "layouts/header" %>
     </header>
 
     <main class="py-5 main">
+      <!--フラッシュメッセージ-->
       <% if notice %>
         <div class="text-center py-3">
           <%= notice %>
         </div>
       <% end %>
+
       <%= yield %>
+
       <!--ログインしている場合ページ下部に遷移ボタンの配置-->
       <% if user_signed_in? %>
         <%= render "layouts/select_btn" %>
       <% end %>
     </main>
 
+    <!--フッター-->
     <footer class="border-top text-center">
       <strong>jimopot</strong>
     </footer>
