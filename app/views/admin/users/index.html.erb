@@ -8,8 +8,11 @@
         </div>
       </div>
 
+      <!--ユーザー数-->
+      <div class="text-right mb-4">全<%= @user_count %>人</div>
+
       <!--ユーザー一覧-->
-      <div class="pt-5">
+      <div class="pt-3">
         <% @users.each do |user| %>
           <div>
             <%= link_to admin_user_path(user) do %>

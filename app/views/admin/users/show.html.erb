@@ -17,6 +17,11 @@
     </div>
   </div>
 
+  <!--投稿数(投稿がない時は非表示)-->
+  <% if @posts.present? %>
+    <div class="text-center my-3"><%= @post_count %>件の投稿</div>
+  <% end %>
+
   <!--ユーザーの投稿一覧-->
   <div class="row pt-3">
     <div class="col-11 mx-auto">
