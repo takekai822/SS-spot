@@ -1,14 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-/*エラーメッセージの表示の変更*/
-.field_with_errors {
-  display: contents;
-  input, textarea {
-    @extend .is-invalid;
-  }
-}
-
+/*基本の文字色*/
 body, body a {
   color: #696969
 }
@@ -29,277 +22,12 @@ body a:hover {
   background-color: #f8f8ff;
 }
 
+/*ヘッダー*/
 .header-scroll {
   background-color: white;
 }
 
-.small-nav {
-  display: none;
-}
-
-.wide-nav {
-  list-style: none;
-}
-
-.nav-item {
-  border-radius: 30px 100px / 120px;
-}
-
-.wide-nav .nav-item a:hover, .wide-nav .nav-item a {
-  color: white;
-  text-decoration: none;
-}
-
-.height {
-  height: 80px;
-  background-color:#f0ffff;
-}
-
-.search-form #word {
-  background: none;
-}
-
-.top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 300px;
-  background-color: #f0ffff;
-}
-
-.top #word {
-  width: 100%;
-  font-size: 20px;
-  background: none;
-  height: 40px;
-  margin: 0 auto;
-}
-
-.top #word:focus {
-  background: none;
-}
-
-.about{
-	background-color: white;	/*背景色*/
-	border: 1px solid #ccc;
-	box-shadow:1px 1px 6px 0px #ccc;
-	-moz-box-shadow:1px 1px 6px 0px #ccc;
-	-webkit-box-shadow:1px 1px 6px 0px #ccc;
-	-o-box-shadow:1px 1px 6px 0px #ccc;
-	margin: 50px;
-	padding: 50px 50px 30px 50px;
-	position: relative;
-	z-index: 0;
-}
-
-.tape {
-  position: absolute;
-  top: -30px;
-  background-color: #00bfff;
-	border-left: 2px dotted rgba(255,255,255,0.9);
-	border-right: 2px dotted rgba(255,255,255,0.9);
-	box-shadow: 0 0 5px rgba(255,255,255,0.5);
-	padding: 5px 50px;
-  color: #65513f;
-  transform: rotate(-3deg);
-  font-size: 30px;
-}
-
-.about p {
-  letter-spacing: 3px;
-  line-height: 1.8;
-}
-
-.button-gray {
-  color: #696969;
-  background-color: #cdcdcd;
-  border-bottom: 5px solid #9c9c9c;
-  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.button-gray:hover {
-  margin-top: 3px;
-  color: #fff;
-  background-color: #7f7f7f;
-  border-bottom: 2px solid #9c9c9c;
-}
-
-.button-blue {
-  color: #fff;
-  background-color: #1e90ff;
-  border-bottom: 5px solid #708090;
-  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.button-blue:hover {
-  margin-top: 3px;
-  color: #fff;
-  background-color: #87cefa;
-  border-bottom: 2px solid #708090;
-}
-
-.content .button-blue {
-  border: none;
-}
-
-.button-red {
-  color: #fff;
-  background-color: #ff6666;
-  border-bottom: 5px solid #ff3333;
-  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.button-red:hover {
-  margin-top: 3px;
-  color: #fff;
-  background-color: #ff9393;
-  border-bottom: 2px solid #ff3333;
-}
-
-.title {
-  background-color: #f0ffff;
-  box-shadow: 0 0 5px 1.5px #a9a9a9;
-}
-
-.profile img {
-  transition: 0.5s;
-}
-
-.profile:hover img {
-  transform: scale(1.1);
-  transition: 0.5s;
-}
-
-.posts {
-  width: 800px;
-  height: 100%;
-  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
-  border: 6px solid #333;
-  margin: 100px auto 200px;
-}
-
-.content{
-  font-size:20px;
-}
-
-.index:hover{
-  background-color: #f0ffff;
-}
-
-footer {
-  background-color: #87ceeb;
-  padding-top: 100px;
-  padding-bottom: 150px;
-}
-
-/*ページネーション*/
-.pagination li a {
-  border: none;     /*枠線をなくす*/
-  color: #696969; /*文字の色を変える*/
-}
-
-.pagination .active a {
-  border-radius: 15px;     /*角を丸くする*/
-}
-
-.pagination .active .page-link {
-  background-color: #1e90ff;
-}
-
-.pagination li a:hover {
-  border-radius: 15px; /*角を丸くする*/
-  background-color: #1e90ff;
-  color: white;
-}
-
-.page-link {
-  background-color: inherit;
-}
-
-/*投稿画像が一枚の時はドットを非表示*/
-.slick-dots > li:first-child:last-child {
-    display: none;
-}
-
-.alert li{
-  text-align: left;
-  margin: 10px;
-  list-style: none;
-}
-
-/*地図のスタイル*/
-#map {
-  height: 500px;
-  width: 100%;
-}
-
-/*遷移ボタンのスタイル*/
-.select-buttons {
-  width: 100%;
-  height: 80px;
-  background-color: #87ceeb;
-}
-
-.indicator {
-  height: 50px;
-  width: 500px;
-  margin: 0 auto;
-  display: flex;
-
-}
-
-.select-buttons a {
-  text-decoration: none;
-  color: black;
-}
-
-.select-button {
-  height: 80px;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.icon {
-  font-size: 30px;
-  transition: 0.8s;
-}
-
-.select-button:hover .icon {
-  transform: translateY(-35px);
-  font-size: 50px;
-  color: black;
-}
-
-.select-button strong {
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  left: 0;
-  transition: 0.8s;
-}
-
-.select-button:hover strong {
-  opacity: 1;
-  transform: translateY(15px);
-  color: black;
-}
-/*遷移ボタンのスタイル終わり*/
-
-/*ハンバーガーメニューのスタイル*/
-/*メニューボタンのスタイル*/
+/*ハンバーガーメニュー*/
 .menu-button {
   display: block;
   padding: 0;
@@ -378,13 +106,31 @@ footer {
 .menu-button.active .close-menu {
   display: block;
 }
+/*ハンバーガーメニューのスタイル終わり*/
 
-/*ナビゲーションメニューのスタイル*/
+/*ナビゲーションメニュー*/
+.small-nav {
+  display: none;
+}
+
+.wide-nav {
+  list-style: none;
+}
+
+.nav-item {
+  border-radius: 30px 100px / 120px;
+}
+
+.wide-nav .nav-item a:hover, .wide-nav .nav-item a {
+  color: white;
+  text-decoration: none;
+}
+
 .nav-menu {
   padding: 100px 20px;
 }
 
-.nav-menu li{
+.nav-menu li {
   margin-bottom: 20px;
   text-align: center;
 }
@@ -415,7 +161,326 @@ footer {
 .nav-wrapper.open {
 	transform: translate(0);
 }
-/*ハンバーガーメニューのスタイル終わり*/
+/*ナビゲーションメニューのスタイル終わり*/
+
+.height {
+  height: 80px;
+  background-color:#f0ffff;
+}
+
+/*トップページ*/
+.search-form #word {
+  background: none;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 300px;
+  background-color: #f0ffff;
+}
+
+.top #word {
+  width: 100%;
+  font-size: 20px;
+  background: none;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.top #word:focus {
+  background: none;
+}
+
+.posts {
+  width: 800px;
+  height: 100%;
+  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+  border: 6px solid #333;
+  margin: 100px auto 200px;
+}
+
+.about{
+	background-color: white;	/*背景色*/
+	border: 1px solid #ccc;
+	box-shadow:1px 1px 6px 0px #ccc;
+	-moz-box-shadow:1px 1px 6px 0px #ccc;
+	-webkit-box-shadow:1px 1px 6px 0px #ccc;
+	-o-box-shadow:1px 1px 6px 0px #ccc;
+	margin: 50px;
+	padding: 50px 50px 30px 50px;
+	position: relative;
+	z-index: 0;
+}
+
+.tape {
+  position: absolute;
+  top: -30px;
+  background-color: #00bfff;
+	border-left: 2px dotted rgba(255,255,255,0.9);
+	border-right: 2px dotted rgba(255,255,255,0.9);
+	box-shadow: 0 0 5px rgba(255,255,255,0.5);
+	padding: 5px 50px;
+  color: #65513f;
+  transform: rotate(-3deg);
+  font-size: 30px;
+}
+
+.about p {
+  letter-spacing: 3px;
+  line-height: 1.8;
+}
+/*トップページのスタイル終わり*/
+
+/*ボタン*/
+.button-gray {
+  color: #696969;
+  background-color: #cdcdcd;
+  border-bottom: 5px solid #9c9c9c;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.button-gray:hover {
+  margin-top: 3px;
+  color: #fff;
+  background-color: #7f7f7f;
+  border-bottom: 2px solid #9c9c9c;
+}
+
+.button-blue {
+  color: #fff;
+  background-color: #1e90ff;
+  border-bottom: 5px solid #708090;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.button-blue:hover {
+  margin-top: 3px;
+  color: #fff;
+  background-color: #87cefa;
+  border-bottom: 2px solid #708090;
+}
+
+.content .button-blue {
+  border: none;
+}
+
+.button-red {
+  color: #fff;
+  background-color: #ff6666;
+  border-bottom: 5px solid #ff3333;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.button-red:hover {
+  margin-top: 3px;
+  color: #fff;
+  background-color: #ff9393;
+  border-bottom: 2px solid #ff3333;
+}
+/*ボタンのスタイル終わり*/
+
+/* アラート*/
+.alert li{
+  text-align: left;
+  margin: 10px;
+  list-style: none;
+}
+
+/*エラーメッセージの表示の変更*/
+.field_with_errors {
+  display: contents;
+  input, textarea {
+    @extend .is-invalid;
+  }
+}
+
+.title {
+  background-color: #f0ffff;
+  box-shadow: 0 0 5px 1.5px #a9a9a9;
+}
+
+/*投稿画像が一枚の時はドットを非表示*/
+.slick-dots > li:first-child:last-child {
+    display: none;
+}
+
+/*地図*/
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+.profile img {
+  transition: 0.5s;
+}
+
+.profile:hover img {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+.index:hover{
+  background-color: #f0ffff;
+}
+
+.content{
+  font-size:20px;
+}
+
+/*コメントの折り返し*/
+.hide {
+  height: 115px;
+  overflow-y: hidden;
+}
+
+.readmore {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  background: linear-gradient(180deg,rgb(248, 248, 255, 0) 0%,rgb(248, 248, 255, 1) 70%);
+}
+
+.comment-area {
+  position: relative;
+}
+
+.readmore span {
+  font-size: 15px;
+}
+
+.readmore span:hover {
+  text-decoration: underline;
+}
+/*コメントの折り返しのスタイル終わり*/
+
+/*ページネーション*/
+.pagination li a {
+  border: none;     /*枠線をなくす*/
+  color: #696969; /*文字の色を変える*/
+}
+
+.pagination .active a {
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+.pagination .active .page-link {
+  background-color: #1e90ff;
+}
+
+.pagination li a:hover {
+  border-radius: 15px; /*角を丸くする*/
+  background-color: #1e90ff;
+  color: white;
+}
+
+.page-link {
+  background-color: inherit;
+}
+/*ページネーションのスタイル終わり*/
+
+/*遷移ボタン*/
+.select-buttons {
+  width: 100%;
+  height: 80px;
+  background-color: #87ceeb;
+}
+
+.indicator {
+  height: 50px;
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+
+}
+
+.select-buttons a {
+  text-decoration: none;
+  color: black;
+}
+
+.select-button {
+  height: 80px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.icon {
+  font-size: 30px;
+  transition: 0.8s;
+}
+
+.select-button:hover .icon {
+  transform: translateY(-35px);
+  font-size: 50px;
+  color: black;
+}
+
+.select-button strong {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  left: 0;
+  transition: 0.8s;
+}
+
+.select-button:hover strong {
+  opacity: 1;
+  transform: translateY(15px);
+  color: black;
+}
+/*遷移ボタンのスタイル終わり*/
+
+/*ページトップボタン*/
+.pagetop {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+}
+
+.pagetop a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    text-align: center;
+    background: #87cefa;
+    border-radius: 50%;
+    line-height: 50px;
+}
+
+.pagetop a i {
+    font-size: 20px;
+    color:#fff;
+    line-height: 50px;
+}
+/*ページトップボタンのスタイル終わり*/
+
+/*フッター*/
+footer {
+  background-color: #87ceeb;
+  padding-top: 100px;
+  padding-bottom: 150px;
+}
 
 /*レスポンシブ対応*/
 @media screen and (max-width: 800px){
@@ -511,6 +576,10 @@ footer {
   .title {
     background-color: #f8f8ff;
   }
+
+  .readmore {
+  background: linear-gradient(180deg,rgb(240, 255, 255, 0) 0%,rgb(240, 255, 255, 1) 70%);
+}
 
   .index:hover {
     background-color: #f8f8ff;
