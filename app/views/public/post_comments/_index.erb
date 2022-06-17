@@ -1,5 +1,12 @@
 <% post.post_comments.each do |post_comment| %>
   <div>
+    <div>
+      <%= link_to user_path(post_comment.user) do %>
+        <p style="font-size: 15px">
+          <%= post_comment.user.user_name %>さんのコメント
+        </p>
+      <% end %>
+    </div>
     <!--コメント表示-->
     <p class="text-break">
       <%= post_comment.comment %>

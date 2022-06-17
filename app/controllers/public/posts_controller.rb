@@ -1,9 +1,13 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user! , except: [:show, :index]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
+  # 新規投稿
   def new
     @post = Post.new
   end
 
+  # 投稿
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
@@ -14,6 +18,7 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  # 投稿一覧
   def index
     if params[:latest]
       #新着順で並び替え
@@ -32,14 +37,17 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  # 投稿詳細
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
   end
 
+  # 投稿編集
   def edit
   end
 
+  # 投稿アップデート
   def update
     if @post.update(post_params)
       flash[:notice] = "編集内容を更新しました"
@@ -49,6 +57,7 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  # 投稿削除
   def destroy
     @post.destroy
     flash[:notice] = "投稿を削除しました"
@@ -56,6 +65,7 @@ class Public::PostsController < ApplicationController
   end
 
   private
+  # ストロングパラメータ
   def post_params
     params.require(:post).permit(:title, :body, :address, :latitude, :longitude, :tag_list, post_images: [])
   end

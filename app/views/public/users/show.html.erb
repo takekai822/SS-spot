@@ -20,7 +20,7 @@
       <% if @user == current_user %>
         <%= link_to "プロフィール編集", edit_user_path(@user), class: "button-gray btn btn-block" %>
       <% else %>
-        <p><%=link_to "#{@user.user_name}さんのいいねリスト",favorites_user_path(@user) %></p>
+        <%=link_to "#{@user.user_name}さんのいいねリスト", favorites_user_path(@user), class: "button-gray btn" %>
       <% end %>
     </div>
   </div>
@@ -32,7 +32,7 @@
       <% if @posts.exists? %>
         <!--存在している場合、@userの投稿一覧表示-->
         <%= render "public/posts/index", posts: @posts %>
-        
+
         <!--ページネーション-->
         <div class="row mt-5">
           <div class="mx-auto">
