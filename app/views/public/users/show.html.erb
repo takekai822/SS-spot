@@ -16,7 +16,7 @@
 
   <!--プロフィール編集ボタン(本人がユーザー詳細ページを開いている時のみ表示)-->
   <div class="row py-4">
-    <div class="col-8 mx-auto">
+    <div class="col-8 mx-auto text-center">
       <% if @user == current_user %>
         <%= link_to "プロフィール編集", edit_user_path(@user), class: "button-gray btn btn-block" %>
       <% else %>
@@ -24,6 +24,11 @@
       <% end %>
     </div>
   </div>
+
+  <!--投稿数(投稿がない時は非表示)-->
+  <% if @posts.present? %>
+    <div class="text-center my-3"><%= @post_count %>件の投稿</div>
+  <% end %>
 
   <!--ユーザーの投稿一覧-->
   <div class="row pt-5">

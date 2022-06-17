@@ -23,20 +23,30 @@ class Public::PostsController < ApplicationController
     if params[:latest]
       # 新着順で並び替え
       @posts = Post.latest.page(params[:page]).per(10)
+      # 投稿数
+      @post_count = Post.all.count
     elsif params[:old]
       # 古い順で並び替え
       @posts = Post.old.page(params[:page]).per(10)
+      # 投稿数
+      @post_count = Post.all.count
     elsif params[:favorite]
       # いいねの多い順で並び替え
       posts = Post.includes(:favorited_users).sort {|a, b| b.favorited_users.size <=> a.favorited_users.size}
       # ページネーション
       @posts = Kaminari.paginate_array(posts).page(params[:page]).per(10)
+      # 投稿数
+      @post_count = Post.all.count
     elsif params[:tag_name]
       # タグの絞り込み
       # タグがクリックされたらクリックされたタグの名前をtagge_with(タグの名前)メソッドで検索し絞り込みを行う
       @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      # 投稿数
+      @post_count = Post.tagged_with("#{params[:tag_name]}").count
     else
       @posts = Post.all.page(params[:page]).per(10)
+      # 投稿数
+      @post_count = Post.all.count
     end
   end
 

@@ -6,6 +6,8 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.all.page(params[:page]).per(10)
+    # 投稿数
+    @post_count = @user.posts.all.count
   end
 
   # ユーザー編集
@@ -30,6 +32,8 @@ class Public::UsersController < ApplicationController
     @favorite_posts = Post.find(favorites)
     # ページネーション
     @posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(10)
+    # 投稿数
+    @post_count = Post.find(favorites).count
   end
 
   # 退会

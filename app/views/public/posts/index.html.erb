@@ -12,12 +12,18 @@
         </div>
       </div>
 
+      <!--投稿数-->
+      <div class="text-right mb-4">全<%= @post_count %>件</div>
+
       <!--並び替えリンク-->
-      <p class="text-right my-4">
-        <%= link_to "新着順", posts_path(latest: "true"), class: "button-blue btn btn-sm nav-item" %>
-        <%= link_to "古い順", posts_path(old: "true"), class: "button-blue btn btn-sm nav-item" %>
-        <%= link_to "いいねの多い順", posts_path(favorite: "true"), class: "button-blue btn btn-sm nav-item" %>
-      </p>
+      <!--タグ検索された時は非表示-->
+      <% unless params[:tag_name].present? %>
+        <p class="text-right my-4">
+          <%= link_to "新着順", posts_path(latest: "true"), class: "button-blue btn btn-sm nav-item" %>
+          <%= link_to "古い順", posts_path(old: "true"), class: "button-blue btn btn-sm nav-item" %>
+          <%= link_to "いいねの多い順", posts_path(favorite: "true"), class: "button-blue btn btn-sm nav-item" %>
+        </p>
+      <% end %>
 
       <!--投稿一覧-->
       <div>
