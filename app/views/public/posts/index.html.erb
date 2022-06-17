@@ -16,7 +16,7 @@
       <p class="text-right my-4">
         <%= link_to "新着順", posts_path(latest: "true"), class: "button-blue btn btn-sm nav-item" %>
         <%= link_to "古い順", posts_path(old: "true"), class: "button-blue btn btn-sm nav-item" %>
-        <%= link_to "いいねの多い順", posts_path, class: "button-blue btn btn-sm nav-item" %>
+        <%= link_to "いいねの多い順", posts_path(favorite: "true"), class: "button-blue btn btn-sm nav-item" %>
       </p>
 
       <!--投稿一覧-->

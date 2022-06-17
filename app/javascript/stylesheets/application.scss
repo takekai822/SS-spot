@@ -372,21 +372,21 @@ body a:hover {
 
 /*ページネーション*/
 .pagination li a {
-  border: none;     /*枠線をなくす*/
-  color: #696969; /*文字の色を変える*/
+  border: none;
+  color: #696969;
 }
 
 .pagination .active a {
-  border-radius: 15px;     /*角を丸くする*/
+  border-radius: 15px;
 }
 
 .pagination .active .page-link {
-  background-color: #1e90ff;
+  background-color: #87cefa;
 }
 
 .pagination li a:hover {
-  border-radius: 15px; /*角を丸くする*/
-  background-color: #1e90ff;
+  border-radius: 15px;
+  background-color: #87cefa;
   color: white;
 }
 
