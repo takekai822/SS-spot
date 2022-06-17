@@ -21,19 +21,22 @@ class Public::PostsController < ApplicationController
   # 投稿一覧
   def index
     if params[:latest]
-      #新着順で並び替え
+      # 新着順で並び替え
       @posts = Post.latest.page(params[:page]).per(10)
     elsif params[:old]
-      #古い順で並び替え
+      # 古い順で並び替え
       @posts = Post.old.page(params[:page]).per(10)
+    elsif params[:favorite]
+      # いいねの多い順で並び替え
+      posts = Post.includes(:favorited_users).sort {|a, b| b.favorited_users.size <=> a.favorited_users.size}
+      # ページネーション
+      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(10)
     elsif params[:tag_name]
-      #タグの絞り込み
-      #タグがクリックされたらクリックされたタグの名前をtagge_with(タグの名前)メソッドで検索し絞り込みを行う
+      # タグの絞り込み
+      # タグがクリックされたらクリックされたタグの名前をtagge_with(タグの名前)メソッドで検索し絞り込みを行う
       @posts = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
     else
-      #いいねの多い順で並び替え
-      posts = Post.includes(:favorited_users).sort {|a, b| b.favorited_users.size <=> a.favorited_users.size}
-      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(10)
+      @posts = Post.all.page(params[:page]).per(10)
     end
   end
 
@@ -70,7 +73,7 @@ class Public::PostsController < ApplicationController
     params.require(:post).permit(:title, :body, :address, :latitude, :longitude, :tag_list, post_images: [])
   end
 
-  #投稿者本人しか投稿を編集できないようにするためのアクション
+  # 投稿者本人しか投稿を編集できないようにするためのアクション
   def ensure_correct_user
     @post = Post.find(params[:id])
     unless @post.user == current_user

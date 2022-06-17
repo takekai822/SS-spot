@@ -25,9 +25,11 @@ class Public::UsersController < ApplicationController
   # いいねした投稿の一覧
   def favorites
     @user = User.find(params[:id])
-    #user_idに@userが存在するレコードを全て取得し、その投稿のpost_idも一緒に取得、そのpost_idをfavoritesに代入
+    # user_idに@userが存在するレコードを全て取得し、その投稿のpost_idも一緒に取得、そのpost_idをfavoritesに代入
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+    # ページネーション
+    @posts = Kaminari.paginate_array(@favorite_posts).page(params[:page]).per(10)
   end
 
   # 退会

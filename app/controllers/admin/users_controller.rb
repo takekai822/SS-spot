@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
 
   # 管理者側 ユーザー一覧
   def index
-    @users = User.all.page(params[:page]).per(20)
+    @users = User.all.page(params[:page]).per(10)
   end
 
   # 管理者側 ユーザー詳細
