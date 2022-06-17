@@ -49,9 +49,18 @@
           </div>
 
           <!--いいねボタン-->
-          <div class="content my-3 pb-4" id="favorite-<%= @post.id %>">
+          <div class="content my-3 pb-2" id="favorite-<%= @post.id %>">
             <%= render "public/favorites/favorite_btn", post: @post %>
           </div>
+
+          <!--場所・地名-->
+          <div class="my-3">
+            <p>< 場所・地名 ></p>
+            <p class="text-break">
+              <%= @post.address %>
+            </p>
+          </div>
+
 
           <!--地図の表示-->
           <div id='map'></div>
@@ -69,7 +78,7 @@
                 <div class="comment-area hide">
                   <%= render "public/post_comments/index", post: @post %>
                   <div class="readmore">
-                    <span>続きを読む</span>
+                    <span class="underline">続きを読む</span>
                   </div>
                 </div>
               <% else %>

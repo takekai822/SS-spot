@@ -24,7 +24,7 @@ ja:
         title: タイトル
         body: 説明文
         post_images: 画像
-        address: 場所
+        address: 場所・地名
         tag_list: タグ
     errors:
       format: "%{attribute}%{message}"

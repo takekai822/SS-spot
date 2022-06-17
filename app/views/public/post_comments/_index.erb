@@ -1,8 +1,9 @@
 <% post.post_comments.each do |post_comment| %>
   <div>
+    <!--コメント投稿者-->
     <div>
       <%= link_to user_path(post_comment.user) do %>
-        <p style="font-size: 15px">
+        <p class="underline" style="font-size: 15px">
           <%= post_comment.user.user_name %>さんのコメント
         </p>
       <% end %>

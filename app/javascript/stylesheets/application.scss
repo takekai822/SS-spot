@@ -306,6 +306,10 @@ body a:hover {
   }
 }
 
+.underline:hover {
+  text-decoration: underline;
+}
+
 .title {
   background-color: #f0ffff;
   box-shadow: 0 0 5px 1.5px #a9a9a9;
@@ -363,10 +367,6 @@ body a:hover {
 
 .readmore span {
   font-size: 15px;
-}
-
-.readmore span:hover {
-  text-decoration: underline;
 }
 /*コメントの折り返しのスタイル終わり*/
 
