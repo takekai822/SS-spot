@@ -135,7 +135,7 @@
 
   //複数画像が投稿されている時の画像のスライド表示
   $(document).on('turbolinks:load', function() {
-    $('.slick').slick({
+    $('.slick').not('.slick-initialized').slick({
       dots: true,
       arrows: false,
     })

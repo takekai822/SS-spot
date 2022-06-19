@@ -36,8 +36,8 @@ class Post < ApplicationRecord
       # 入力がない場合全ての投稿を表示
       @post = Post.all
     else
-      # 入力があった場合、タイトルと説明文に入力された文字がある投稿を表示
-      @post = Post.where(["title LIKE? OR body LIKE?", "%#{word}%", "%#{word}%"])
+      # 入力があった場合、タイトルと説明文と場所・地名に入力された文字がある投稿を表示
+      @post = Post.where(["title LIKE? OR body LIKE? OR address LIKE?", "%#{word}%", "%#{word}%", "%#{word}%"])
     end
   end
 
