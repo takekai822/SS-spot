@@ -20,7 +20,10 @@
       <% if @user == current_user %>
         <%= link_to "プロフィール編集", edit_user_path(@user), class: "button-gray btn btn-block" %>
       <% else %>
-        <%=link_to "#{@user.user_name}さんのいいねリスト", favorites_user_path(@user), class: "button-gray btn" %>
+        <% if @user.is_deleted == false %>
+          <!--退会済みの場合は非表示-->
+          <%=link_to "#{@user.user_name}さんのいいねリスト", favorites_user_path(@user), class: "button-gray btn" %>
+        <% end %>
       <% end %>
     </div>
   </div>
