@@ -1,13 +1,22 @@
 <%= form_with model: [post, post_comment], local: false do |f| %>
   <!--コメント投稿-->
   <div class="form-group">
-    <%= f.text_field :comment, class: "form-control comment" %>
+    <%= f.text_field :comment, class: "form-control comment", placeholder: "コメントを入力" %>
   </div>
-  <!--星評価の投稿-->
-  <div class="form-group" id="star">
-    <%= f.label :rate, "評価" %>
-    <%= f.hidden_field :rate, id: :review_star, class: "form-control" %>
+
+  <div class="d-lg-flex justify-content-between">
+    <!--星評価の投稿-->
+    <div class="form-group" id="star">
+      <%= f.label :rate, "評価" %>
+      <%= f.hidden_field :rate, id: :review_star, class: "form-control" %>
+    </div>
+
+    <!--投稿ボタン-->
+    <div>
+      <%= f.submit "コメント", class: "button-blue btn btn-sm" %>
+    </div>
   </div>
+
   <!-- js部分 -->
   <script>
     $(document).ready(function() {
@@ -22,6 +31,4 @@
       });
     })
   </script>
-  <!--投稿ボタン-->
-  <%= f.submit "コメント", class: "btn btn-sm btn-success" %>
 <% end %>

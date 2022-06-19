@@ -36,10 +36,29 @@ $(document).on('turbolinks:load', function() {
 	});
 })
 
+// ヘッダーの装飾の変化
 $(document).on('scroll', function () {
-	if (50 < jQuery(this).scrollTop()) {
+	if (50 < $(this).scrollTop()) {
 		$('.header').addClass('header-scroll');
 	} else {
 		$('.header').removeClass('header-scroll');
 	}
 });
+
+// コメントの折り返し
+$(document).on('turbolinks:load', function() {
+	$('.readmore').click(function() {
+		$(this).hide();
+		$('.comment-area').removeClass('hide');
+	})
+})
+
+// ページトップボタン
+$(document).on('turbolinks:load',function() {
+	$('.pagetop').click(function () {
+    	$('body,html').animate({
+    		scrollTop: 0//ページトップまでスクロール
+    	}, 500);//ページトップスクロールの速さ
+    	return false;//リンク自体の無効化
+	});
+})

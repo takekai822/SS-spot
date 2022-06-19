@@ -1,26 +1,29 @@
-<div class="fixed-bottom select-button">
+<div class="fixed-bottom select-buttons">
   <div class="indicator">
-    <div class="col-3 buttons">
+    <div class="col-3 select-button">
       <%= link_to posts_path do %>
-        <i class="fa-solid fa-house icon" ></i>
+        <i class="fas fa-home icon"></i>
         <strong>投稿一覧</strong>
       <% end %>
     </div>
-    <div class="col-3 buttons">
+
+    <div class="col-3 select-button">
       <%= link_to new_post_path do %>
-        <i class="fa-solid fa-circle-plus icon"></i>
+        <i class="fas fa-plus icon"></i>
         <strong>新規投稿</strong>
       <% end %>
     </div>
-    <div class="col-3 buttons">
+
+    <div class="col-3 select-button">
       <%= link_to favorites_user_path(current_user) do %>
-        <i class="fa-solid fa-heart icon"></i>
+        <i class="fas fa-heart icon"></i>
         <strong>いいねリスト</strong>
       <% end %>
     </div>
-    <div class="col-3 buttons">
+
+    <div class="col-3 select-button">
       <%= link_to user_path(current_user) do %>
-        <i class="fa-solid fa-user icon"></i>
+        <i class="fas fa-user-alt icon"></i>
         <strong>マイページ</strong>
       <% end %>
     </div>

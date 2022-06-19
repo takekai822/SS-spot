@@ -1,15 +1,114 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-//基本の背景色
-.main {
-  background-color: #f0ffff;
+/*基本の文字色*/
+body, body a {
+  color: #696969
 }
 
+body a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+/*基本の背景色*/
+.main {
+  background-color: #f0ffff;
+  min-height: 500px;
+}
+
+/*各コンテンツ内の背景色*/
+.background {
+  background-color: #f8f8ff;
+}
+
+/*ヘッダー*/
 .header-scroll {
   background-color: white;
 }
 
+/*ハンバーガーメニュー*/
+.menu-button {
+  display: block;
+  padding: 0;
+  width: 40px;
+  height: 25px;
+  position: fixed;
+  background: none;
+  border: none;
+  text-align: center;
+  color: black;
+  top: 25px;
+  right: 20px;
+  z-index: 1001;
+  outline: none!important;
+}
+
+.menu-button .menu-bar {
+  display: block;
+  width: 40px;
+  height: 2px;
+  transition: 0.2s;
+  transform-origin: 0% 0%;
+  position: absolute;
+  left: 0;
+  background-color: black;
+}
+
+.menu-button .menu-bar1 {
+  top: 0;
+}
+
+.menu-button .menu-bar2 {
+  top: 50%;
+}
+
+.menu-button .menu-bar3 {
+  top: 100%;
+}
+
+.menu-text {
+  width: 100%;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  text-align: center;
+  font-size: 10px;
+}
+
+.close-menu {
+  display: none;
+}
+
+.menu-button.active .menu-bar {
+  width: 35px;
+  left: 8px;
+}
+
+.menu-button.active .menu-bar1 {
+  transform: rotate(45deg) translateY(-50%);
+  top: 0px;
+}
+
+.menu-button.active .menu-bar2 {
+  opacity: 0;
+}
+
+.menu-button.active .menu-bar3 {
+  transform: rotate(-45deg) translateY(-50%);
+  top: calc(100% - 0px);
+}
+
+.menu-button.active .open-menu {
+  display: none;
+}
+
+.menu-button.active .close-menu {
+  display: block;
+}
+/*ハンバーガーメニューのスタイル終わり*/
+
+/*ナビゲーションメニュー*/
 .small-nav {
   display: none;
 }
@@ -22,16 +121,54 @@
   border-radius: 30px 100px / 120px;
 }
 
-.nav-item a {
-  margin: 0;
+.wide-nav .nav-item a:hover, .wide-nav .nav-item a {
   color: white;
+  text-decoration: none;
 }
+
+.nav-menu {
+  padding: 100px 20px;
+}
+
+.nav-menu li {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.open-menu-bg {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 999;
+	background-color: rgba(51, 51, 51, 0.5);
+	display: none;
+	top: 0;
+	left: 0;
+}
+
+.nav-wrapper {
+	width: 200px;
+	height: 100%;
+	transition: 0.2s;
+	transform: translate(200px);
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1000;
+	background-color: #FFF;
+}
+
+.nav-wrapper.open {
+	transform: translate(0);
+}
+/*ナビゲーションメニューのスタイル終わり*/
 
 .height {
   height: 80px;
   background-color:#f0ffff;
 }
 
+/*トップページ*/
 .search-form #word {
   background: none;
 }
@@ -57,8 +194,16 @@
   background: none;
 }
 
+.posts {
+  width: 800px;
+  height: 100%;
+  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+  border: 6px solid #333;
+  margin: 100px auto 200px;
+}
+
 .about{
-	background-color: white;	//背景色
+	background-color: white;	/*背景色*/
 	border: 1px solid #ccc;
 	box-shadow:1px 1px 6px 0px #ccc;
 	-moz-box-shadow:1px 1px 6px 0px #ccc;
@@ -87,27 +232,73 @@
   letter-spacing: 3px;
   line-height: 1.8;
 }
+/*トップページのスタイル終わり*/
 
-.posts {
-  width: 800px;
-  height: 100%;
-  border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
-  border: 6px solid #333;
-  margin: 100px auto 200px;
+/*ボタン*/
+.button-gray {
+  color: #696969;
+  background-color: #cdcdcd;
+  border-bottom: 5px solid #9c9c9c;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-footer {
-  background-color: #87ceeb;
-  padding-top: 100px;
-  padding-bottom: 150px;
+.button-gray:hover {
+  margin-top: 3px;
+  color: #fff;
+  background-color: #7f7f7f;
+  border-bottom: 2px solid #9c9c9c;
 }
 
-//投稿画像が一枚の時はドットを非表示
-.slick-dots > li:first-child:last-child {
-    display: none;
+.button-blue {
+  color: #fff;
+  background-color: #1e90ff;
+  border-bottom: 5px solid #708090;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-//エラーメッセージの表示の変更
+.button-blue:hover {
+  margin-top: 3px;
+  color: #fff;
+  background-color: #87cefa;
+  border-bottom: 2px solid #708090;
+}
+
+.content .button-blue {
+  border: none;
+}
+
+.button-red {
+  color: #fff;
+  background-color: #ff6666;
+  border-bottom: 5px solid #ff3333;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.button-red:hover {
+  margin-top: 3px;
+  color: #fff;
+  background-color: #ff9393;
+  border-bottom: 2px solid #ff3333;
+}
+/*ボタンのスタイル終わり*/
+
+/* アラート*/
+.alert li{
+  text-align: left;
+  margin: 10px;
+  list-style: none;
+}
+
+/*エラーメッセージの表示の変更*/
 .field_with_errors {
   display: contents;
   input, textarea {
@@ -115,16 +306,99 @@ footer {
   }
 }
 
-//地図のスタイル
+.underline:hover {
+  text-decoration: underline;
+}
+
+.title {
+  background-color: #f0ffff;
+  box-shadow: 0 0 5px 1.5px #a9a9a9;
+}
+
+/*投稿画像が一枚の時はドットを非表示*/
+.slick-dots > li:first-child:last-child {
+    display: none;
+}
+
+/*地図*/
 #map {
   height: 500px;
   width: 100%;
 }
 
-//遷移ボタンのスタイル
-.select-button {
+.profile img {
+  transition: 0.5s;
+}
+
+.profile:hover img {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+.index:hover{
+  background-color: #f0ffff;
+}
+
+.content{
+  font-size:20px;
+}
+
+/*コメントの折り返し*/
+.hide {
+  height: 115px;
+  overflow-y: hidden;
+}
+
+.readmore {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
   width: 100%;
-  height: 50px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  background: linear-gradient(180deg,rgb(248, 248, 255, 0) 0%,rgb(248, 248, 255, 1) 70%);
+}
+
+.comment-area {
+  position: relative;
+}
+
+.readmore span {
+  font-size: 15px;
+}
+/*コメントの折り返しのスタイル終わり*/
+
+/*ページネーション*/
+.pagination li a {
+  border: none;
+  color: #696969;
+}
+
+.pagination .active a {
+  border-radius: 15px;
+}
+
+.pagination .active .page-link {
+  background-color: #87cefa;
+}
+
+.pagination li a:hover {
+  border-radius: 15px;
+  background-color: #87cefa;
+  color: white;
+}
+
+.page-link {
+  background-color: inherit;
+}
+/*ページネーションのスタイル終わり*/
+
+/*遷移ボタン*/
+.select-buttons {
+  width: 100%;
+  height: 80px;
   background-color: #87ceeb;
 }
 
@@ -136,12 +410,13 @@ footer {
 
 }
 
-.select-button a {
+.select-buttons a {
   text-decoration: none;
   color: black;
 }
 
-.buttons {
+.select-button {
+  height: 80px;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -154,12 +429,13 @@ footer {
   transition: 0.8s;
 }
 
-.buttons:hover .icon {
-  transform: translateY(-50px);
+.select-button:hover .icon {
+  transform: translateY(-35px);
   font-size: 50px;
+  color: black;
 }
 
-.buttons strong {
+.select-button strong {
   opacity: 0;
   position: absolute;
   right: 0;
@@ -167,146 +443,49 @@ footer {
   transition: 0.8s;
 }
 
-.buttons:hover strong {
+.select-button:hover strong {
   opacity: 1;
-  transform: translateY(5px);
+  transform: translateY(15px);
+  color: black;
 }
-//遷移ボタンのスタイル終わり
+/*遷移ボタンのスタイル終わり*/
 
-//ハンバーガーメニューのスタイル
-.hamburger-menu {
-  //メニューボタンのスタイル
-  .menu-button {
-    display: block;
-    padding: 0;
-    width: 40px;
-    height: 25px;
+/*ページトップボタン*/
+.pagetop {
     position: fixed;
-    background: none;
-    border: none;
-    text-align: center;
-    color: black;
-    top: 25px;
     right: 20px;
-    z-index: 1001;
-    outline: none;
-  }
-
-  .menu-button .menu-bar {
-    display: block;
-    width: 40px;
-    height: 2px;
-    transition: 0.2s;
-    transform-origin: 0% 0%;
-    position: absolute;
-    left: 0;
-    background-color: black;
-  }
-
-  .menu-button .menu-bar1 {
-    top: 0;
-  }
-
-  .menu-button .menu-bar2 {
-    top: 50%;
-  }
-
-  .menu-button .menu-bar3 {
-    top: 100%;
-  }
-
-  .menu-text {
-    width: 100%;
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    text-align: center;
-    font-size: 10px;
-  }
-
-  .close-menu {
-    display: none;
-  }
-
-  .menu-button.active .menu-bar {
-    width: 35px;
-    left: 8px;
-  }
-
-  .menu-button.active .menu-bar1 {
-    transform: rotate(45deg) translateY(-50%);
-    top: 0px
-  }
-
-  .menu-button.active .menu-bar2 {
-    opacity: 0;
-  }
-
-  .menu-button.active .menu-bar3 {
-    transform: rotate(-45deg) translateY(-50%);
-    top: calc(100% - 0px)
-  }
-
-  .menu-button.active .open-menu {
-    display: none;
-  }
-
-  .menu-button.active .close-menu {
-    display: block;
-  }
-
-  //ナビゲーションメニューのスタイル
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  .nav-menu {
-    padding: 100px 20px;
-  }
-
-  li{
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .open-menu-bg {
-		width: 100%;
-		height: 100%;
-		position: fixed;
-		z-index: 999;
-		background-color: rgba(51, 51, 51, 0.5);
-		display: none;
-		top: 0;
-		left: 0;
-	}
-
-	.nav-wrapper {
-		width: 200px;
-		height: 100%;
-		transition: 0.2s;
-		transform: translate(200px);
-		position: fixed;
-		top: 0;
-		right: 0;
-		z-index: 1000;
-		background-color: #FFF;
-		&.open {
-			transform: translate(0);
-		}
-	}
+    bottom: 80px;
 }
-//ハンバーガーメニューのスタイル終わり
 
-//レスポンシブ対応
+.pagetop a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    text-align: center;
+    background: #87cefa;
+    border-radius: 50%;
+    line-height: 50px;
+}
+
+.pagetop a i {
+    font-size: 20px;
+    color:#fff;
+    line-height: 50px;
+}
+/*ページトップボタンのスタイル終わり*/
+
+/*フッター*/
+footer {
+  background-color: #87ceeb;
+  padding-top: 100px;
+  padding-bottom: 150px;
+}
+
+/*レスポンシブ対応*/
 @media screen and (max-width: 800px){
   .small-nav {
     display: block;
-  }
-
-  .nav-item a {
-    margin: 0;
-    color: black;
   }
 
   .wide-nav .nav-item {
@@ -323,7 +502,11 @@ footer {
 }
 
 @media screen and (max-width: 550px){
-  .buttons strong {
+  .background {
+    background-color:  inherit;
+  }
+
+  .select-button strong {
     display: none;
   }
 
@@ -380,7 +563,7 @@ footer {
 
   .about p {
     letter-spacing: 1.0;
-    line-height: auto;
+    line-height: inherit;
   }
 
   .tape {
@@ -388,5 +571,17 @@ footer {
     border: none;
     background-color: inherit;
     padding: 0;
+  }
+
+  .title {
+    background-color: #f8f8ff;
+  }
+
+  .readmore {
+  background: linear-gradient(180deg,rgb(240, 255, 255, 0) 0%,rgb(240, 255, 255, 1) 70%);
+}
+
+  .index:hover {
+    background-color: #f8f8ff;
   }
 }

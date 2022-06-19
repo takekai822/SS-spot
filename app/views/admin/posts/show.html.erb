@@ -1,108 +1,160 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
-      <h3>投稿</h3>
-      <div class="row bg-light">
-        <!--投稿者のプロフィール画像-->
-        <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-        <!--投稿者の名前-->
-        <%= @post.user.user_name %>
+      <div class="row">
+        <div class="profile p-3 mb-1">
+          <%= link_to admin_user_path(@post.user) do %>
+            <div class="d-flex align-items-center">
+              <!--投稿者のプロフィール画像-->
+              <div>
+                <%= image_tag @post.user.get_profile_image, size: "75x75", class: "rounded-circle" %>
+              </div>
+
+              <!--投稿者のユーザーネーム-->
+              <div class="pl-2">
+                <%= @post.user.user_name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
+
       <div class="row">
         <div class="col-10 mx-auto">
+          <!--投稿タイトル-->
+          <h3 class="my-4 text-break">
+            <%= @post.title %>
+          </h3>
+
           <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
           <div class="slick mx-auto" style="max-width:800px;">
             <% @post.post_images.each do |image| %>
               <%= image_tag image.variant(resize_to_fill: [800, 500]) %>
             <% end %>
           </div>
-          <!--タイトル-->
-          <div>
-            <%= @post.title %>
-          </div>
+
           <!--説明文-->
-          <div>
+          <h5 class="pt-3 text-break">
             <%= @post.body %>
-          </div>
+          </h5>
+
           <!--タグ-->
-          <div>
+          <div class="py-3">
             <% @post.tag_list.each do |tag| %>
-              <span class="badge badge-primary">
+              <p>
                 #<%= tag %>
-              </span>
+              </p>
             <% end %>
           </div>
 
+          <!--場所・地名-->
+          <div class="py-3">
+            <p>< 場所・地名 ></p>
+            <p class="text-break">
+              <%= @post.address %>
+            </p>
+          </div>
+
           <!--地図の表示-->
-          <div id='map' style="height:500px; width:100%;"></div>
+          <div id='map'></div>
 
-          <!-- js部分 -->
-          <script>
-            //複数画像が投稿されている時の画像のスライド表示
-            $(document).on('turbolinks:load', function() {
-              $('.slick').slick({
-                dots: true,
-                arrows: false,
-              })
-            });
+          <!--コメント-->
+          <div class="p-1 my-3 my-lg-5">
+            <!--コメント数-->
+            <div class="comment-count mt-1 mt-lg-5 mb-3">
+              <%= @post.post_comments.count %> コメント
+            </div>
 
-            //地図表示
-            let map
-            let marker
-            function initMap(){
-              geocoder = new google.maps.Geocoder()
-
-              map = new google.maps.Map(document.getElementById('map'), {
-                center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
-                zoom: 15,
-              });
-
-               marker = new google.maps.Marker({
-                position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
-                map: map
-              });
-            }
-          </script>
-          <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>
-          <!--コメント一覧-->
-          <div class="post-comments">
-            <%= @post.post_comments.count %> コメント
-            <div>
+            <!--コメント一覧-->
+            <div class="post-comments border p-3">
               <% @post.post_comments.each do |post_comment| %>
-                <!--コメント表示-->
                 <div>
-                  <%= post_comment.comment %>
-                </div>
-                <!--星評価の表示-->
-                <div id="rate-<%= post_comment.id %>" class="form-group"></div>
-                <!-- js部分 -->
-                <script>
-                  $(document).on('turbolinks:load', function() {
-                    $('#rate-<%= post_comment.id %>').empty();
-                    $('#rate-<%= post_comment.id %>').raty({
-                      size: 20,
-                      starOff:  '<%= asset_path('star-off.png') %>',
-                      starOn : '<%= asset_path('star-on.png') %>',
-                      starHalf: '<%= asset_path('star-half.png') %>',
-                      half: true,
-                      readOnly: true,
-                      score: <%= post_comment.rate %>,
+                  <div>
+                    <%= link_to admin_user_path(post_comment.user) do %>
+                      <p class="underline" style="font-size: 15px">
+                        <%= post_comment.user.user_name %>さんのコメント
+                      </p>
+                    <% end %>
+                  </div>
+                  <!--コメント文-->
+                  <p class="text-break">
+                    <%= post_comment.comment %>
+                  </p>
+
+                  <div class="d-sm-flex mb-3 justify-content-between border-bottom p-1">
+                    <!--星評価の表示-->
+                    <div id="rate-<%= post_comment.id %>" class="form-group"></div>
+
+                    <!--不適切なコメントの削除ボタン-->
+                    <div>
+                      <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", "data-confirm" => "不適切なコメントとして削除しますか？" %>
+                    </div>
+                  </div>
+
+                  <!-- js部分 -->
+                  <script>
+                    $(document).on('turbolinks:load', function() {
+                      $('#rate-<%= post_comment.id %>').empty();
+                      $('#rate-<%= post_comment.id %>').raty({
+                        size: 20,
+                        starOff:  '<%= asset_path('star-off.png') %>',
+                        starOn : '<%= asset_path('star-on.png') %>',
+                        starHalf: '<%= asset_path('star-half.png') %>',
+                        half: true,
+                        readOnly: true,
+                        score: <%= post_comment.rate %>,
+                      });
                     });
-                  });
-                </script>
-                <!--不適切なコメントの削除ボタン-->
-                <div>
-                  <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "不適切なコメントとして削除しますか？" %>
-                </div>
+                  </script>
+               </div>
               <% end %>
             </div>
           </div>
-          <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
+
+          <!--不適切な投稿の削除ボタン-->
           <div>
-            <%= link_to "不適切な投稿の削除", admin_post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "不適切な投稿として削除しますか？" %>
+            <%= link_to "不適切な投稿の削除", admin_post_path(@post), method: :delete, class: "button-red btn", "data-confirm" => "不適切な投稿として削除しますか？" %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- js部分 -->
+<script>
+  //mapが正しく表示されるための記述
+  if (window.google){
+    initMap();
+  } else {
+    $.ajax('https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places', {
+      crossDomain: true,
+      dataType: 'script'
+    });
+  }
+
+  //複数画像が投稿されている時の画像のスライド表示
+  $(document).on('turbolinks:load', function() {
+    $('.slick').not('.slick-initialized').slick({
+      dots: true,
+      arrows: false,
+    })
+  });
+
+  //地図表示
+  var map
+  var marker
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      zoom: 15,
+    });
+
+     marker = new google.maps.Marker({
+      position:  {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+      map: map
+    });
+  }
+</script>

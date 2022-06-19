@@ -1,39 +1,47 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
       <div class="row">
-        <div class="col-12">
-          <div class="p-3 mb-1">
-            <%= link_to user_path(@post.user) do %>
+        <div class="profile p-3 mb-1">
+          <%= link_to user_path(@post.user) do %>
+            <div class="d-flex align-items-center">
               <!--投稿者のプロフィール画像-->
-              <%= image_tag @post.user.get_profile_image, size: "50x50", class: "rounded-circle" %>
-              <!--投稿者の名前-->
-              <%= @post.user.user_name %>
-            <% end %>
-          </div>
+              <div>
+                <%= image_tag @post.user.get_profile_image, size: "75x75", class: "rounded-circle" %>
+              </div>
+
+              <!--投稿者のユーザーネーム-->
+              <div class="pl-2">
+                <%= @post.user.user_name %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
+
       <div class="row">
         <div class="col-10 mx-auto">
-          <!--タイトル-->
-          <h3 class="my-4">
+          <!--投稿タイトル-->
+          <h3 class="my-4 text-break">
             <%= @post.title %>
           </h3>
+
           <!--投稿画像、複数投稿されている時はスライドで画像を表示させる-->
-          <div class="slick mx-auto" style="max-width:100%;">
+          <div class="slick mx-auto" style="max-width:800px;">
             <% @post.post_images.each do |image| %>
-              <%= image_tag image %>
+              <%= image_tag image.variant(resize_to_fill: [800, 500]) %>
             <% end %>
           </div>
 
           <!--説明文-->
-          <h5>
+          <h5 class="pt-3 text-break">
             <%= @post.body %>
           </h5>
+
           <!--タグ-->
-          <div>
+          <div class="content py-3">
             <% @post.tag_list.each do |tag| %>
-              <span class="badge badge-primary">
+              <span class="button-blue badge">
                 <!--tagを押すとtagがついた投稿を一覧で表示される-->
                 #<%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
               </span>
@@ -41,33 +49,61 @@
           </div>
 
           <!--いいねボタン-->
-          <div id="favorite-<%= @post.id %>">
+          <div class="content my-3 pb-2" id="favorite-<%= @post.id %>">
             <%= render "public/favorites/favorite_btn", post: @post %>
           </div>
+
+          <!--場所・地名-->
+          <div class="my-3">
+            <p>< 場所・地名 ></p>
+            <p class="text-break">
+              <%= @post.address %>
+            </p>
+          </div>
+
 
           <!--地図の表示-->
           <div id='map'></div>
 
-          <!--コメント数-->
-          <div class="comment-count">
-            <%= @post.post_comments.count %> コメント
-          </div>
-          <!--コメント一覧-->
-          <div class="post-comments">
-            <%= render "public/post_comments/index", post: @post %>
-          </div>
-          <!--ログインしているか確認-->
-          <% if user_signed_in? %>
-            <!--コメントフォーム(ログインしていない場合は非表示)-->
-            <div class="post-comment-form">
-              <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+          <!--コメント-->
+          <div class="p-1 my-3 my-lg-5">
+            <!--コメント数-->
+            <div class="content comment-count mt-1 mt-lg-5 mb-3">
+              <%= @post.post_comments.count %> コメント
             </div>
-          <% end %>
+
+            <!--コメント一覧-->
+            <div class="content post-comments border p-3">
+              <% if @post.post_comments.present? %>
+                <div class="comment-area hide">
+                  <%= render "public/post_comments/index", post: @post %>
+                  <div class="readmore">
+                    <span class="underline">続きを読む</span>
+                  </div>
+                </div>
+              <% else %>
+                <p>
+                  コメントはありません。
+                </p>
+              <% end %>
+            </div>
+
+            <!--ログインしているか確認-->
+            <% if user_signed_in? %>
+              <!--コメントフォーム(ログインしていない場合は非表示)-->
+              <div class="post-comment-form my-4">
+                <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+              </div>
+            <% end %>
+          </div>
+
           <!--投稿者本人のみ編集ボタンと削除ボタンの表示-->
-          <div>
+          <div class="row pt-5">
             <% if @post.user == current_user %>
-              <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
-              <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に削除しますか？" %>
+              <div class="col-12">
+                <%= link_to "編集", edit_post_path(@post), class: "button-blue btn mx-2" %>
+                <%= link_to "削除", post_path(@post), method: :delete, class: "button-red btn mx-2", "data-confirm" => "本当に削除しますか？" %>
+              </div>
             <% end %>
           </div>
         </div>
@@ -75,19 +111,30 @@
     </div>
   </div>
 </div>
+
 <!-- js部分 -->
 <script>
+  //mapが正しく表示されるための記述
+  if (window.google){
+    initMap();
+  } else {
+    $.ajax('https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places', {
+      crossDomain: true,
+      dataType: 'script'
+    });
+  }
+
   //複数画像が投稿されている時の画像のスライド表示
   $(document).on('turbolinks:load', function() {
-    $('.slick').slick({
+    $('.slick').not('.slick-initialized').slick({
       dots: true,
       arrows: false,
     })
   });
 
   //地図表示
-  let map
-  let marker
+  var map
+  var marker
   function initMap(){
     geocoder = new google.maps.Geocoder()
 
@@ -102,4 +149,3 @@
     });
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places" async defer></script>

@@ -1,4 +1,8 @@
+<!--コメントフォームの読み込み-->
 $(".post-comments").html("<%= j(render "public/post_comments/index", post: @post) %>");
+
+<!--コメント数の読み込み-->
 $(".comment-count").html("<%= @post.post_comments.count %> コメント");
+
+<!--コメントを投稿した後はコメントフォームを空にする-->
 $(".comment").val("");
-$("#star").val("");

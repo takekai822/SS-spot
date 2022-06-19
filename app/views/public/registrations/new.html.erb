@@ -1,19 +1,32 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <%= render "layouts/error_messages", model: @user %>
   <div class="col-10 col-md-7 mx-auto">
-    <h2 class="my-4">新規登録</h2>
+    <!--タイトル-->
+    <div class="row mb-4">
+      <div class="title p-2 rounded">
+        <h3 class="mx-2 my-0">新規登録</h3>
+      </div>
+    </div>
+
+    <!--新規登録フォーム-->
     <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user'  do |f| %>
       <%= render "public/registrations/info", f: f %>
+
+      <!--パスワード-->
       <div class="form-group mx-auto">
         <%= f.label :password, "パスワード(6文字以上)", class: "col-12  pl-md-0 mx-md-auto" %>
         <%= f.password_field :password, autocomplete: "new-password", class: "col-12  mx-auto form-control password" %>
       </div>
+
+      <!--確認用パスワード-->
       <div class="form-group mx-auto">
         <%= f.label :password_confirmation, class: "col-12  pl-md-0 mx-md-auto" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-12  mx-auto form-control password_confirmation" %>
       </div>
+
+      <!--登録ボタン-->
       <div class="form-group text-center py-4">
-        <%= f.submit "登録", class: "col-5 btn btn-primary" %>
+        <%= f.submit "登録", class: "button-blue col-5 btn" %>
       </div>
     <% end %>
   </div>

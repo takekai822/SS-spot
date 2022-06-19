@@ -1,22 +1,39 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
-    <div class="col-12">
-      <h2>いいねした投稿一覧</h2>
-      <!--いいねした投稿があるかを確認-->
-      <% if @favorite_posts.present? %>
-        <!--存在していた場合いいねした投稿のみを一覧表示-->
-        <%= render "public/posts/index", posts: @favorite_posts %>
-      <% else %>
-        <p>いいねした投稿はありません</p>
+    <div class="col-10 mx-auto">
+      <!--タイトル-->
+      <div class="row">
+        <div class="title p-2 rounded">
+         <h3 class="mx-2 my-0">いいねした投稿一覧</h3>
+        </div>
+      </div>
+
+      <!--投稿数-->
+      <div class="text-right mb-4">全<%= @post_count %>件</div>
+
+      <!--いいねした投稿一覧-->
+      <div class="pt-5">
+        <!--いいねした投稿があるかを確認-->
+        <% if @posts.present? %>
+          <!--いいねした投稿が11個以上の場合ページネーションを表示-->
+          <%= render "public/posts/index", posts: @posts %>
+        <% elsif @favorite_posts.present? %>
+          <!--いいねした投稿が10個以下の場合の一覧表示-->
+          <%= render "public/posts/index", posts: @favorite_posts %>
+        <% else %>
+          <!--いいねした投稿がない場合の表示-->
+          <p>いいねした投稿はありません</p>
+        <% end %>
+      </div>
+
+      <!--いいねした投稿が存在していた場合のみページネーション表示-->
+      <% if @posts.present? %>
+        <div class="row mt-5">
+          <div class="mx-auto">
+            <%= paginate @posts %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
-  <!--いいねした投稿が存在していた場合のみページネーション表示-->
-  <% if @favorites_posts.present? %>
-    <div class="row">
-      <div class="mx-auto">
-        <%= paginate @favorites_posts %>
-      </div>
-    </div>
-  <% end %>
 </div>

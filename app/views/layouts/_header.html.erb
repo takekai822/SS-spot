@@ -4,7 +4,7 @@
     <%= image_tag "/assets/SS-spot.png", size: "120x40" %>
   </a>
 
-  <!--検索フォームの配置(管理者画面では非表示)-->
+  <!--検索フォーム(管理者画面では非表示)-->
   <% unless admin_signed_in? %>
     <!--トップページには別の場所に配置するため非表示-->
     <% unless current_page?(root_path) %>
@@ -20,34 +20,38 @@
       </div>
     <% end %>
   <% end %>
-  
+
   <!--画面幅が広い時はヘッダーにそのまま配置-->
   <div class="wide-nav d-flex">
     <% if user_signed_in? %>
       <!--ログインしている場合の表示-->
-      <li class="nav-item btn btn-primary btn-sm">
+      <li class="button-blue nav-item btn btn-sm">
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       </li>
     <% elsif admin_signed_in? %>
       <!--管理者がログインしている場合の表示-->
-      <li class="nav-item btn btn-primary btn-sm mr-3">
+      <li class="button-blue nav-item btn btn-sm mr-3">
         <%= link_to "ユーザー一覧", admin_users_path %>
       </li>
-      <li class="nav-item btn btn-primary btn-sm mr-3">
+
+      <li class="button-blue nav-item btn btn-sm mr-3">
         <%= link_to "投稿一覧", admin_posts_path %>
       </li>
-      <li class="nav-item btn btn-primary btn-sm">
+
+      <li class="button-blue nav-item btn btn-sm">
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
     <% else %>
       <!--ログインしていない場合の表示-->
-      <li class="nav-item btn btn-primary btn-sm mr-3">
+      <li class="button-blue nav-item btn btn-sm mr-3">
         <%= link_to "投稿一覧", posts_path %>
       </li>
-      <li class="nav-item btn btn-primary btn-sm mr-3">
+
+      <li class="button-blue nav-item btn btn-sm mr-3">
         <%= link_to "新規登録", new_user_registration_path %>
       </li>
-      <li class="nav-item btn btn-primary btn-sm">
+
+      <li class="button-blue nav-item btn btn-sm">
         <%= link_to "ログイン", new_user_session_path %>
       </li>
     <% end %>
@@ -57,6 +61,7 @@
   <div class="small-nav hamburger-menu">
     <!--ハンバーガーメニューを開いた時の背景-->
     <div class="open-menu-bg"></div>
+
     <!--メニューボタン-->
     <button type="button" class="menu-button">
       <span class="menu-bar menu-bar1"></span>
@@ -65,6 +70,7 @@
       <span class="open-menu menu-text">MENU</span>
       <span class="close-menu menu-text">CLOSE</span>
     </button>
+
     <!--ナビゲーションメニュー-->
     <nav class="nav-wrapper">
       <ul class="nav-menu navbar-nav">
@@ -78,9 +84,11 @@
           <li class="nav-item">
             <%= link_to "ユーザー一覧", admin_users_path %>
           </li>
+
           <li class="nav-item">
             <%= link_to "投稿一覧", admin_posts_path %>
           </li>
+
           <li class="nav-item">
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
           </li>
@@ -89,9 +97,11 @@
           <li class="nav-item">
             <%= link_to "投稿一覧", posts_path %>
           </li>
+
           <li class="nav-item">
             <%= link_to "新規登録", new_user_registration_path %>
           </li>
+
           <li class="nav-item">
             <%= link_to "ログイン", new_user_session_path %>
           </li>

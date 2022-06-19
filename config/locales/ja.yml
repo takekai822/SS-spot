@@ -24,7 +24,7 @@ ja:
         title: タイトル
         body: 説明文
         post_images: 画像
-        address: 場所
+        address: 場所・地名
         tag_list: タグ
     errors:
       format: "%{attribute}%{message}"
@@ -88,3 +88,10 @@ ja:
         separator: "."
         significant: false
         strip_insignificant_zeros: false
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."

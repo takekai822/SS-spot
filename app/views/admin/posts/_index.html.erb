@@ -1,20 +1,28 @@
-<table class="table">
-  <tbody>
-    <% posts.each do |post| %>
-      <tr>
-        <td>
-          <!--タイトル-->
-          <%= link_to post.title, admin_post_path(post) %>
-        </td>
-        <td>
-          <!--説明文-->
-          <%= post.body.truncate(30) %>
-        </td>
-        <td>
-          <!--コメント数-->
-          コメント数：<%= post.post_comments.count %>
-        </td>
-      </tr>
+<% posts.each do |post| %>
+  <div>
+    <%= link_to admin_post_path(post) do %>
+      <div class="index row border-bottom p-2 p-lg-5">
+        <!--投稿タイトル-->
+        <div class="col-12 col-lg-4">
+          <h4 class="text-break">
+            <%= post.title %>
+          </h4>
+        </div>
+
+        <!--説明文-->
+        <div class="col-12 col-lg-4">
+          <p class="text-break">
+            <%= post.body.truncate(30) %>
+          </p>
+        </div>
+
+        <!--コメント数-->
+        <div class="col-12 col-lg-4 text-right">
+          <p class="ml-2">
+            コメント数：<%= post.post_comments.count %>
+          </p>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>

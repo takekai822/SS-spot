@@ -1,13 +1,27 @@
-<div class="container py-5 bg-light rounded">
+<div class="background container py-5 rounded">
   <div class="row">
     <div class="col-10 mx-auto">
-      <h2>投稿一覧</h2>
-      <%= render "admin/posts/index", posts: @posts %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="mx-auto">
-      <%= paginate @posts %>
+      <!--タイトル-->
+      <div class="row">
+        <div class="title p-2 rounded">
+          <h3 class="mx-2 my-0">投稿一覧</h3>
+        </div>
+      </div>
+      
+      <!--投稿数-->
+      <div class="text-right mb-4">全<%= @post_count %>件</div>
+
+      <!--投稿一覧-->
+      <div class="my-4">
+        <%= render "admin/posts/index", posts: @posts %>
+      </div>
+
+      <!--ページネーション-->
+      <div class="row mt-5">
+        <div class="mx-auto">
+          <%= paginate @posts %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

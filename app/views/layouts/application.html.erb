@@ -6,34 +6,47 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
   <body>
-    <!--高さを出すための要素部分-->
+    <!--高さを出すための要素-->
     <div class="height"></div>
-    
+
+    <!--ヘッダー-->
     <header class="header fixed-top">
       <%= render "layouts/header" %>
     </header>
-    
+
     <main class="py-5 main">
+      <!--フラッシュメッセージ-->
       <% if notice %>
-        <div class="text-center">
+        <div class="text-center py-3">
           <%= notice %>
         </div>
       <% end %>
+
       <%= yield %>
+
       <!--ログインしている場合ページ下部に遷移ボタンの配置-->
       <% if user_signed_in? %>
         <%= render "layouts/select_btn" %>
       <% end %>
     </main>
-    
+
+    <!-- ページトップボタン -->
+    <p class="pagetop" style="display: block;">
+      <a href="#">
+        <i class="fas fa-angle-double-up"></i>
+      </a>
+    </p>
+
+    <!--フッター-->
     <footer class="border-top text-center">
       <strong>jimopot</strong>
     </footer>
