@@ -5,11 +5,11 @@
 body, body a {
   color: #696969
 }
-
 body a:hover {
   color: black;
   text-decoration: none;
 }
+
 
 /*基本の背景色*/
 .main {
@@ -17,15 +17,28 @@ body a:hover {
   min-height: 500px;
 }
 
+
 /*各コンテンツ内の背景色*/
 .background {
   background-color: #f8f8ff;
 }
 
+
 /*ヘッダー*/
 .header-scroll {
   background-color: white;
 }
+.logo {
+  transition: all 0.5s ease-in-out;
+}
+.logo:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.height {
+  height: 80px;
+  background-color:#f0ffff;
+}
+
 
 /*ハンバーガーメニュー*/
 .menu-button {
@@ -43,7 +56,6 @@ body a:hover {
   z-index: 1001;
   outline: none!important;
 }
-
 .menu-button .menu-bar {
   display: block;
   width: 40px;
@@ -54,19 +66,15 @@ body a:hover {
   left: 0;
   background-color: black;
 }
-
 .menu-button .menu-bar1 {
   top: 0;
 }
-
 .menu-button .menu-bar2 {
   top: 50%;
 }
-
 .menu-button .menu-bar3 {
   top: 100%;
 }
-
 .menu-text {
   width: 100%;
   position: absolute;
@@ -75,66 +83,54 @@ body a:hover {
   text-align: center;
   font-size: 10px;
 }
-
 .close-menu {
   display: none;
 }
-
 .menu-button.active .menu-bar {
   width: 35px;
   left: 8px;
 }
-
 .menu-button.active .menu-bar1 {
   transform: rotate(45deg) translateY(-50%);
   top: 0px;
 }
-
 .menu-button.active .menu-bar2 {
   opacity: 0;
 }
-
 .menu-button.active .menu-bar3 {
   transform: rotate(-45deg) translateY(-50%);
   top: calc(100% - 0px);
 }
-
 .menu-button.active .open-menu {
   display: none;
 }
-
 .menu-button.active .close-menu {
   display: block;
 }
 /*ハンバーガーメニューのスタイル終わり*/
 
+
 /*ナビゲーションメニュー*/
 .small-nav {
   display: none;
 }
-
 .wide-nav {
   list-style: none;
 }
-
 .nav-item {
   border-radius: 30px 100px / 120px;
 }
-
 .wide-nav .nav-item a:hover, .wide-nav .nav-item a {
   color: white;
   text-decoration: none;
 }
-
 .nav-menu {
   padding: 100px 20px;
 }
-
 .nav-menu li {
   margin-bottom: 20px;
   text-align: center;
 }
-
 .open-menu-bg {
 	width: 100%;
 	height: 100%;
@@ -145,7 +141,6 @@ body a:hover {
 	top: 0;
 	left: 0;
 }
-
 .nav-wrapper {
 	width: 200px;
 	height: 100%;
@@ -157,22 +152,13 @@ body a:hover {
 	z-index: 1000;
 	background-color: #FFF;
 }
-
 .nav-wrapper.open {
 	transform: translate(0);
 }
 /*ナビゲーションメニューのスタイル終わり*/
 
-.height {
-  height: 80px;
-  background-color:#f0ffff;
-}
 
 /*トップページ*/
-.search-form #word {
-  background: none;
-}
-
 .top {
   display: flex;
   justify-content: center;
@@ -181,7 +167,6 @@ body a:hover {
   height: 300px;
   background-color: #f0ffff;
 }
-
 .top #word {
   width: 100%;
   font-size: 20px;
@@ -189,11 +174,12 @@ body a:hover {
   height: 40px;
   margin: 0 auto;
 }
-
 .top #word:focus {
   background: none;
 }
-
+.search-form #word {
+  background: none;
+}
 .posts {
   width: 800px;
   height: 100%;
@@ -201,7 +187,21 @@ body a:hover {
   border: 6px solid #333;
   margin: 100px auto 200px;
 }
-
+.post-image {
+  overflow: hidden;
+  transition: 0.5s all;
+}
+.post-image:hover {
+  box-shadow: 15px 10px 10px rgba(0, 0, 0, 0.3);
+  transition: 0.5s all;
+}
+.post-image img {
+  transition: 0.5s all;
+}
+.post-image img:hover {
+  transform: scale(1.1);
+  transition: 0.5s all;
+}
 .about{
 	background-color: white;	/*背景色*/
 	border: 1px solid #ccc;
@@ -214,7 +214,6 @@ body a:hover {
 	position: relative;
 	z-index: 0;
 }
-
 .tape {
   position: absolute;
   top: -30px;
@@ -227,12 +226,12 @@ body a:hover {
   transform: rotate(-3deg);
   font-size: 30px;
 }
-
 .about p {
   letter-spacing: 3px;
   line-height: 1.8;
 }
 /*トップページのスタイル終わり*/
+
 
 /*ボタン*/
 .button-gray {
@@ -244,14 +243,12 @@ body a:hover {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-
 .button-gray:hover {
   margin-top: 3px;
   color: #fff;
   background-color: #7f7f7f;
   border-bottom: 2px solid #9c9c9c;
 }
-
 .button-blue {
   color: #fff;
   background-color: #1e90ff;
@@ -261,18 +258,15 @@ body a:hover {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-
 .button-blue:hover {
   margin-top: 3px;
   color: #fff;
   background-color: #87cefa;
   border-bottom: 2px solid #708090;
 }
-
 .content .button-blue {
   border: none;
 }
-
 .button-red {
   color: #fff;
   background-color: #ff6666;
@@ -282,7 +276,6 @@ body a:hover {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-
 .button-red:hover {
   margin-top: 3px;
   color: #fff;
@@ -291,12 +284,14 @@ body a:hover {
 }
 /*ボタンのスタイル終わり*/
 
+
 /* アラート*/
 .alert li{
   text-align: left;
   margin: 10px;
   list-style: none;
 }
+
 
 /*エラーメッセージの表示の変更*/
 .field_with_errors {
@@ -306,24 +301,29 @@ body a:hover {
   }
 }
 
+
 /*エラーメッセージの文字色の変更*/
 .form-group p {
   color: #dc3545;
 }
 
+
 .underline:hover {
   text-decoration: underline;
 }
+
 
 .title {
   background-color: #f0ffff;
   box-shadow: 0 0 5px 1.5px #a9a9a9;
 }
 
+
 /*投稿画像が一枚の時はドットを非表示*/
 .slick-dots > li:first-child:last-child {
     display: none;
 }
+
 
 /*地図*/
 #map {
@@ -331,29 +331,32 @@ body a:hover {
   width: 100%;
 }
 
+
 .profile img {
   transition: 0.5s;
 }
-
 .profile:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: 0.5s;
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.3);
 }
+
 
 .index:hover{
   background-color: #f0ffff;
 }
 
+
 .content{
   font-size:20px;
 }
+
 
 /*コメントの折り返し*/
 .hide {
   height: 115px;
   overflow-y: hidden;
 }
-
 .readmore {
   position: absolute;
   bottom: 0;
@@ -365,40 +368,36 @@ body a:hover {
   cursor: pointer;
   background: linear-gradient(180deg,rgb(248, 248, 255, 0) 0%,rgb(248, 248, 255, 1) 70%);
 }
-
 .comment-area {
   position: relative;
 }
-
 .readmore span {
   font-size: 15px;
 }
 /*コメントの折り返しのスタイル終わり*/
+
 
 /*ページネーション*/
 .pagination li a {
   border: none;
   color: #696969;
 }
-
 .pagination .active a {
   border-radius: 15px;
 }
-
 .pagination .active .page-link {
   background-color: #87cefa;
 }
-
 .pagination li a:hover {
   border-radius: 15px;
   background-color: #87cefa;
   color: white;
 }
-
 .page-link {
   background-color: inherit;
 }
 /*ページネーションのスタイル終わり*/
+
 
 /*遷移ボタン*/
 .select-buttons {
@@ -406,20 +405,16 @@ body a:hover {
   height: 80px;
   background-color: #87ceeb;
 }
-
 .indicator {
   height: 50px;
   width: 500px;
   margin: 0 auto;
   display: flex;
-
 }
-
 .select-buttons a {
   text-decoration: none;
   color: black;
 }
-
 .select-button {
   height: 80px;
   display: flex;
@@ -428,18 +423,15 @@ body a:hover {
   align-items: center;
   text-align: center;
 }
-
 .icon {
   font-size: 30px;
   transition: 0.8s;
 }
-
 .select-button:hover .icon {
   transform: translateY(-35px);
   font-size: 50px;
   color: black;
 }
-
 .select-button strong {
   opacity: 0;
   position: absolute;
@@ -447,7 +439,6 @@ body a:hover {
   left: 0;
   transition: 0.8s;
 }
-
 .select-button:hover strong {
   opacity: 1;
   transform: translateY(15px);
@@ -455,30 +446,30 @@ body a:hover {
 }
 /*遷移ボタンのスタイル終わり*/
 
+
 /*ページトップボタン*/
 .pagetop {
-    position: fixed;
-    right: 20px;
-    bottom: 80px;
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
 }
-
 .pagetop a {
-    display: block;
-    width: 50px;
-    height: 50px;
-    color: #fff;
-    text-align: center;
-    background: #87cefa;
-    border-radius: 50%;
-    line-height: 50px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  text-align: center;
+  background: #87cefa;
+  border-radius: 50%;
+  line-height: 50px;
 }
-
 .pagetop a i {
-    font-size: 20px;
-    color:#fff;
-    line-height: 50px;
+  font-size: 20px;
+  color:#fff;
+  line-height: 50px;
 }
 /*ページトップボタンのスタイル終わり*/
+
 
 /*フッター*/
 footer {
@@ -486,6 +477,7 @@ footer {
   padding-top: 100px;
   padding-bottom: 150px;
 }
+
 
 /*レスポンシブ対応*/
 @media screen and (max-width: 800px){
@@ -505,6 +497,7 @@ footer {
     width: 100%;
   }
 }
+
 
 @media screen and (max-width: 550px){
   .background {
