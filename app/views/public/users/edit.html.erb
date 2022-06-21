@@ -9,7 +9,7 @@
       </div>
 
       <!--会員情報編集フォーム-->
-      <%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
+      <%= form_with model: @user, url: user_path(@user), id: 'form', method: :patch do |f| %>
         <!--エラーメッセージ-->
         <%= render 'layouts/error_messages', model: @user %>
 
@@ -25,3 +25,78 @@
     </div>
   </div>
 </div>
+
+<!--js部分-->
+<script>
+  //バリデーションエラー
+  $(document).on('turbolinks:load', function(){
+    // メソッドの追加
+    var methods = {
+      //カタカナ
+      katakana: function(value, element){
+        return this.optional(element) || /^[ア-ン゛゜ァ-ォャ-ョー、]+$/.test(value);
+      }
+    };
+    $.each(methods, function(key) {
+      $.validator.addMethod(key, this);
+    });
+
+    // バリデーションの実行
+    $('#form').validate({
+      // ルール設定
+      rules: {
+        "user[name]": {
+          required: true,
+          minlength: 2,
+          maxlength: 30,
+        },
+        "user[name_kana]": {
+          required: true,
+          katakana: true,
+          minlength: 2,
+          maxlength: 30,
+        },
+        "user[user_name]": {
+          required: true,
+          minlength: 2,
+          maxlength: 30,
+        },
+        "user[email]": {
+          required: true,
+          email: true,
+        },
+      },
+      // エラーメッセージの定義
+      messages: {
+        "user[name]": {
+          required: "お名前を入力してください",
+          minlength: "2文字以上30文字以下で入力してください",
+          maxlength: "2文字以上30文字以下で入力してください",
+        },
+        "user[name_kana]": {
+          required: "フリガナを入力してください",
+          katakana: '全角カタカナでご入力ください',
+          minlength: "2文字以上30文字以下で入力してください",
+          maxlength: "2文字以上30文字以下で入力してください",
+        },
+        "user[user_name]": {
+          required: "ユーザーネームを入力してください",
+          minlength: "2文字以上30文字以下で入力してください",
+          maxlength: "2文字以上30文字以下で入力してください",
+        },
+        "user[email]": {
+          required: "メールアドレスを入力してください",
+          email: "メールアドレスの形式で入力してください",
+        },
+      },
+      //エラー時とチェックok時のレイアウト
+      errorClass: "is-invalid",
+      errorElement: "p",
+      validClass: "is-valid",
+    })
+    // 入力欄をフォーカスアウトしたときにバリデーションを実行
+    $("#user_name, #user_name_kana, #user_user_name, #user_email").blur(function () {
+      $(this).valid();
+    });
+  })
+</script>
