@@ -9,7 +9,7 @@
       </div>
 
       <!--投稿フォーム-->
-      <%= form_with model: @post do |f| %>
+      <%= form_with model: @post, id: 'form' do |f| %>
         <%= render "form", post: @post, f: f %>
 
         <!--地図投稿フォーム-->
@@ -24,7 +24,7 @@
         </div>
 
         <!--地図の表示-->
-        <div class="form-group">
+        <div class="form-map">
           <div id='map'></div>
         </div>
 
@@ -107,4 +107,55 @@
       }
     });
   }
+
+  //バリデーションエラー
+  $(document).on('turbolinks:load', function(){
+    // バリデーションの実行
+    $('#form').validate({
+      // ルール設定
+      rules: {
+        "post[title]": {
+          required: true,
+        },
+        "post[body]": {
+          required: true,
+        },
+        "post[post_images][]": {
+          required: true,
+        },
+        "post[tag_list]": {
+          required: true,
+        },
+        "post[address]": {
+          required: true,
+        },
+      },
+      // エラーメッセージの定義
+      messages: {
+        "post[title]": {
+          required: "タイトルを入力してください",
+        },
+        "post[body]": {
+          required: "説明文を入力してください",
+        },
+        "post[post_images][]": {
+          required: "画像を添付してください",
+        },
+        "post[tag_list]": {
+          required: "タグを入力してください",
+        },
+        "post[address]": {
+          required: "場所・地名を入力してください",
+        },
+      },
+      //エラー時とチェックok時のレイアウト
+      errorClass: "is-invalid",
+      errorElement: "p",
+      validClass: "is-valid",
+    })
+    // 入力欄をフォーカスアウトしたときにバリデーションを実行
+    $("#post_title, #post_body, #post_post_images, #post_tag_list, #post_address").blur(function () {
+      $(this).valid();
+    });
+  })
 </script>

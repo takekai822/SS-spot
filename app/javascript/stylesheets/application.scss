@@ -306,6 +306,11 @@ body a:hover {
   }
 }
 
+/*エラーメッセージの文字色の変更*/
+.form-group p {
+  color: #dc3545;
+}
+
 .underline:hover {
   text-decoration: underline;
 }
