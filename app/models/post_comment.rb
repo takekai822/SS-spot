@@ -4,4 +4,5 @@ class PostComment < ApplicationRecord
   belongs_to :post
 
   validates :comment, presence: true
+  validates :rate, presence: true
 end
