@@ -1,8 +1,13 @@
+// bootstrap読み込み
 @import '~bootstrap/scss/bootstrap';
+// fontawesome読み込み
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+// フォント読み込み
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
 
-/*基本の文字色*/
+/*基本の文字色・フォント*/
 body, body a {
+  font-family: 'Comic Sans MS','M PLUS Rounded 1c', 'メイリオ', Meiryo, 'ＭＳ ゴシック', sans-serif;
   color: #696969
 }
 body a:hover {
