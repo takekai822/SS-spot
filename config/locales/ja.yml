@@ -64,6 +64,7 @@ ja:
     failure:
       unauthenticated: 'ログインしてください'
       invalid: 'メールアドレスまたはパスワードが違います'
+      not_found_in_database: '%{authentication_keys}またはパスワードが違います'
     sessions:
       signed_in: 'ログインしました'
       signed_out: 'ログアウトしました'
