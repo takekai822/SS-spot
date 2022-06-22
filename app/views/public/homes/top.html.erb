@@ -20,9 +20,12 @@
     <div class="p-4">
       <div class="row">
         <% @posts.each do |post| %>
-          <div class="post-image col-md-4 col-sm-6 col-12 mb-5">
+          <div class="col-md-4 col-sm-6 col-12 mb-5">
             <%= link_to post_path(post) do %>
-              <%= image_tag post.post_images[0], style: "width: 100%; height: 200px; object-fit:cover;" %>
+              <div class="post-image">
+                <%= image_tag post.post_images[0], style: "width: 100%; height: 200px; object-fit:cover;" %>
+              </div>
+
               <%= post.user.user_name %>
             <% end %>
           </div>
