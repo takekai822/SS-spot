@@ -9,5 +9,13 @@
 
     <!--ログインフォーム-->
     <%= render "public/sessions/form", model: @user, url: user_session_path %>
+    
+    <!--ゲストログインボタン-->
+    <div class="form-group text-center">
+      <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "button-gray btn btn-sm" %>
+    </div>
+    
+    <!--ゲストログイン説明-->
+    <p style="font-size:10px;">ゲストログインでは会員登録した場合にご利用できる機能を確認できます。（確認のみの機能となっており、新規投稿やプロフィール編集などの機能を実際にご利用することはできない仕様となっております。）</p>
   </div>
 </div>

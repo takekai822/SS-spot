@@ -30,7 +30,12 @@
 
         <!--投稿ボタン-->
         <div class="form-group text-center pt-5">
-            <%= f.submit "投稿", class: "button-blue btn col-sm-3 col-5" %>
+          <!--ゲストユーザーの利用制限コメント-->
+          <% if current_user.name == 'ゲストユーザー' %>
+            <p>実際に投稿することはできません。</p>
+          <% end %>
+
+          <%= f.submit "投稿", class: "button-blue btn col-sm-3 col-5" %>
         </div>
       <% end %>
     </div>

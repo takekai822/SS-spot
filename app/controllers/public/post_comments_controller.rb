@@ -1,5 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user
 
   # コメント投稿
   def create
@@ -24,5 +25,12 @@ class Public::PostCommentsController < ApplicationController
   # ストロングパラメータ
   def post_comment_params
     params.require(:post_comment).permit(:comment, :rate)
+  end
+
+  # ゲストユーザーの利用制限のアクション
+  def ensure_guest_user
+    if current_user.name == 'ゲストユーザー'
+      redirect_to request.referer, notice: 'ゲストユーザーでは利用できない機能です'
+    end
   end
 end
