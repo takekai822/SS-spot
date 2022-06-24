@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show, :favorites]
   before_action :ensure_correct_user, only: [:update, :edit, :quit, :withdraw]
+  before_action :ensure_guest_user, only: [:update, :withdraw]
 
   # ユーザー詳細
   def show
@@ -61,6 +62,13 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user == current_user
       redirect_to user_path(@user)
+    end
+  end
+
+  # ゲストユーザーの利用制限のアクション
+  def ensure_guest_user
+    if current_user.name == 'ゲストユーザー'
+      redirect_to user_path(current_user), notice: 'ゲストユーザーでは利用できない機能です'
     end
   end
 end

@@ -16,6 +16,13 @@
         <!--フォーム部分-->
         <%= render "public/registrations/info", f: f %>
 
+        <!--ゲストユーザーの利用制限コメント-->
+        <div class="form-group">
+          <% if current_user.name == 'ゲストユーザー' %>
+            <p>実際に更新・退会することはできません。</p>
+          <% end %>
+        </div>
+
         <!--確認ボタン-->
         <div class="form-group text-center pt-md-4">
           <%= f.submit "更新", class: "button-blue col-5 btn mx-1 mx-md-4" %>
