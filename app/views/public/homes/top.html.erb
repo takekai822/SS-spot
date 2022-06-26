@@ -15,7 +15,7 @@
   </div>
 
   <!--topページ新着投稿6つまで表示-->
-  <div class="posts container p-4 bg-light">
+  <div class="posts p-4 background">
     <h2 class="new">新着投稿</h2>
     <div class="p-4">
       <div class="row">
@@ -26,7 +26,7 @@
                 <%= image_tag post.post_images[0], style: "width: 100%; height: 200px; object-fit:cover;" %>
               </div>
 
-              <%= post.user.user_name %>
+              <%= post.title.truncate(30) %>
             <% end %>
           </div>
         <% end %>
