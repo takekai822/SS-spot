@@ -1,8 +1,8 @@
-// bootstrap読み込み
+/*bootstrap読み込み*/
 @import '~bootstrap/scss/bootstrap';
-// fontawesome読み込み
+/*fontawesome読み込み*/
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-// 文字フォント読み込み
+/*文字フォント読み込み*/
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
 
 
@@ -314,20 +314,22 @@ body a:hover {
 }
 
 
+/*リンクか分かりづらい部分に下線*/
 .underline:hover {
   text-decoration: underline;
 }
 
 
+/*見出し*/
 .title {
   background-color: #f0ffff;
   box-shadow: 0 0 5px 1.5px #a9a9a9;
 }
 
 
-/*投稿画像が一枚の時はドットを非表示*/
-.slick-dots > li:first-child:last-child {
-  display: none;
+/*indexページhover時の背景色*/
+.index:hover {
+  background-color: #f0ffff;
 }
 
 
@@ -338,6 +340,13 @@ body a:hover {
 }
 
 
+/*投稿画像が一枚の時はドットを非表示*/
+.slick-dots > li:first-child:last-child {
+  display: none;
+}
+
+
+/*showページのプロフィール画像*/
 .profile img {
   transition: 0.5s;
 }
@@ -347,12 +356,16 @@ body a:hover {
   box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-
-.index:hover {
-  background-color: #f0ffff;
+/*サイトリンク*/
+.link {
+  color: #1e90ff;
+}
+.link:hover {
+  color: #0000CD;
 }
 
 
+/*showページの一部のフォントサイズ*/
 .content {
   font-size: 20px;
 }

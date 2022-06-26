@@ -81,7 +81,7 @@ class Public::PostsController < ApplicationController
   private
   # ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :body, :address, :latitude, :longitude, :tag_list, post_images: [])
+    params.require(:post).permit(:title, :body, :address, :site, :latitude, :longitude, :tag_list, post_images: [])
   end
 
   # 投稿者本人しか投稿を編集できないようにするためのアクション
