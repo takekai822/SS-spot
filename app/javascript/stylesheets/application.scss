@@ -365,12 +365,6 @@ body a:hover {
 }
 
 
-/*showページの一部のフォントサイズ*/
-.content {
-  font-size: 20px;
-}
-
-
 /*コメントの折り返し*/
 .hide {
   height: 115px;
@@ -394,6 +388,12 @@ body a:hover {
   font-size: 15px;
 }
 /*コメントの折り返しのスタイル終わり*/
+
+
+/*一部のフォントサイズ*/
+.content {
+  font-size: 20px;
+}
 
 
 /*ページネーション*/
