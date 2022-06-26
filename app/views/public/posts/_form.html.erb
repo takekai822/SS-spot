@@ -25,10 +25,16 @@
   <%= f.text_field :tag_list, value: post.tag_list.join('#'), class: "form-control", placeholder: "#で区切ると複数追加できます" %>
 </div>
 
-<!--場所-->
+<!--場所・地名-->
 <div class="form-group">
   <%= f.label :address, "場所・地名" %>
   <%= f.text_field :address, class: "form-control", placeholder: "場所・地名を入力" %>
+</div>
+
+<!--サイトリンク-->
+<div class="form-group">
+  <%= f.label :site, "サイトリンク" %>
+  <%= f.text_field :site, class: "form-control", placeholder: "公式サイトや参考サイトなどがあれば記載してください" %>
 </div>
 
 <div class="form-group">

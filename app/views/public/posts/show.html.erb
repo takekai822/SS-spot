@@ -55,12 +55,22 @@
 
           <!--場所・地名-->
           <div class="my-3">
-            <p>< 場所・地名 ></p>
+            <span>< 場所・地名 ></span>
             <p class="text-break">
               <%= @post.address %>
             </p>
           </div>
 
+          <!--サイトリンク(記載がない場合は非表示)-->
+          <% if @post.site.present? %>
+            <div class="my-4">
+              <span><サイトリンク></span>
+              <!--別タブで外部サイトへ移動-->
+              <p class="text-break">
+                <%= link_to "#{@post.site}", @post.site, target: :_blank, rel: "noopener noreferrer", class: "link" %>
+              </p>
+            </div>
+          <% end %>
 
           <!--地図の表示-->
           <div id='map'></div>
