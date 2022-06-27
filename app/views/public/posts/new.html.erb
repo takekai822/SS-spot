@@ -45,7 +45,7 @@
 <!-- js部分 -->
 <script>
   //mapが正しく表示されるための記述
-  if (window.google){
+  if (window.google) {
     initMap();
   } else {
     $.ajax('https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places', {
@@ -61,7 +61,7 @@
     geocoder = new google.maps.Geocoder()
 
     map = new google.maps.Map(document.getElementById('map'), {
-      center:  {lat:35.710006892117, lng:139.81081025188},  //東京スカイツリー
+      center:  {lat: 35.690921, lng: 139.700258},  //新宿駅
       zoom: 15,
     });
 
