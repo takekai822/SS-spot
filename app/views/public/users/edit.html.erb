@@ -65,7 +65,6 @@
         },
         "user[user_name]": {
           required: true,
-          minlength: 2,
           maxlength: 30,
         },
         "user[email]": {
@@ -88,8 +87,7 @@
         },
         "user[user_name]": {
           required: "ユーザーネームを入力してください",
-          minlength: "2文字以上30文字以下で入力してください",
-          maxlength: "2文字以上30文字以下で入力してください",
+          maxlength: "30文字以下で入力してください",
         },
         "user[email]": {
           required: "メールアドレスを入力してください",

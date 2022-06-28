@@ -10,9 +10,9 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   # バリデーション
-  validates :name, presence: true, length: {minimum: 2, maximum: 30}
-  validates :name_kana, presence: true, length: {minimum: 2,maximum: 30}
-  validates :user_name, presence: true, length: {minimum: 2,maximum: 30}
+  validates :name, presence: true, length: { minimum: 2, maximum: 30}
+  validates :name_kana, presence: true, length: { minimum: 2,maximum: 30}
+  validates :user_name, presence: true, length: { maximum: 30}
 
   # プロフィール画像を登録する際に使用
   has_one_attached :profile_image
