@@ -77,26 +77,23 @@
 
           <!--コメント-->
           <div class="p-1 my-3 my-lg-5">
-            <!--コメント数-->
-            <div class="content comment-count mt-1 mt-lg-5 mb-3">
-              <%= @post.post_comments.count %> コメント
-            </div>
+            <!--コメントが無い場合は非表示-->
+            <% if @post.post_comments.present? %>
+              <!--コメント数-->
+              <div class="content comment-count mt-1 mt-lg-5 mb-3">
+                <%= @post.post_comments.count %> コメント
+              </div>
 
-            <!--コメント一覧-->
-            <div class="content post-comments border p-3">
-              <% if @post.post_comments.present? %>
+              <!--コメント一覧-->
+              <div class="content post-comments border p-3">
                 <div class="comment-area hide">
                   <%= render "public/post_comments/index", post: @post %>
                   <div class="readmore">
                     <span class="underline">続きを読む</span>
                   </div>
                 </div>
-              <% else %>
-                <p>
-                  コメントはありません
-                </p>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
 
             <!--ログインしているか確認-->
             <% if user_signed_in? %>
