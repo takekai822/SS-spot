@@ -34,6 +34,12 @@ body a:hover {
 .header-scroll {
   background-color: #fff;
 }
+.logo {
+  transition: all 0.5s ease-in-out;
+}
+.logo:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
 .height {
   height: 80px;
   background-color: #f0ffff;
@@ -590,9 +596,5 @@ footer {
 
   .index:hover {
     background-color: #f8f8ff;
-  }
-  
-  h5 {
-    font-size: 10px;
   }
 }
