@@ -66,8 +66,12 @@
             </div>
           <% end %>
 
-          <!--地図の表示-->
-          <div id='map'></div>
+          <!--地図の表示(緯度経度が0.0の場合は地図非表示)-->
+          <% if @post.latitude == 0.0 %>
+            <p class="mt-3 mt-lg-5">地図は投稿されていません</p>
+          <% else %>
+            <div id='map'></div>
+          <% end %>
 
           <!--コメント-->
           <div class="p-1 my-3 my-lg-5">
