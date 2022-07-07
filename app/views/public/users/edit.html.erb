@@ -16,10 +16,17 @@
         <!--フォーム部分-->
         <%= render "public/registrations/info", f: f %>
 
+        <!--ゲストユーザーの利用制限コメント-->
+        <div class="form-group">
+          <% if current_user.name == 'ゲストユーザー' %>
+            <p>実際に更新・退会することはできません。</p>
+          <% end %>
+        </div>
+
         <!--確認ボタン-->
         <div class="form-group text-center pt-md-4">
           <%= f.submit "更新", class: "button-blue col-5 btn mx-1 mx-md-4" %>
-          <%= link_to "退会", quit_path, class: "button-red btn mx-1 mx-md-4" %>
+          <%= link_to "退会", quit_user_path, class: "button-red btn mx-1 mx-md-4" %>
         </div>
       <% end %>
     </div>
@@ -58,7 +65,6 @@
         },
         "user[user_name]": {
           required: true,
-          minlength: 2,
           maxlength: 30,
         },
         "user[email]": {
@@ -81,8 +87,7 @@
         },
         "user[user_name]": {
           required: "ユーザーネームを入力してください",
-          minlength: "2文字以上30文字以下で入力してください",
-          maxlength: "2文字以上30文字以下で入力してください",
+          maxlength: "30文字以下で入力してください",
         },
         "user[email]": {
           required: "メールアドレスを入力してください",

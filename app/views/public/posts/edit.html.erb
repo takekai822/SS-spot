@@ -106,13 +106,13 @@
               document.getElementById('lng').value = ev.latLng.lng();
           });
       } else {
-        alert('該当する結果がありませんでした');
+        alert('該当する場所が見つかりませんでした');
       }
     });
   }
 
   //バリデーションエラー
-  $(document).on('turbolinks:load', function(){
+  $(document).ready(function() {
     // バリデーションの実行
     $('#form').validate({
       // ルール設定

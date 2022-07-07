@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user! , except: [:show, :index]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :ensure_guest_user, only: [:create, :edit, :update, :destroy]
 
   # 新規投稿
   def new
@@ -80,7 +81,7 @@ class Public::PostsController < ApplicationController
   private
   # ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :body, :address, :latitude, :longitude, :tag_list, post_images: [])
+    params.require(:post).permit(:title, :body, :address, :site, :latitude, :longitude, :tag_list, post_images: [])
   end
 
   # 投稿者本人しか投稿を編集できないようにするためのアクション
@@ -88,6 +89,13 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     unless @post.user == current_user
       redirect_to request.referer
+    end
+  end
+
+  # ゲストユーザーの利用制限のアクション
+  def ensure_guest_user
+    if current_user.name == 'ゲストユーザー'
+      redirect_to posts_path, notice: 'ゲストユーザーでは利用できない機能です'
     end
   end
 end

@@ -1,6 +1,6 @@
 <div class="background container py-5 rounded">
   <div class="row">
-    <div class="col-10 mx-auto">
+    <div class="col-12 col-sm-10 mx-auto">
       <div class="row">
         <div class="profile p-3 mb-1">
           <%= link_to user_path(@post.user) do %>
@@ -20,7 +20,7 @@
       </div>
 
       <div class="row">
-        <div class="col-10 mx-auto">
+        <div class="col-12 col-sm-10 mx-auto">
           <!--投稿タイトル-->
           <h3 class="my-4 text-break">
             <%= @post.title %>
@@ -55,38 +55,45 @@
 
           <!--場所・地名-->
           <div class="my-3">
-            <p>< 場所・地名 ></p>
+            <span>< 場所・地名 ></span>
             <p class="text-break">
               <%= @post.address %>
             </p>
           </div>
 
+          <!--サイトリンク(記載がない場合は非表示)-->
+          <% if @post.site.present? %>
+            <div class="my-4">
+              <span><サイトリンク></span>
+              <!--別タブで外部サイトへ移動-->
+              <p class="text-break">
+                <%= link_to "#{@post.site}", @post.site, target: :_blank, rel: "noopener noreferrer", class: "link" %>
+              </p>
+            </div>
+          <% end %>
 
           <!--地図の表示-->
           <div id='map'></div>
 
           <!--コメント-->
           <div class="p-1 my-3 my-lg-5">
-            <!--コメント数-->
-            <div class="content comment-count mt-1 mt-lg-5 mb-3">
-              <%= @post.post_comments.count %> コメント
-            </div>
+            <!--コメントが無い場合は非表示-->
+            <% if @post.post_comments.present? %>
+              <!--コメント数-->
+              <div class="content comment-count mt-1 mt-lg-5 mb-3">
+                <%= @post.post_comments.count %> コメント
+              </div>
 
-            <!--コメント一覧-->
-            <div class="content post-comments border p-3">
-              <% if @post.post_comments.present? %>
+              <!--コメント一覧-->
+              <div class="content post-comments border p-3">
                 <div class="comment-area hide">
                   <%= render "public/post_comments/index", post: @post %>
                   <div class="readmore">
                     <span class="underline">続きを読む</span>
                   </div>
                 </div>
-              <% else %>
-                <p>
-                  コメントはありません
-                </p>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
 
             <!--ログインしているか確認-->
             <% if user_signed_in? %>

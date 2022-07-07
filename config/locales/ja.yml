@@ -60,34 +60,17 @@ ja:
           one: "%{model}にエラーが発生しました"
           other: "%{model}に%{count}個のエラーが発生しました"
 
-    devise:
-      failure:
-        unauthenticated: 'ログインしてください。'
-        invalid: 'メールアドレスかパスワードが違います。'
-      sessions:
-        signed_in: 'ログインしました。'
-        signed_out: 'ログアウトしました。'
-      mailer:
-        confirmation_instructions:
-          subject: 'アカウントの登録方法'
-        reset_password_instructions:
-          subject: 'パスワードの再設定'
-        unlock_instructions:
-          subject: 'アカウントの凍結解除'
-          subject: 'Unlock Instructions'
-    helpers:
-      select:
-        prompt: 選択してください
-      submit:
-        create: 登録する
-        submit: 保存する
-        update: 更新する
-      format:
-        delimiter: ","
-        precision: 3
-        separator: "."
-        significant: false
-        strip_insignificant_zeros: false
+  devise:
+    failure:
+      unauthenticated: 'ログインしてください'
+      invalid: 'メールアドレスまたはパスワードが違います'
+      not_found_in_database: '%{authentication_keys}またはパスワードが違います'
+    sessions:
+      signed_in: 'ログインしました'
+      signed_out: 'ログアウトしました'
+    registrations:
+      signed_up: "アカウント登録が完了しました"
+
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>

@@ -1,4 +1,11 @@
 <%= form_with model: [post, post_comment], local: false do |f| %>
+  <!--ゲストユーザーの利用制限コメント-->
+  <div class="form-group">
+    <% if current_user.name == 'ゲストユーザー' %>
+      <p>実際にコメントすることはできません。</p>
+    <% end %>
+  </div>
+
   <!--コメント投稿-->
   <div class="form-group">
     <%= f.text_field :comment, class: "form-control comment", placeholder: "コメントを入力" %>

@@ -30,7 +30,12 @@
 
         <!--投稿ボタン-->
         <div class="form-group text-center pt-5">
-            <%= f.submit "投稿", class: "button-blue btn col-sm-3 col-5" %>
+          <!--ゲストユーザーの利用制限コメント-->
+          <% if current_user.name == 'ゲストユーザー' %>
+            <p>実際に投稿することはできません。</p>
+          <% end %>
+
+          <%= f.submit "投稿", class: "button-blue btn col-sm-3 col-5" %>
         </div>
       <% end %>
     </div>
@@ -40,7 +45,7 @@
 <!-- js部分 -->
 <script>
   //mapが正しく表示されるための記述
-  if (window.google){
+  if (window.google) {
     initMap();
   } else {
     $.ajax('https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap&libraries=places', {
@@ -56,7 +61,7 @@
     geocoder = new google.maps.Geocoder()
 
     map = new google.maps.Map(document.getElementById('map'), {
-      center:  {lat:35.710006892117, lng:139.81081025188},  //東京スカイツリー
+      center:  {lat: 35.690921, lng: 139.700258},  //新宿駅
       zoom: 15,
     });
 
@@ -103,13 +108,13 @@
               document.getElementById('lng').value = ev.latLng.lng();
           });
       } else {
-        alert('該当する結果がありませんでした');
+        alert('該当する場所が見つかりませんでした');
       }
     });
   }
 
   //バリデーションエラー
-  $(document).on('turbolinks:load', function(){
+  $(document).ready(function() {
     // バリデーションの実行
     $('#form').validate({
       // ルール設定

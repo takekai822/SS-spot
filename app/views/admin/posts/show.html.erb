@@ -1,6 +1,6 @@
 <div class="background container py-5 rounded">
   <div class="row">
-    <div class="col-10 mx-auto">
+    <div class="col-12 col-sm-10 mx-auto">
       <div class="row">
         <div class="profile p-3 mb-1">
           <%= link_to admin_user_path(@post.user) do %>
@@ -20,7 +20,7 @@
       </div>
 
       <div class="row">
-        <div class="col-10 mx-auto">
+        <div class="col-12 col-sm-10 mx-auto">
           <!--投稿タイトル-->
           <h3 class="my-4 text-break">
             <%= @post.title %>
@@ -55,60 +55,77 @@
             </p>
           </div>
 
+          <!--関連付けされたサイト(記載がない場合は非表示)-->
+          <% if @post.site.present? %>
+            <div class="my-4">
+              <span><関連付けされたサイト></span>
+              <!--別タブで外部サイトへ移動-->
+              <p class="text-break">
+                <%= link_to "#{@post.site}", @post.site, target: :_blank, rel: "noopener noreferrer", class: "link" %>
+              </p>
+            </div>
+          <% end %>
+
           <!--地図の表示-->
           <div id='map'></div>
 
           <!--コメント-->
           <div class="p-1 my-3 my-lg-5">
-            <!--コメント数-->
-            <div class="comment-count mt-1 mt-lg-5 mb-3">
-              <%= @post.post_comments.count %> コメント
-            </div>
+            <% if @post.post_comments.present? %>
+              <!--コメント数-->
+              <div class="comment-count mt-1 mt-lg-5 mb-3">
+                <%= @post.post_comments.count %> コメント
+              </div>
 
-            <!--コメント一覧-->
-            <div class="post-comments border p-3">
-              <% @post.post_comments.each do |post_comment| %>
-                <div>
+              <!--コメント一覧-->
+              <div class="post-comments border p-3">
+                <% @post.post_comments.each do |post_comment| %>
                   <div>
-                    <%= link_to admin_user_path(post_comment.user) do %>
-                      <p class="underline" style="font-size: 15px">
-                        <%= post_comment.user.user_name %>さんのコメント
-                      </p>
-                    <% end %>
-                  </div>
-                  <!--コメント文-->
-                  <p class="text-break">
-                    <%= post_comment.comment %>
-                  </p>
-
-                  <div class="d-sm-flex mb-3 justify-content-between border-bottom p-1">
-                    <!--星評価の表示-->
-                    <div id="rate-<%= post_comment.id %>" class="form-group"></div>
-
-                    <!--不適切なコメントの削除ボタン-->
                     <div>
-                      <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", "data-confirm" => "不適切なコメントとして削除しますか？" %>
+                      <%= link_to admin_user_path(post_comment.user) do %>
+                        <p class="underline" style="font-size: 15px">
+                          <%= post_comment.user.user_name %>さんのコメント
+                        </p>
+                      <% end %>
                     </div>
-                  </div>
+                    <!--コメント文-->
+                    <p class="text-break">
+                      <%= post_comment.comment %>
+                    </p>
 
-                  <!-- js部分 -->
-                  <script>
-                    $(document).on('turbolinks:load', function() {
-                      $('#rate-<%= post_comment.id %>').empty();
-                      $('#rate-<%= post_comment.id %>').raty({
-                        size: 20,
-                        starOff:  '<%= asset_path('star-off.png') %>',
-                        starOn : '<%= asset_path('star-on.png') %>',
-                        starHalf: '<%= asset_path('star-half.png') %>',
-                        half: true,
-                        readOnly: true,
-                        score: <%= post_comment.rate %>,
+                    <div class="d-sm-flex mb-3 justify-content-between border-bottom p-1">
+                      <!--星評価の表示-->
+                      <div id="rate-<%= post_comment.id %>" class="form-group"></div>
+
+                      <!--不適切なコメントの削除ボタン-->
+                      <div>
+                        <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", "data-confirm" => "不適切なコメントとして削除しますか？" %>
+                      </div>
+                    </div>
+
+                    <!-- js部分 -->
+                    <script>
+                      $(document).on('turbolinks:load', function() {
+                        $('#rate-<%= post_comment.id %>').empty();
+                        $('#rate-<%= post_comment.id %>').raty({
+                          size: 20,
+                          starOff:  '<%= asset_path('star-off.png') %>',
+                          starOn : '<%= asset_path('star-on.png') %>',
+                          starHalf: '<%= asset_path('star-half.png') %>',
+                          half: true,
+                          readOnly: true,
+                          score: <%= post_comment.rate %>,
+                        });
                       });
-                    });
-                  </script>
-               </div>
-              <% end %>
-            </div>
+                    </script>
+                 </div>
+                <% end %>
+              </div>
+            <% else %>
+              <p>
+                コメント無し
+              </p>
+            <% end %>
           </div>
 
           <!--不適切な投稿の削除ボタン-->

@@ -1,17 +1,18 @@
-// bootstrap読み込み
+/*bootstrap読み込み*/
 @import '~bootstrap/scss/bootstrap';
-// fontawesome読み込み
+/*fontawesome読み込み*/
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-// フォント読み込み
+/*文字フォント読み込み*/
 @import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
 
-/*基本の文字色・フォント*/
+
+/*基本の文字色・文字フォント*/
 body, body a {
-  font-family: 'Comic Sans MS','M PLUS Rounded 1c', 'メイリオ', Meiryo, 'ＭＳ ゴシック', sans-serif;
-  color: #696969
+  font-family: 'Comic Sans MS', 'M PLUS Rounded 1c', 'メイリオ', Meiryo, 'ＭＳ ゴシック', sans-serif;
+  color: #696969;
 }
 body a:hover {
-  color: black;
+  color: #000;
   text-decoration: none;
 }
 
@@ -31,17 +32,11 @@ body a:hover {
 
 /*ヘッダー*/
 .header-scroll {
-  background-color: white;
-}
-.logo {
-  transition: all 0.5s ease-in-out;
-}
-.logo:hover {
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 }
 .height {
   height: 80px;
-  background-color:#f0ffff;
+  background-color: #f0ffff;
 }
 
 
@@ -55,7 +50,7 @@ body a:hover {
   background: none;
   border: none;
   text-align: center;
-  color: black;
+  color: #000;
   top: 25px;
   right: 20px;
   z-index: 1001;
@@ -69,7 +64,7 @@ body a:hover {
   transform-origin: 0% 0%;
   position: absolute;
   left: 0;
-  background-color: black;
+  background-color: #000;
 }
 .menu-button .menu-bar1 {
   top: 0;
@@ -126,7 +121,7 @@ body a:hover {
   border-radius: 30px 100px / 120px;
 }
 .wide-nav .nav-item a:hover, .wide-nav .nav-item a {
-  color: white;
+  color: #fff;
   text-decoration: none;
 }
 .nav-menu {
@@ -155,7 +150,7 @@ body a:hover {
 	top: 0;
 	right: 0;
 	z-index: 1000;
-	background-color: #FFF;
+	background-color: #fff;
 }
 .nav-wrapper.open {
 	transform: translate(0);
@@ -186,7 +181,7 @@ body a:hover {
   background: none;
 }
 .posts {
-  width: 800px;
+  width: 90%;
   height: 100%;
   border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
   border: 6px solid #333;
@@ -208,12 +203,12 @@ body a:hover {
   transition: 0.5s all;
 }
 .about{
-	background-color: white;	/*背景色*/
+	background-color: white;
 	border: 1px solid #ccc;
-	box-shadow:1px 1px 6px 0px #ccc;
-	-moz-box-shadow:1px 1px 6px 0px #ccc;
-	-webkit-box-shadow:1px 1px 6px 0px #ccc;
-	-o-box-shadow:1px 1px 6px 0px #ccc;
+	box-shadow: 1px 1px 6px 0px #ccc;
+	-moz-box-shadow: 1px 1px 6px 0px #ccc;
+	-webkit-box-shadow: 1px 1px 6px 0px #ccc;
+	-o-box-shadow: 1px 1px 6px 0px #ccc;
 	margin: 50px;
 	padding: 50px 50px 30px 50px;
 	position: relative;
@@ -291,7 +286,7 @@ body a:hover {
 
 
 /* アラート*/
-.alert li{
+.alert li {
   text-align: left;
   margin: 10px;
   list-style: none;
@@ -313,20 +308,22 @@ body a:hover {
 }
 
 
+/*リンクか分かりづらい部分に下線*/
 .underline:hover {
   text-decoration: underline;
 }
 
 
+/*見出し*/
 .title {
   background-color: #f0ffff;
   box-shadow: 0 0 5px 1.5px #a9a9a9;
 }
 
 
-/*投稿画像が一枚の時はドットを非表示*/
-.slick-dots > li:first-child:last-child {
-    display: none;
+/*indexページhover時の背景色*/
+.index:hover {
+  background-color: #f0ffff;
 }
 
 
@@ -337,6 +334,13 @@ body a:hover {
 }
 
 
+/*投稿画像が一枚の時はドットを非表示*/
+.slick-dots > li:first-child:last-child {
+  display: none;
+}
+
+
+/*showページのプロフィール画像*/
 .profile img {
   transition: 0.5s;
 }
@@ -346,14 +350,12 @@ body a:hover {
   box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-
-.index:hover{
-  background-color: #f0ffff;
+/*サイトリンク*/
+.link {
+  color: #1e90ff;
 }
-
-
-.content{
-  font-size:20px;
+.link:hover {
+  color: #0000CD;
 }
 
 
@@ -382,6 +384,12 @@ body a:hover {
 /*コメントの折り返しのスタイル終わり*/
 
 
+/*一部のフォントサイズ*/
+.content {
+  font-size: 20px;
+}
+
+
 /*ページネーション*/
 .pagination li a {
   border: none;
@@ -396,7 +404,7 @@ body a:hover {
 .pagination li a:hover {
   border-radius: 15px;
   background-color: #87cefa;
-  color: white;
+  color: #fff;
 }
 .page-link {
   background-color: inherit;
@@ -418,7 +426,7 @@ body a:hover {
 }
 .select-buttons a {
   text-decoration: none;
-  color: black;
+  color: #000;
 }
 .select-button {
   height: 80px;
@@ -435,7 +443,7 @@ body a:hover {
 .select-button:hover .icon {
   transform: translateY(-35px);
   font-size: 50px;
-  color: black;
+  color: #000;
 }
 .select-button strong {
   opacity: 0;
@@ -447,7 +455,7 @@ body a:hover {
 .select-button:hover strong {
   opacity: 1;
   transform: translateY(15px);
-  color: black;
+  color: #000;
 }
 /*遷移ボタンのスタイル終わり*/
 
@@ -470,7 +478,7 @@ body a:hover {
 }
 .pagetop a i {
   font-size: 20px;
-  color:#fff;
+  color: #fff;
   line-height: 50px;
 }
 /*ページトップボタンのスタイル終わり*/
@@ -485,7 +493,7 @@ footer {
 
 
 /*レスポンシブ対応*/
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   .small-nav {
     display: block;
   }
@@ -495,16 +503,12 @@ footer {
   }
 
   .header {
-    background-color: white;
-  }
-
-  .posts {
-    width: 100%;
+    background-color: #fff;
   }
 }
 
 
-@media screen and (max-width: 550px){
+@media screen and (max-width: 550px) {
   .background {
     background-color:  inherit;
   }
@@ -581,10 +585,14 @@ footer {
   }
 
   .readmore {
-  background: linear-gradient(180deg,rgb(240, 255, 255, 0) 0%,rgb(240, 255, 255, 1) 70%);
-}
+    background: linear-gradient(180deg,rgb(240, 255, 255, 0) 0%,rgb(240, 255, 255, 1) 70%);
+  }
 
   .index:hover {
     background-color: #f8f8ff;
+  }
+
+  h5 {
+    font-size: 15px;
   }
 }
