@@ -4,9 +4,6 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  # いいねの多い順に並べ替えする際に使用
-  has_many :favorited_users, through: :favorites, source: :user
-
   # 新着順、古い順に並べ替えする際に使用
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}

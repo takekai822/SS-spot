@@ -33,9 +33,7 @@ class Public::PostsController < ApplicationController
       @post_count = Post.all.count
     elsif params[:favorite]
       # いいねの多い順で並び替え
-      posts = Post.includes(:favorited_users).sort {|a, b| b.favorited_users.size <=> a.favorited_users.size}
-      # ページネーション
-      @posts = Kaminari.paginate_array(posts).page(params[:page]).per(10)
+      @posts = Post.left_joins(:favorites).group(:id).order('count(favorites.post_id) desc').page(params[:page]).per(10)
       # 投稿数
       @post_count = Post.all.count
     elsif params[:tag_name]
