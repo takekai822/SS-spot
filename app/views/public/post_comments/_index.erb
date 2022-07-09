@@ -3,7 +3,7 @@
     <!--コメント投稿者-->
     <div>
       <%= link_to user_path(post_comment.user) do %>
-        <p class="underline" style="font-size: 15px">
+        <p class="underline small-text">
           <%= post_comment.user.user_name %>さんのコメント
         </p>
       <% end %>
@@ -13,7 +13,7 @@
       <%= post_comment.comment %>
     </p>
 
-    <div class="d-sm-flex mb-3 justify-content-between border-bottom p-1">
+    <div class="d-sm-flex justify-content-between">
       <!--星評価の表示-->
       <div id="rate-<%= post_comment.id %>" class="form-group"></div>
 
@@ -23,6 +23,11 @@
           <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "button-red btn btn-sm", remote: true %>
         </div>
       <% end %>
+    </div>
+    
+    <!--コメント日-->
+    <div class="small-text border-bottom my-3 text-right" >
+      <p><%= post_comment.created_at.strftime("%Y年%m月%d日") %></p>
     </div>
 
     <!-- js部分 -->
