@@ -46,6 +46,11 @@
             コメント数：<%= post.post_comments.count %>
           </p>
         </div>
+        
+        <!--投稿日-->
+        <div class="col-12 text-right pt-4">
+          <p><%= post.created_at.strftime("%Y年%m月%d日") %></p>
+        </div>
       </div>
     <% end %>
   </div>
